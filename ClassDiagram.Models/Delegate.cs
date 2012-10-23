@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ClassDiagram.Models.Entity
 {
-    public abstract class Delegate
+    public abstract class Delegate : ClassDiagram.Models.IEntity
     {
     }
 }

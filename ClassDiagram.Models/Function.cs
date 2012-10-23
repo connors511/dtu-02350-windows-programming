@@ -5,20 +5,9 @@ using System.Text;
 
 namespace ClassDiagram.Models
 {
-    public abstract class Base
+    public class Function
     {
-        private int x
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        private int y
+        private Visibility visibility
         {
             get
             {
@@ -40,7 +29,18 @@ namespace ClassDiagram.Models
             }
         }
 
-        private string color
+        private object type
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public List<Argument> arguments
         {
             get
             {

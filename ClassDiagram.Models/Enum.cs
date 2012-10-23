@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ClassDiagram.Models.Entity
 {
-    public abstract class Enum
+    public abstract class Enum : ClassDiagram.Models.IEntity
     {
     }
 }
