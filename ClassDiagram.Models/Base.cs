@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace ClassDiagram.Models
 {
-    public abstract class Base
+    public abstract class Base : INotifyPropertyChanged
     {
-        private int x
+        public int X
         {
             get
             {
@@ -18,7 +19,7 @@ namespace ClassDiagram.Models
             }
         }
 
-        private int y
+        public int Y
         {
             get
             {
@@ -29,7 +30,7 @@ namespace ClassDiagram.Models
             }
         }
 
-        private string name
+        public string name
         {
             get
             {
@@ -40,7 +41,7 @@ namespace ClassDiagram.Models
             }
         }
 
-        private string color
+        public string color
         {
             get
             {
@@ -49,6 +50,14 @@ namespace ClassDiagram.Models
             set
             {
             }
+        }
+
+        // Event handler
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

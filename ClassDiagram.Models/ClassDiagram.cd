@@ -1,83 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="ClassDiagram.Models.Base" Collapsed="true">
-    <Position X="7.25" Y="1.25" Width="1.5" />
+    <Position X="7.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAABgAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAgAAEAACAAABgAAAAAAA=</HashCode>
       <FileName>Base.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ClassDiagram.Models.Entity.Class" BaseTypeListCollapsed="true">
-    <Position X="9" Y="1.25" Width="1.5" />
+  <Class Name="ClassDiagram.Models.Entities.Class" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Class.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ClassDiagram.Models.Entity.AbstractClass" BaseTypeListCollapsed="true">
-    <Position X="3.75" Y="1.25" Width="1.5" />
+  <Class Name="ClassDiagram.Models.Entities.AbstractClass" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AbstractClass.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ClassDiagram.Models.Entity.Interface" BaseTypeListCollapsed="true">
-    <Position X="5.5" Y="3.25" Width="1.5" />
+  <Class Name="ClassDiagram.Models.Entities.Interface" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interface.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ClassDiagram.Models.Entity.Enum" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7.25" Y="2.25" Width="1.5" />
+  <Class Name="ClassDiagram.Models.Entities.Enum" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enum.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ClassDiagram.Models.Entity.Struct" BaseTypeListCollapsed="true">
-    <Position X="7.25" Y="3.25" Width="1.5" />
+  <Class Name="ClassDiagram.Models.Entities.Struct" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Struct.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ClassDiagram.Models.Entity.Delegate" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3.75" Y="2.25" Width="1.5" />
+  <Class Name="ClassDiagram.Models.Entities.Delegate" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Delegate.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="ClassDiagram.Models.Entity" Collapsed="true">
-    <Position X="5.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>BAQAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entity.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ClassDiagram.Models.Arrow.Inherit" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3.75" Y="3.25" Width="1.5" />
+  <Class Name="ClassDiagram.Models.Arrows.Inherit" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Inherit.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ClassDiagram.Models.Arrow.Association" Collapsed="true">
-    <Position X="5.5" Y="1.25" Width="1.5" />
+  <Class Name="ClassDiagram.Models.Arrows.Association" Collapsed="true">
+    <Position X="5.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Association.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClassDiagram.Models.Function" Collapsed="true">
-    <Position X="9" Y="2.25" Width="1.5" />
+    <Position X="7.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAlAAAAAAAAAABAAAA=</HashCode>
       <FileName>Function.cs</FileName>
@@ -91,35 +85,42 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ClassDiagram.Models.Property">
-    <Position X="1.25" Y="3.5" Width="1.5" />
+    <Position X="1.25" Y="3.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Property.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ClassDiagram.Models.Entity" Collapsed="true">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="ClassDiagram.Models.IEntity" Collapsed="true">
-    <Position X="3.75" Y="4.5" Width="1.5" />
+    <Position X="4" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IEntity.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ClassDiagram.Models.IFunction" Collapsed="true">
-    <Position X="5.5" Y="4.5" Width="1.5" />
+    <Position X="5.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IFunction.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ClassDiagram.Models.IProperty">
-    <Position X="9.25" Y="4.25" Width="1.5" />
+  <Interface Name="ClassDiagram.Models.IProperty" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IProperty.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="ClassDiagram.Models.Visibility" Collapsed="true">
-    <Position X="3.75" Y="5.5" Width="1.5" />
+    <Position X="4" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAEAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Visibility.cs</FileName>

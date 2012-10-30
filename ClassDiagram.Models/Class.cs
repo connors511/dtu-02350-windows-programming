@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ClassDiagram.Models.Entity
+namespace ClassDiagram.Models.Entities
 {
-    public abstract class Class : ClassDiagram.Models.IEntity, ClassDiagram.Models.IFunction, ClassDiagram.Models.IProperty
+    public class Class : Entity, ClassDiagram.Models.IEntity, ClassDiagram.Models.IFunction, ClassDiagram.Models.IProperty
     {
         public List<Function> functions
         {
