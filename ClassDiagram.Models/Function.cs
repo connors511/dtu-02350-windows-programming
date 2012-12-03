@@ -7,7 +7,7 @@ namespace ClassDiagram.Models
 {
     public class Function
     {
-        private Visibility visibility
+        private Visibility Visibility
         {
             get
             {
@@ -18,7 +18,7 @@ namespace ClassDiagram.Models
             }
         }
 
-        private string name
+        private string Name
         {
             get
             {
@@ -29,7 +29,7 @@ namespace ClassDiagram.Models
             }
         }
 
-        private object type
+        private object Type
         {
             get
             {

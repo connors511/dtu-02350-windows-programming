@@ -33,7 +33,7 @@ namespace ClassDiagram.Models
             }
         }
 
-        protected List<IEntity> inheritable
+        protected List<IEntity> Inheritable
         {
             get
             {

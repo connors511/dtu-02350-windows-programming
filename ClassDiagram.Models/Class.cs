@@ -13,27 +13,29 @@ namespace ClassDiagram.Models.Entities
             Width = Height = 100;
         }
 
-        public List<Function> functions
+        private List<Function> _functions;
+        public List<Function> Functions
         {
             get
             {
-                throw new NotImplementedException();
+                return _functions;
             }
             set
             {
-                throw new NotImplementedException();
+                _functions = value;
             }
         }
 
-        public List<Property> properties
+        private List<Property> _properties;
+        public List<Property> Properties
         {
             get
             {
-                throw new NotImplementedException();
+                return (_properties == null) ? _properties : _properties.OrderBy(x => x.Visibility).ToList();
             }
             set
             {
-                throw new NotImplementedException();
+                _properties = value;
             }
         }
     }

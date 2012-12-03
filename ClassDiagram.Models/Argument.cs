@@ -7,36 +7,42 @@ namespace ClassDiagram.Models
 {
     public class Argument
     {
-        private string name
+        private string _name;
+        public string Name
         {
             get
             {
-                throw new System.NotImplementedException();
+                return _name;
             }
             set
             {
+                _name = value;
             }
         }
 
-        private object type
+        private object _type;
+        public object Type
         {
             get
             {
-                throw new System.NotImplementedException();
+                return _type;
             }
             set
             {
+                _type = value;
             }
         }
 
-        private object value
+        private object _value;
+        public object Value
         {
             get
             {
-                throw new System.NotImplementedException();
+                return _value;
             }
             set
             {
+                _value = value;
             }
         }
     }

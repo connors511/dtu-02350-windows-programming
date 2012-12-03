@@ -7,7 +7,7 @@ namespace ClassDiagram.Models
 {
     public interface IFunction
     {
-        List<Function> functions
+        List<Function> Functions
         {
             get;
             set;

@@ -7,14 +7,16 @@ namespace ClassDiagram.Models
 {
     public class Property : Argument
     {
-        private Visibility visibility
+        private Visibility _visibility;
+        public Visibility Visibility
         {
             get
             {
-                throw new System.NotImplementedException();
+                return _visibility;
             }
             set
             {
+                _visibility = value;
             }
         }
     }

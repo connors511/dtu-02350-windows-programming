@@ -36,7 +36,7 @@ namespace ClassDiagram.Models
         }
 
         private string _name;
-        public string name
+        public string Name
         {
             get
             {
@@ -48,25 +48,30 @@ namespace ClassDiagram.Models
             }
         }
 
-        private string _color;
-        public string color
+        private Brush _bordercolor = Brushes.Black;
+        public Brush BorderColor
         {
             get
             {
+                return _bordercolor;
+            }
+            set
+            {
+                _bordercolor = value;
+            }
+        }
+
+        private Brush _color = Brushes.Blue;
+        public Brush Color 
+        { 
+            get 
+            { 
                 return _color;
             }
             set
             {
                 _color = value;
             }
-        }
-
-        public Brush SelectedColor 
-        { 
-            get 
-            { 
-                return Brushes.Yellow;
-            } 
         }
 
         // Event handler

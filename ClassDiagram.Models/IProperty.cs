@@ -7,7 +7,7 @@ namespace ClassDiagram.Models
 {
     public interface IProperty
     {
-        List<Property> properties
+        List<Property> Properties
         {
             get;
             set;

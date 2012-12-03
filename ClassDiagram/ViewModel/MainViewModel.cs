@@ -1,4 +1,4 @@
-﻿using ClassDiagram.Command;
+using ClassDiagram.Command;
 using ClassDiagram.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -39,14 +39,12 @@ namespace ClassDiagram.ViewModel
         public ObservableCollection<Base> bases { get; set; }
 
         // Kommandoer som UI bindes til.
-        public ICommand UndoCommand { get; private set; }
-        public ICommand RedoCommand { get; private set; }
-
-        // Kommandoer som UI bindes til.
-        public ICommand AddBaseCommand { get; private set; }
-        public ICommand RemoveNodeCommand { get; private set; }
-        public ICommand AddEdgeCommand { get; private set; }
-        public ICommand RemoveEdgesCommand { get; private set; }
+        public ICommand NewCommand { get; private set; }
+        public ICommand LoadCommand { get; private set; }
+        public ICommand SaveCommand { get; private set; }
+        public ICommand SaveAsCommand { get; private set; }
+        public ICommand ExitCommand { get; private set; }
+        public ICommand AboutCommand { get; private set; }
 
         // Kommandoer som UI bindes til.
         public ICommand MouseDownNodeCommand { get; private set; }
@@ -55,19 +53,19 @@ namespace ClassDiagram.ViewModel
 
         public MainViewModel()
         {
-            // Her fyldes listen af noder med to noder. Her benyttes et alternativ til konstruktorer med syntaksen 'new Type(){ Attribut = Værdi }'
-            // Det der sker er at der først laves et nyt object og så sættes objektets attributer til de givne værdier.
-            bases = new ObservableCollection<Base>() { 
-                new Class() { X = 30, Y = 40, Width = 80, Height = 80 }, 
-                new Class() { X = 140, Y = 230, Width = 100, Height = 100 } 
-            };
-
+            Load();
             // Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes. Her vidersendes metode kaldne til UndoRedoControlleren.
             UndoCommand = new RelayCommand(undoRedoController.Undo, undoRedoController.CanUndo);
             RedoCommand = new RelayCommand(undoRedoController.Redo, undoRedoController.CanRedo);
 
             // Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
             AddBaseCommand = new RelayCommand<string>((s) => AddClass(s));
+            NewCommand = new RelayCommand(New);
+            SaveCommand = new RelayCommand(Save);
+            SaveAsCommand = new RelayCommand(SaveAs);
+            LoadCommand = new RelayCommand(Load);
+            ExitCommand = new RelayCommand(Exit);
+            AboutCommand = new RelayCommand(About);
             //RemoveNodeCommand = new RelayCommand<IList>(RemoveNode, CanRemoveNode);
             //AddEdgeCommand = new RelayCommand(AddEdge);
             //RemoveEdgesCommand = new RelayCommand<IList>(RemoveEdges, CanRemoveEdges);
@@ -78,6 +76,26 @@ namespace ClassDiagram.ViewModel
             MouseUpNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseUpNode);
         }
 
+        private void Load()
+        {
+            undoRedoController.Reset();
+
+            bases = new ObservableCollection<Base>();
+            // Needed to refresh gui
+            bases.Clear();
+
+            var Props = new List<Models.Property>();
+            Props.Add(new Models.Property() { Name = "PublicMethod", Visibility = Models.Visibility.Public });
+            Props.Add(new Models.Property() { Name = "_privateMethod", Visibility = Models.Visibility.Private });
+            Props.Add(new Models.Property() { Name = "protectedMethod", Visibility = Models.Visibility.Protected });
+            Props.Add(new Models.Property() { Name = "PublicMethod2", Visibility = Models.Visibility.Public });
+            Props.Add(new Models.Property() { Name = "_privateMethod2", Visibility = Models.Visibility.Private });
+            Props.Add(new Models.Property() { Name = "protectedMethod2", Visibility = Models.Visibility.Protected });
+            bases.Add(new Class() { Name = "Hej", X = 30, Y = 40, Width = 200, Height = 200, Properties = Props, Color = Brushes.White });
+            bases.Add(new Class() { X = 180, Y = 280, Width = 100, Height = 100 });
+
+        }
+
         // Tilføjer punkt med kommando.
         public void AddClass(string parameter)
         {
@@ -85,10 +103,10 @@ namespace ClassDiagram.ViewModel
             Base obj;
             switch (parameter)
             {
-                case "Class" :
+                case "Class":
                     obj = new Class();
                     break;
-                default :
+                default:
                     obj = new Class();
                     break;
             }
@@ -113,6 +131,56 @@ namespace ClassDiagram.ViewModel
         {
             isAddingElement = true;
         }*/
+        public void New()
+        {
+            // Do you want to save first?
+
+            // Reset!
+            Load();
+        }
+
+        public void Open()
+        {
+
+        }
+
+        public void Save()
+        {
+
+        }
+
+        public void SaveAs()
+        {
+
+        }
+
+        public void Export()
+        {
+
+        }
+
+        public void Exit()
+        {
+            // Check if there has been any changes since last save
+
+            // shutdown
+            Application.Current.Shutdown();
+        }
+
+        public void Undo()
+        {
+
+        }
+
+        public void Redo()
+        {
+
+        }
+
+        public void About()
+        {
+            // Display about box
+        }
 
         // Hvis der ikke er ved at blive tilføjet en kant så fanges musen når en musetast trykkes ned. Dette bruges til at flytte punkter.
         public void MouseDownNode(MouseButtonEventArgs e)

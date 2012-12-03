@@ -7,7 +7,7 @@ namespace ClassDiagram.Models.Entities
 {
     public abstract class AbstractClass : ClassDiagram.Models.IEntity, ClassDiagram.Models.IFunction, ClassDiagram.Models.IProperty
     {
-        public List<Function> functions
+        public List<Function> Functions
         {
             get
             {
@@ -19,7 +19,7 @@ namespace ClassDiagram.Models.Entities
             }
         }
 
-        public List<Property> properties
+        public List<Property> Properties
         {
             get
             {

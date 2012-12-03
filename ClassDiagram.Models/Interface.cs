@@ -7,7 +7,7 @@ namespace ClassDiagram.Models.Entities
 {
     public abstract class Interface : ClassDiagram.Models.IEntity, ClassDiagram.Models.IFunction
     {
-        public List<Function> functions
+        public List<Function> Functions
         {
             get
             {
