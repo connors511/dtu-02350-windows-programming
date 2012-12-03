@@ -38,6 +38,8 @@ namespace ClassDiagram.ViewModel
         // men den holder kun klasser af en type når den benyttes.
         public ObservableCollection<Base> bases { get; set; }
 
+        public ICommand AddBaseCommand { get; private set; }
+
         public ICommand UndoCommand { get; private set; }
         public ICommand RedoCommand { get; private set; }
 
@@ -62,7 +64,7 @@ namespace ClassDiagram.ViewModel
             RedoCommand = new RelayCommand(undoRedoController.Redo, undoRedoController.CanRedo);
 
             // Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
-            AddBaseCommand = new RelayCommand<string>((s) => AddClass(s));
+            AddBaseCommand = new RelayCommand<string>((s) => AddBase(s));
             NewCommand = new RelayCommand(New);
             SaveCommand = new RelayCommand(Save);
             SaveAsCommand = new RelayCommand(SaveAs);
@@ -94,23 +96,34 @@ namespace ClassDiagram.ViewModel
             Props.Add(new Models.Property() { Name = "PublicMethod2", Visibility = Models.Visibility.Public });
             Props.Add(new Models.Property() { Name = "_privateMethod2", Visibility = Models.Visibility.Private });
             Props.Add(new Models.Property() { Name = "protectedMethod2", Visibility = Models.Visibility.Protected });
-            bases.Add(new Class() { Name = "Hej", X = 30, Y = 40, Width = 200, Height = 200, Properties = Props, Color = Brushes.White });
+            bases.Add(new Class() { Name = "Hej", X = 30, Y = 40, Width = 200, Height = 200, Properties = Props, Color = Brushes.LightBlue });
             bases.Add(new Class() { X = 180, Y = 280, Width = 100, Height = 100 });
 
         }
 
         // Tilføjer punkt med kommando.
-        public void AddClass(string parameter)
+        public void AddBase(string parameter)
         {
-
+            System.Console.WriteLine(parameter);
             Base obj;
             switch (parameter)
             {
-                case "Class":
-                    obj = new Class();
+                case "AbstractClass":
+                    obj = new AbstractClass();
+                    obj.Color = Brushes.LightSteelBlue;
                     break;
+                case "Enum":
+                    obj = new Models.Entities.Enum();
+                    obj.Color = Brushes.LightYellow;
+                    break;
+                case "Struct":
+                    obj = new Struct();
+                    obj.Color = Brushes.LightSkyBlue;
+                    break;
+                case "Class":
                 default:
                     obj = new Class();
+                    obj.Color = Brushes.LightBlue;
                     break;
             }
 

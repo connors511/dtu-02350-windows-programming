@@ -5,40 +5,12 @@ using System.Text;
 
 namespace ClassDiagram.Models.Entities
 {
-    public class Enum : ClassDiagram.Models.IEntity
+    public class Enum : Entity, ClassDiagram.Models.IEntity
     {
-        public int CanvasCenterX
+        public Enum()
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public int CanvasCenterY
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public int CenterX
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public int CenterY
-        {
-            get { throw new NotImplementedException(); }
+            X = Y = 100;
+            Width = Height = 100;
         }
     }
 }

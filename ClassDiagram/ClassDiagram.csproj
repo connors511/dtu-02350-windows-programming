@@ -77,7 +77,7 @@
     <Compile Include="Command\MoveEntityCommand.cs" />
     <Compile Include="Command\UndoRedoController.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Page Include="View\ClassUserControl.xaml">
+    <Page Include="View\BaseUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,8 +90,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\ClassUserControl.xaml.cs">
-      <DependentUpon>ClassUserControl.xaml</DependentUpon>
+    <Compile Include="View\BaseUserControl.xaml.cs">
+      <DependentUpon>BaseUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

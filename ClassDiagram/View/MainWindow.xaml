@@ -10,7 +10,22 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type Model:Class}">
             <Canvas>
-                <View:ClassUserControl/>
+                <View:BaseUserControl/>
+            </Canvas>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type Model:Enum}">
+            <Canvas>
+                <View:BaseUserControl/>
+            </Canvas>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type Model:Struct}">
+            <Canvas>
+                <View:BaseUserControl/>
+            </Canvas>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type Model:AbstractClass}">
+            <Canvas>
+                <View:BaseUserControl/>
             </Canvas>
         </DataTemplate>
         <vm:ViewModelLocator xmlns:vm="clr-namespace:ClassDiagram.ViewModel" x:Key="Locator" />
@@ -35,24 +50,21 @@
         </Menu>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="115" />
                 <!-- Or Auto -->
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="870*" />
             </Grid.ColumnDefinitions>
             <ListBox Margin="0,23,0,23" />
-            <Canvas Grid.Column="1" Margin="0,23,0,23">
-                <Grid>
-                    <ItemsControl ItemsSource="{Binding classes}" />
-                </Grid>
+            <Canvas Margin="0,23" Grid.Column="1">
+                <Grid></Grid>
+                <ItemsControl ItemsSource="{Binding bases}" Canvas.Left="14" Canvas.Top="-23" />
             </Canvas>
             <GridSplitter Grid.Column ="0" Background="Black" Width="2"
                 HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,23,0,23"/>
-            <Button Content="Button" 
-                    Height="23" 
-                    HorizontalAlignment="Left" 
-                    Margin="61,68,0,0" 
-                    Name="button1" VerticalAlignment="Top" Width="75" 
-                    Command="{Binding AddClassCommand}"/>
+            <Button Command="{Binding AddBaseCommand}" CommandParameter="Class" Content="Class" Height="40" HorizontalAlignment="Left" Margin="6,29,0,0" Name="bClass" VerticalAlignment="Top" Width="100" />
+            <Button Command="{Binding AddBaseCommand}" CommandParameter="AbstractClass" Content="Abstact Class" Height="40" HorizontalAlignment="Left" Margin="6,76,0,0" Name="bAbstractClass" VerticalAlignment="Top" Width="100" />
+            <Button Command="{Binding AddBaseCommand}" CommandParameter="Enum" Content="Enum" Height="40" Name="bEnum" Width="100" Margin="6,123,9,498" />
+            <Button Command="{Binding AddBaseCommand}" CommandParameter="Struct" Content="Struct" Height="40" Name="bStruct" Width="100" Margin="6,170,9,451" />
         </Grid>
     </Grid>
 </Window>

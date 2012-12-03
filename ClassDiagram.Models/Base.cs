@@ -61,7 +61,7 @@ namespace ClassDiagram.Models
             }
         }
 
-        private Brush _color = Brushes.Blue;
+        private Brush _color = Brushes.LightBlue;
         public Brush Color 
         { 
             get 
