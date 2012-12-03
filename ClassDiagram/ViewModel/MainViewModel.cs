@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using ClassDiagram.Command;
 using ClassDiagram.Models;
 using GalaSoft.MvvmLight;
