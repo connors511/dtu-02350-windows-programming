@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 using ClassDiagram.Command;
 using ClassDiagram.Models;
 using GalaSoft.MvvmLight;
@@ -38,6 +37,9 @@ namespace ClassDiagram.ViewModel
         // Dette er en generisk kollektion. Det betyder at den kan defineres til at indeholde alle slags klasser, 
         // men den holder kun klasser af en type når den benyttes.
         public ObservableCollection<Base> bases { get; set; }
+
+        public ICommand UndoCommand { get; private set; }
+        public ICommand RedoCommand { get; private set; }
 
         // Kommandoer som UI bindes til.
         public ICommand NewCommand { get; private set; }
