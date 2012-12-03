@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ClassDiagram.Command
 {
     // Bruges til at flytte punkt.
-    public class MoveNodeCommand : IUndoRedoCommand
+    public class MoveEntityCommand : IUndoRedoCommand
     {
         private IEntity node;
         private int x;
@@ -17,7 +17,7 @@ namespace ClassDiagram.Command
         private int newX;
         private int newY;
 
-        public MoveNodeCommand(IEntity _node, int _newX, int _newY, int _x, int _y)
+        public MoveEntityCommand(IEntity _node, int _newX, int _newY, int _x, int _y)
         { 
             node = _node; 
             newX = _newX; 

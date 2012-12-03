@@ -7,25 +7,29 @@ namespace ClassDiagram.Models
 {
     public abstract class Entity : Base, IEntity
     {
+        private int _width;
         public int Width
         {
             get
             {
-                throw new System.NotImplementedException();
+                return _width;
             }
             set
             {
+                _width = value;
             }
         }
 
+        private int _height;
         public int Height
         {
             get
             {
-                throw new System.NotImplementedException();
+                return _height;
             }
             set
             {
+                _height = value;
             }
         }
 

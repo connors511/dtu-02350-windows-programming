@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using ClassDiagram.Models.Arrows;
 using ClassDiagram.Models.Entities;
 
 namespace ClassDiagram.ViewModel
@@ -24,9 +25,10 @@ namespace ClassDiagram.ViewModel
         private UndoRedoController undoRedoController = UndoRedoController.GetInstance();
 
         // Bruges til at ændre tilstand når en kant er ved at blive tilføjet.
-        private bool isAddingElement;
+        private bool isAddingEntity;
         // Gemmer det første punkt som punktet har under en flytning.
         private Point moveElementPoint;
+        public double ModeOpacity { get { return isAddingEntity ? 0.4 : 1.0; } }
 
         // Formålet med at benytte en ObservableCollection er at den implementere INotifyCollectionChanged, der er forskellige fra INotifyPropertyChanged.
         // INotifyCollectionChanged smider en event når mængden af elementer i en kollektion ændres (altså når et element fjernes eller tilføjes).
@@ -102,14 +104,14 @@ namespace ClassDiagram.ViewModel
         // Hvis der ikke er ved at blive tilføjet en kant så fanges musen når en musetast trykkes ned. Dette bruges til at flytte punkter.
         public void MouseDownNode(MouseButtonEventArgs e)
         {
-            if (!isAddingElement) e.MouseDevice.Target.CaptureMouse();
+            if (!isAddingEntity) e.MouseDevice.Target.CaptureMouse();
         }
 
         // Bruges til at flytter punkter.
         public void MouseMoveNode(MouseEventArgs e)
         {
             // Tjek at musen er fanget og at der ikke er ved at blive tilføjet en kant.
-            if (Mouse.Captured != null && !isAddingElement)
+            if (Mouse.Captured != null && !isAddingEntity)
             {
                 // Musen er nu fanget af ellipserne og den ellipse som musen befinder sig over skaffes her.
                 FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
@@ -135,13 +137,13 @@ namespace ClassDiagram.ViewModel
             // Ellipsen skaffes.
             FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
             // Ellipsens node skaffes.
-            IEntity movingNode = (IEntity)movingEllipse.DataContext;
+            IEntity movingEntity = (IEntity)movingEllipse.DataContext;
             // Canvaset skaffes.
             Canvas canvas = FindParentOfType<Canvas>(movingEllipse);
             // Musens position på canvas skaffes.
             Point mousePosition = Mouse.GetPosition(canvas);
             // Punktet flyttes med kommando. Den flyttes egentlig bare det sidste stykke i en række af mange men da de originale punkt gemmes er der ikke noget problem med undo/redo.
-            undoRedoController.AddAndExecute(new MoveNodeCommand(movingNode, (int)mousePosition.X, (int)mousePosition.Y, (int)moveElementPoint.X, (int)moveElementPoint.Y));
+            undoRedoController.AddAndExecute(new MoveEntityCommand(movingEntity, (int)mousePosition.X, (int)mousePosition.Y, (int)moveElementPoint.X, (int)moveElementPoint.Y));
             // Nulstil værdier.
             moveElementPoint = new Point();
             // Musen frigøres.

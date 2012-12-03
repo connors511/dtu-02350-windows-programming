@@ -1,18 +1,19 @@
 ﻿<Window x:Class="ClassDiagram.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Model="clr-namespace:ClassDiagram.Models;assembly=ClassDiagram.Models"
+        xmlns:Model="clr-namespace:ClassDiagram.Models.Entities;assembly=ClassDiagram.Models"
         xmlns:View="clr-namespace:ClassDiagram.View"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="Class Diagrammer" Height="700" Width="1050">
     <Window.Resources>
-        <DataTemplate DataType="x:Type Model:Class">
+        <DataTemplate DataType="{x:Type Model:Class}">
             <Canvas>
                 <View:ClassUserControl/>
             </Canvas>
         </DataTemplate>
+        <vm:ViewModelLocator xmlns:vm="clr-namespace:ClassDiagram.ViewModel" x:Key="Locator" />
     </Window.Resources>
     <Grid>
         <StatusBar Name="statusBar1" Height="23" VerticalAlignment="Bottom" />
@@ -40,7 +41,9 @@
             </Grid.ColumnDefinitions>
             <ListBox Margin="0,23,0,23" />
             <Canvas Grid.Column="1" Margin="0,23,0,23">
-                <ItemsControl ItemsSource="{Binding classes}" />
+                <Grid>
+                    <ItemsControl ItemsSource="{Binding classes}" />
+                </Grid>
             </Canvas>
             <GridSplitter Grid.Column ="0" Background="Black" Width="2"
                 HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,23,0,23"/>

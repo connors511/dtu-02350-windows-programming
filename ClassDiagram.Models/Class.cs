@@ -7,6 +7,12 @@ namespace ClassDiagram.Models.Entities
 {
     public class Class : Entity, ClassDiagram.Models.IEntity, ClassDiagram.Models.IFunction, ClassDiagram.Models.IProperty
     {
+        public Class()
+        {
+            X = Y = 200;
+            Width = Height = 100;
+        }
+
         public List<Function> functions
         {
             get
