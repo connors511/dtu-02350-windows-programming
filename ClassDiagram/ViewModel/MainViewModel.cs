@@ -35,14 +35,14 @@ namespace ClassDiagram.ViewModel
         // Denne event giver GUI'en besked om ændringen.
         // Dette er en generisk kollektion. Det betyder at den kan defineres til at indeholde alle slags klasser, 
         // men den holder kun klasser af en type når den benyttes.
-        public ObservableCollection<Class> classes { get; set; }
+        public ObservableCollection<Base> bases { get; set; }
 
         // Kommandoer som UI bindes til.
         public ICommand UndoCommand { get; private set; }
         public ICommand RedoCommand { get; private set; }
 
         // Kommandoer som UI bindes til.
-        public ICommand AddClassCommand { get; private set; }
+        public ICommand AddBaseCommand { get; private set; }
         public ICommand RemoveNodeCommand { get; private set; }
         public ICommand AddEdgeCommand { get; private set; }
         public ICommand RemoveEdgesCommand { get; private set; }
@@ -56,7 +56,7 @@ namespace ClassDiagram.ViewModel
         {
             // Her fyldes listen af noder med to noder. Her benyttes et alternativ til konstruktorer med syntaksen 'new Type(){ Attribut = Værdi }'
             // Det der sker er at der først laves et nyt object og så sættes objektets attributer til de givne værdier.
-            classes = new ObservableCollection<Class>() { 
+            bases = new ObservableCollection<Base>() { 
                 new Class() { X = 30, Y = 40, Width = 80, Height = 80 }, 
                 new Class() { X = 140, Y = 230, Width = 100, Height = 100 } 
             };
@@ -66,7 +66,7 @@ namespace ClassDiagram.ViewModel
             RedoCommand = new RelayCommand(undoRedoController.Redo, undoRedoController.CanRedo);
 
             // Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
-            AddClassCommand = new RelayCommand(AddClass);
+            AddBaseCommand = new RelayCommand(AddClass);
             //RemoveNodeCommand = new RelayCommand<IList>(RemoveNode, CanRemoveNode);
             //AddEdgeCommand = new RelayCommand(AddEdge);
             //RemoveEdgesCommand = new RelayCommand<IList>(RemoveEdges, CanRemoveEdges);
@@ -80,7 +80,7 @@ namespace ClassDiagram.ViewModel
         // Tilføjer punkt med kommando.
         public void AddClass()
         {
-            undoRedoController.AddAndExecute(new AddClassCommand(classes));
+            undoRedoController.AddAndExecute(new AddBaseCommand(bases, new Class()));
         }
 
         // Tjekker om valgte punkt/er kan fjernes. Det kan de hvis der er nogle der er valgt.

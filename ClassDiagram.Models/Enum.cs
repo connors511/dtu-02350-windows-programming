@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ClassDiagram.Models.Entities
 {
-    public abstract class Enum : ClassDiagram.Models.IEntity
+    public class Enum : ClassDiagram.Models.IEntity
     {
         public int CanvasCenterX
         {

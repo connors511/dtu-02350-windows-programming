@@ -42,17 +42,17 @@
             <ListBox Margin="0,23,0,23" />
             <Canvas Grid.Column="1" Margin="0,23,0,23">
                 <Grid>
-                    <ItemsControl ItemsSource="{Binding classes}" />
+                    <ItemsControl ItemsSource="{Binding bases}" />
                 </Grid>
             </Canvas>
             <GridSplitter Grid.Column ="0" Background="Black" Width="2"
                 HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,23,0,23"/>
-            <Button Content="Button" 
+            <Button Content="Add class" 
                     Height="23" 
                     HorizontalAlignment="Left" 
                     Margin="61,68,0,0" 
                     Name="button1" VerticalAlignment="Top" Width="75" 
-                    Command="{Binding AddClassCommand}"/>
+                    Command="{Binding AddBaseCommand}" />
         </Grid>
     </Grid>
 </Window>
