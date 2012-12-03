@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using ClassDiagram.Models.Arrows;
 using ClassDiagram.Models.Entities;
+using System;
 
 namespace ClassDiagram.ViewModel
 {
@@ -66,7 +67,7 @@ namespace ClassDiagram.ViewModel
             RedoCommand = new RelayCommand(undoRedoController.Redo, undoRedoController.CanRedo);
 
             // Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
-            AddBaseCommand = new RelayCommand(AddClass);
+            AddBaseCommand = new RelayCommand<string>((s) => AddClass(s));
             //RemoveNodeCommand = new RelayCommand<IList>(RemoveNode, CanRemoveNode);
             //AddEdgeCommand = new RelayCommand(AddEdge);
             //RemoveEdgesCommand = new RelayCommand<IList>(RemoveEdges, CanRemoveEdges);
@@ -78,9 +79,21 @@ namespace ClassDiagram.ViewModel
         }
 
         // Tilføjer punkt med kommando.
-        public void AddClass()
+        public void AddClass(string parameter)
         {
-            undoRedoController.AddAndExecute(new AddBaseCommand(bases, new Class()));
+
+            Base obj;
+            switch (parameter)
+            {
+                case "Class" :
+                    obj = new Class();
+                    break;
+                default :
+                    obj = new Class();
+                    break;
+            }
+
+            undoRedoController.AddAndExecute(new AddBaseCommand(bases, obj));
         }
 
         // Tjekker om valgte punkt/er kan fjernes. Det kan de hvis der er nogle der er valgt.

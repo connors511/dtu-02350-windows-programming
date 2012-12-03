@@ -1,14 +1,14 @@
 ﻿<Window x:Class="ClassDiagram.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Model="clr-namespace:ClassDiagram.Models.Entities;assembly=ClassDiagram.Models"
+        xmlns:Model="clr-namespace:ClassDiagram.Models;assembly=ClassDiagram.Models"
         xmlns:View="clr-namespace:ClassDiagram.View"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="Class Diagrammer" Height="700" Width="1050">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type Model:Class}">
+        <DataTemplate DataType="{x:Type Model:Base}">
             <Canvas>
                 <View:ClassUserControl/>
             </Canvas>
@@ -52,7 +52,8 @@
                     HorizontalAlignment="Left" 
                     Margin="61,68,0,0" 
                     Name="button1" VerticalAlignment="Top" Width="75" 
-                    Command="{Binding AddBaseCommand}" />
+                    Command="{Binding AddBaseCommand}"
+                    CommandParameter="Class"/>
         </Grid>
     </Grid>
 </Window>
