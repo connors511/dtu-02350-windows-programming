@@ -38,7 +38,6 @@ namespace ClassDiagram.ViewModel
         // Dette er en generisk kollektion. Det betyder at den kan defineres til at indeholde alle slags klasser, 
         // men den holder kun klasser af en type når den benyttes.
         public ObservableCollection<Base> bases { get; set; }
-        public PopupViewModel<Base> popup { get; set; }
         private bool _popupOpen = false;
         public bool popupOpen
         {

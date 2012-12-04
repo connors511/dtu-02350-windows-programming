@@ -45,7 +45,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Name="Editor" Visibility="{Binding EditInvert, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBox Text="{Binding EditText}" Margin="5" Background="Transparent" VerticalAlignment="Stretch" xml:space="preserve"
+            <TextBox Text="{Binding EditText, Mode=TwoWay}" Margin="5" Background="Transparent" VerticalAlignment="Stretch" xml:space="preserve"
                      AcceptsReturn="True" />
         </StackPanel>
         <!-- How to leave edit mode? -->

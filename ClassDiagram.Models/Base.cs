@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Windows.Media;
 using System.Windows;
+using System.Text.RegularExpressions;
 
 namespace ClassDiagram.Models
 {
@@ -37,12 +38,48 @@ namespace ClassDiagram.Models
                 str += this.GetType().Name.ToString().ToLower() + " " + this.Name;
                 str += "\n---\n";
                 // render functions and fields
+                if (this.GetType().Name == "Class")
+                {
+                    var cl = (ClassDiagram.Models.Entities.Class)this;
+                    if (cl.Properties != null)
+                    {
+                        cl.Properties.ForEach(x =>
+                        {
+                            switch (x.Visibility)
+                            {
+                                case Visibility.Public:
+                                    str += "+";
+                                    break;
+                                case Visibility.Protected:
+                                    str += "#";
+                                    break;
+                                case Visibility.Private:
+                                    str += "-";
+                                    break;
+                            }
+                            str += x.Name + "()\n";
+                        });
+                    }
+                }
                 return str;
             }
             set
             {
-                Name = value;
-
+                string str = value;
+                if (str != this.EditText)
+                {
+                    Match m = Regex.Match(str, @"(abstract class|class|enum|struct) (.+)");
+                    if (m.Success)
+                    {
+                        // m.Groups[1].Value contains type
+                        Name = m.Groups[2].Value;
+                        System.Console.WriteLine(Name);
+                    }
+                    else
+                    {
+                        throw new FormatException();
+                    }
+                }
             }
         }
 
