@@ -201,7 +201,22 @@ namespace ClassDiagram.ViewModel
         // Hvis der ikke er ved at blive tilføjet en kant så fanges musen når en musetast trykkes ned. Dette bruges til at flytte punkter.
         public void MouseDownNode(MouseButtonEventArgs e)
         {
-            if (!isAddingEntity) e.MouseDevice.Target.CaptureMouse();
+            if (e.MouseDevice.RightButton == MouseButtonState.Pressed)
+            {
+
+                // Ellipsen skaffes.
+                FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
+                // Ellipsens node skaffes.
+                Base movingEntity = (Base)movingEllipse.DataContext;
+
+                undoRedoController.AddAndExecute(new RemoveBaseCommand(bases, movingEntity));
+            
+            }
+            else
+            {
+                if (!(isAddingEntity)) e.MouseDevice.Target.CaptureMouse();
+            }
+
         }
 
         // Bruges til at flytter punkter.
