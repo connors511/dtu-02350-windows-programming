@@ -7,6 +7,16 @@
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="Class Diagrammer" Height="700" Width="1050">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding NewCommand}" Key="N" Modifiers="Ctrl" />
+        <KeyBinding Command="{Binding OpenCommand}" Key="O" Modifiers="Ctrl" />
+        <KeyBinding Command="{Binding SaveCommand}" Key="S" Modifiers="Ctrl" />
+        <KeyBinding Command="{Binding SaveAsCommand}" Key="A" Modifiers="Ctrl" />
+        <KeyBinding Command="{Binding ExportCommand}" Key="E" Modifiers="Ctrl" />
+        <KeyBinding Command="{Binding ExitCommand}" Key="Q" Modifiers="Ctrl" />
+        <KeyBinding Command="{Binding UndoCommand}" Key="Z" Modifiers="Ctrl" />
+        <KeyBinding Command="{Binding RedoCommand}" Key="Y" Modifiers="Ctrl" />
+    </Window.InputBindings>
     <Window.Resources>
         <DataTemplate DataType="{x:Type Model:Class}">
             <Canvas>
@@ -34,17 +44,17 @@
         <StatusBar Name="statusBar1" Height="23" VerticalAlignment="Bottom" />
         <Menu Name="menu1" Height="23" VerticalAlignment="Top">
             <MenuItem Header="_File" ToolTip="Open and Save Files">
-                <MenuItem Header="_New" Command="{Binding NewCommand}" />
-                <MenuItem Header="_Open" Command="{Binding OpenCommand}" />
-                <MenuItem Header="_Save" Command="{Binding SaveCommand}" />
-                <MenuItem Header="S_ave as" Command="{Binding SaveAsCommand}" />
-                <MenuItem Header="E_xport" Command="{Binding ExportCommand}" />
+                <MenuItem Header="_New" Command="{Binding NewCommand}" InputGestureText="Ctrl+N" />
+                <MenuItem Header="_Open" Command="{Binding OpenCommand}" InputGestureText="Ctrl+O" />
+                <MenuItem Header="_Save" Command="{Binding SaveCommand}" InputGestureText="Ctrl+S" />
+                <MenuItem Header="S_ave as" Command="{Binding SaveAsCommand}" InputGestureText="Ctrl+A" />
+                <MenuItem Header="E_xport" Command="{Binding ExportCommand}" InputGestureText="Ctrl+E" />
                 <Separator />
-                <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}" InputGestureText="Ctrl+Q" />
             </MenuItem>
             <MenuItem Header="_Edit">
-                <MenuItem Header="_Undo" Command="{Binding UndoCommand}" />
-                <MenuItem Header="_Redo" Command="{Binding RedoCommand}" />
+                <MenuItem Header="_Undo" Command="{Binding UndoCommand}" InputGestureText="Ctrl+Z" />
+                <MenuItem Header="_Redo" Command="{Binding RedoCommand}" InputGestureText="Ctrl+Y" />
             </MenuItem>
             <MenuItem Header="About" Command="{Binding AboutCommand}" />
         </Menu>
