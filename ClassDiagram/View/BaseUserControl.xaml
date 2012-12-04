@@ -15,6 +15,7 @@
              d:DesignHeight="200" d:DesignWidth="300">
     <UserControl.Resources>
         <converters:ColorConverter x:Key='ColorConverter' />
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <DataTemplate DataType="{x:Type Model:Function}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock TextAlignment="Center" Width="10" Text="{Binding Visibility, Converter={StaticResource ColorConverter}}" />
@@ -31,11 +32,11 @@
     <!--Denne grid bruges til at smide ting i oven på hinanden.-->
     <Grid>
         <!--Tredje lag er den øverste Rectangle med animation og gradient.-->
-        <Rectangle Opacity="{Binding DataContext.ModeOpacity, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+        <Rectangle Opacity="1" 
                    Stroke="{Binding BorderColor}" StrokeThickness="2" Fill="{Binding Color}"
                    Width="{Binding Width}" Height="{Binding Height}">
         </Rectangle>
-        <StackPanel Name="SP">
+        <StackPanel Name="SP" Visibility="{Binding Edit, Converter={StaticResource BooleanToVisibilityConverter}}">
             <TextBlock TextAlignment="Center" Text="{Binding Name}" Margin="5" />
             <Line Stroke="Black" X1="0" Y1="0" X2="{Binding Width}" Y2="0" StrokeThickness="2" />
             <StackPanel Margin="5">
@@ -43,13 +44,18 @@
                 <ItemsControl ItemsSource="{Binding Functions}" />
             </StackPanel>
         </StackPanel>
-        <Rectangle Opacity="0" 
-                   Stroke="{Binding BorderColor}" StrokeThickness="2" Fill="Transparent"
-                   Width="{Binding Width}" Height="{Binding Height}">
+        <StackPanel Name="Editor" Visibility="{Binding EditInvert, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBox Text="{Binding EditText}" Margin="5" Background="Transparent" VerticalAlignment="Stretch" xml:space="preserve"
+                     AcceptsReturn="True" />
+        </StackPanel>
+        <!-- How to leave edit mode? -->
+        <Rectangle Opacity="0" Stroke="{Binding BorderColor}" StrokeThickness="2" Fill="Transparent"
+                   Width="{Binding Width}" Height="{Binding Height}" 
+                   Visibility="{Binding Edit, Converter={StaticResource BooleanToVisibilityConverter}}" >
             <!--Her bliver de tre events MouseDown, MouseMove og MouseUp bundet til de tilsvarende kommandoer på MainViewModel.-->
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown">
-                    <cmd:EventToCommand Command="{Binding DataContext.MouseDownNodeCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" PassEventArgsToCommand="True"/>
+                    <cmd:EventToCommand Command="{Binding DataContext.MouseDownNodeCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" PassEventArgsToCommand="True" />
                 </i:EventTrigger>
                 <i:EventTrigger EventName="MouseMove">
                     <cmd:EventToCommand Command="{Binding DataContext.MouseMoveNodeCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" PassEventArgsToCommand="True"/>

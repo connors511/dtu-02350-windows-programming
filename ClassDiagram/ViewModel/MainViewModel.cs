@@ -14,13 +14,14 @@ using System.Windows.Shapes;
 using ClassDiagram.Models.Arrows;
 using ClassDiagram.Models.Entities;
 using System;
+using System.ComponentModel;
 
 namespace ClassDiagram.ViewModel
 {
     /// <summary>
     /// Denne ViewModel er bundet til MainWindow.
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
         // Holder styr på undo/redo.
         private UndoRedoController undoRedoController = UndoRedoController.GetInstance();
@@ -37,6 +38,22 @@ namespace ClassDiagram.ViewModel
         // Dette er en generisk kollektion. Det betyder at den kan defineres til at indeholde alle slags klasser, 
         // men den holder kun klasser af en type når den benyttes.
         public ObservableCollection<Base> bases { get; set; }
+        public PopupViewModel<Base> popup { get; set; }
+        private bool _popupOpen = false;
+        public bool popupOpen
+        {
+            get
+            {
+                return _popupOpen;
+            }
+            set
+            {
+                if (_popupOpen != value)
+                {
+                    _popupOpen = value;
+                }
+            }
+        }
 
         public ICommand AddBaseCommand { get; private set; }
 
@@ -52,6 +69,7 @@ namespace ClassDiagram.ViewModel
         public ICommand AboutCommand { get; private set; }
 
         // Kommandoer som UI bindes til.
+        public ICommand MouseDoubleClickCommand { get; private set; }
         public ICommand MouseDownNodeCommand { get; private set; }
         public ICommand MouseMoveNodeCommand { get; private set; }
         public ICommand MouseUpNodeCommand { get; private set; }
@@ -76,9 +94,11 @@ namespace ClassDiagram.ViewModel
             //RemoveEdgesCommand = new RelayCommand<IList>(RemoveEdges, CanRemoveEdges);
 
             // Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
+            MouseDoubleClickCommand = new RelayCommand<MouseButtonEventArgs>(MouseDoubleClick);
             MouseDownNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseDownNode);
             MouseMoveNodeCommand = new RelayCommand<MouseEventArgs>(MouseMoveNode);
             MouseUpNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseUpNode);
+            
         }
 
         private void Load()
@@ -97,14 +117,14 @@ namespace ClassDiagram.ViewModel
             Props.Add(new Models.Property() { Name = "_privateMethod2", Visibility = Models.Visibility.Private });
             Props.Add(new Models.Property() { Name = "protectedMethod2", Visibility = Models.Visibility.Protected });
             bases.Add(new Class() { Name = "Hej", X = 30, Y = 40, Width = 200, Height = 200, Properties = Props, Color = Brushes.LightBlue });
-            bases.Add(new Class() { X = 180, Y = 280, Width = 100, Height = 100 });
+            bases.Add(new Class() { Name = "Hello", X = 180, Y = 280, Width = 100, Height = 100 });
 
+            popupOpen = false;
         }
 
         // Tilføjer punkt med kommando.
         public void AddBase(string parameter)
         {
-            System.Console.WriteLine(parameter);
             Base obj;
             switch (parameter)
             {
@@ -140,13 +160,9 @@ namespace ClassDiagram.ViewModel
         public void RemoveNode(IList _nodes)
         {
             undoRedoController.AddAndExecute(new RemoveNodesCommand(Nodes, Edges, _nodes.Cast<Node>().First()));
-        }
-
-        // Starter proceduren der tilføjer en kant.
-        public void AddEdge()
-        {
-            isAddingElement = true;
         }*/
+
+        #region Commands
         public void New()
         {
             // Do you want to save first?
@@ -197,6 +213,11 @@ namespace ClassDiagram.ViewModel
         {
             // Display about box
         }
+        #endregion
+
+        public void MouseDoubleClick(MouseButtonEventArgs e)
+        {
+        }
 
         // Hvis der ikke er ved at blive tilføjet en kant så fanges musen når en musetast trykkes ned. Dette bruges til at flytte punkter.
         public void MouseDownNode(MouseButtonEventArgs e)
@@ -215,8 +236,16 @@ namespace ClassDiagram.ViewModel
             else
             {
                 if (!(isAddingEntity)) e.MouseDevice.Target.CaptureMouse();
+                if (e.ClickCount == 2)
+                {
+                    e.MouseDevice.Target.ReleaseMouseCapture();
+                
+                    FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
+                    // Fra ellipsen skaffes punktet som den er bundet til.
+                    Base movingNode = (Base)movingEllipse.DataContext;
+                    movingNode.Edit = !movingNode.Edit;
+                }
             }
-
         }
 
         // Bruges til at flytter punkter.
@@ -245,22 +274,24 @@ namespace ClassDiagram.ViewModel
         // Benyttes til at flytte punkter og tilføje kanter.
         public void MouseUpNode(MouseButtonEventArgs e)
         {
+            if (Mouse.Captured != null)
+            {
+                // Ellipsen skaffes.
+                FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
+                // Ellipsens node skaffes.
+                IEntity movingEntity = (IEntity)movingEllipse.DataContext;
+                // Canvaset skaffes.
+                Canvas canvas = FindParentOfType<Canvas>(movingEllipse);
+                // Musens position på canvas skaffes.
+                Point mousePosition = Mouse.GetPosition(canvas);
+                // Punktet flyttes med kommando. Den flyttes egentlig bare det sidste stykke i en række af mange men da de originale punkt gemmes er der ikke noget problem med undo/redo.
+                undoRedoController.AddAndExecute(new MoveEntityCommand(movingEntity, (int)mousePosition.X, (int)mousePosition.Y, (int)moveElementPoint.X, (int)moveElementPoint.Y));
+                // Nulstil værdier.
+                moveElementPoint = new Point();
+                // Musen frigøres.
+                e.MouseDevice.Target.ReleaseMouseCapture();
 
-            // Ellipsen skaffes.
-            FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
-            // Ellipsens node skaffes.
-            IEntity movingEntity = (IEntity)movingEllipse.DataContext;
-            // Canvaset skaffes.
-            Canvas canvas = FindParentOfType<Canvas>(movingEllipse);
-            // Musens position på canvas skaffes.
-            Point mousePosition = Mouse.GetPosition(canvas);
-            // Punktet flyttes med kommando. Den flyttes egentlig bare det sidste stykke i en række af mange men da de originale punkt gemmes er der ikke noget problem med undo/redo.
-            undoRedoController.AddAndExecute(new MoveEntityCommand(movingEntity, (int)mousePosition.X, (int)mousePosition.Y, (int)moveElementPoint.X, (int)moveElementPoint.Y));
-            // Nulstil værdier.
-            moveElementPoint = new Point();
-            // Musen frigøres.
-            e.MouseDevice.Target.ReleaseMouseCapture();
-
+            }
         }
 
         // Rekursiv metode der benyttes til at finde et af et grafisk elements forfædre ved hjælp af typen, der ledes højere og højere op indtil en af typen findes.

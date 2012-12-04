@@ -23,10 +23,5 @@ namespace ClassDiagram
         {
             InitializeComponent();
         }
-
-        private void File_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

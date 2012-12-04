@@ -50,6 +50,7 @@
     <Compile Include="Association.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Class.cs" />
+    <Compile Include="Converters.cs" />
     <Compile Include="Delegate.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Enum.cs" />

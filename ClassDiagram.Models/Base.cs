@@ -4,11 +4,48 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Windows.Media;
+using System.Windows;
 
 namespace ClassDiagram.Models
 {
     public abstract class Base : INotifyPropertyChanged
     {
+        private bool _edit = false;
+        public bool Edit
+        {
+            get
+            {
+                return _edit;
+            }
+            set
+            {
+                _edit = value;
+                NotifyPropertyChanged("Edit");
+                NotifyPropertyChanged("EditInvert");
+            }
+        }
+        public bool EditInvert
+        {
+            get { return !_edit; }
+        }
+
+        public string EditText
+        {
+            get
+            {
+                string str = "";
+                str += this.GetType().Name.ToString().ToLower() + " " + this.Name;
+                str += "\n---\n";
+                // render functions and fields
+                return str;
+            }
+            set
+            {
+                Name = value;
+
+            }
+        }
+
         private int _x;
         public int X
         {
@@ -71,6 +108,7 @@ namespace ClassDiagram.Models
             set
             {
                 _color = value;
+                NotifyPropertyChanged("Color");
             }
         }
 
