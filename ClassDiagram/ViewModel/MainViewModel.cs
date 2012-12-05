@@ -109,14 +109,20 @@ namespace ClassDiagram.ViewModel
             bases.Clear();
 
             var Props = new List<Models.Property>();
-            Props.Add(new Models.Property() { Name = "PublicMethod", Visibility = Models.Visibility.Public });
-            Props.Add(new Models.Property() { Name = "_privateMethod", Visibility = Models.Visibility.Private });
-            Props.Add(new Models.Property() { Name = "protectedMethod", Visibility = Models.Visibility.Protected });
+            Props.Add(new Models.Property() { Name = "PublicMethod", Visibility = Models.Visibility.Public, Type = "string" });
+            Props.Add(new Models.Property() { Name = "_privateMethod", Visibility = Models.Visibility.Private, Type = "int" });
+            Props.Add(new Models.Property() { Name = "protectedMethod", Visibility = Models.Visibility.Protected, Type = "Entity" });
             Props.Add(new Models.Property() { Name = "PublicMethod2", Visibility = Models.Visibility.Public });
             Props.Add(new Models.Property() { Name = "_privateMethod2", Visibility = Models.Visibility.Private });
             Props.Add(new Models.Property() { Name = "protectedMethod2", Visibility = Models.Visibility.Protected });
-            bases.Add(new Class() { Name = "Hej", X = 30, Y = 40, Width = 200, Height = 200, Properties = Props, Color = Brushes.LightBlue });
-            bases.Add(new Class() { Name = "Hello", X = 180, Y = 280, Width = 100, Height = 100 });
+            var args = new List<Argument>();
+            args.Add(new Argument() { Name = "pattern", Type = "string" });
+            args.Add(new Argument() { Name = "subject", Type = "string", Value = "" });
+            args.Add(new Argument() { Name = "matches", Type = "list<string>", Value = "null" });
+            var t = new Models.Function() { Name = "test", Type = "string", Visibility = Models.Visibility.Public, Arguments = args };
+
+            bases.Add(new Entity() { Type = eType.Class, Name = "Hej", X = 30, Y = 40, Width = 300, Height = 300, Properties = Props, Color = Brushes.LightBlue });
+            bases.Add(new Entity() { Type = eType.AbstractClass, Name = "Hello", X = 480, Y = 280, Width = 300, Height = 300, Functions = new List<Function>() { t } });
 
             popupOpen = false;
         }
@@ -124,25 +130,21 @@ namespace ClassDiagram.ViewModel
         // Tilføjer punkt med kommando.
         public void AddBase(string parameter)
         {
-            Base obj;
+            Base obj = new Entity();
             switch (parameter)
             {
                 case "AbstractClass":
-                    obj = new AbstractClass();
-                    obj.Color = Brushes.LightSteelBlue;
+                    obj.Type = eType.AbstractClass;
                     break;
                 case "Enum":
-                    obj = new Models.Entities.Enum();
-                    obj.Color = Brushes.LightYellow;
+                    obj.Type = eType.Enum;
                     break;
                 case "Struct":
-                    obj = new Struct();
-                    obj.Color = Brushes.LightSkyBlue;
+                    obj.Type = eType.Struct;
                     break;
                 case "Class":
                 default:
-                    obj = new Class();
-                    obj.Color = Brushes.LightBlue;
+                    obj.Type = eType.Class;
                     break;
             }
 

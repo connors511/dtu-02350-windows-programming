@@ -7,48 +7,53 @@ namespace ClassDiagram.Models
 {
     public class Function
     {
-        private Visibility Visibility
+        public Function()
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            Visibility = Models.Visibility.Public;
         }
 
-        private string Name
+        public Visibility Visibility
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
-        private object Type
+        public string Name
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
-        public List<Argument> arguments
+        public string Type
         {
-            get
+            get;
+            set;
+        }
+
+        public List<Argument> Arguments
+        {
+            get;
+            set;
+        }
+
+        public override string ToString()
+        {
+            string str = "";
+            switch (Visibility)
             {
-                throw new System.NotImplementedException();
+                case Visibility.Public:
+                    str += "+";
+                    break;
+                case Visibility.Protected:
+                    str += "#";
+                    break;
+                case Visibility.Private:
+                    str += "-";
+                    break;
             }
-            set
-            {
-            }
+            List<string> args = new List<string>();
+            Arguments.ForEach(a => args.Add(a.ToString()));
+            return str + Name + "(" + ((args != null) ? String.Join(", ", args) : "") + ")" + ((Type != null) ? " : " + Type : "");
         }
     }
 }

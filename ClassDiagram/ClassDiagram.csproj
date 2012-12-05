@@ -72,7 +72,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\AddBaseCommand.cs" />
-    <Compile Include="Command\AddEnumCommand.cs" />
     <Compile Include="Command\RemoveBaseCommand.cs" />
     <Compile Include="Command\IUndoRedoCommand.cs" />
     <Compile Include="Command\MoveEntityCommand.cs" />

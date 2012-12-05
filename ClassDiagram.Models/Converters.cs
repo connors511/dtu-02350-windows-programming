@@ -29,6 +29,37 @@ namespace ClassDiagram.Models
         }
     }
 
+    public class TypeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            eType v = (eType)value;
+
+            switch (v)
+            {
+                case eType.AbstractClass:
+                    return "Abstract Class";
+                case eType.Class:
+                    return "Class";
+                case eType.Enum:
+                    return "Enum";
+                case eType.Struct:
+                    return "Struct";
+                case eType.Inherit:
+                    return "Inherit";
+                case eType.Association:
+                    return "Association";
+            }
+
+            return "";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
     public sealed class BooleanToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

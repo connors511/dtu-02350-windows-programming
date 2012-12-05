@@ -20,8 +20,8 @@ namespace ClassDiagram.Models
             }
         }
 
-        private object _type;
-        public object Type
+        private string _type;
+        public string Type
         {
             get
             {
@@ -33,8 +33,8 @@ namespace ClassDiagram.Models
             }
         }
 
-        private object _value;
-        public object Value
+        private string _value;
+        public string Value
         {
             get
             {
@@ -44,6 +44,11 @@ namespace ClassDiagram.Models
             {
                 _value = value;
             }
+        }
+
+        public override string ToString()
+        {
+            return Name + ((Value != null) ? " = " + (Value == "" ? "\"\"" : Value) : "") + ((Type != null) ? " : " + Type : "");
         }
     }
 }

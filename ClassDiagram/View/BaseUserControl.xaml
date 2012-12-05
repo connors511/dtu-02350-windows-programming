@@ -40,8 +40,9 @@
             <TextBlock TextAlignment="Center" Text="{Binding Name}" Margin="5" />
             <Line Stroke="Black" X1="0" Y1="0" X2="{Binding Width}" Y2="0" StrokeThickness="2" />
             <StackPanel Margin="5">
-                <ItemsControl ItemsSource="{Binding Properties}" />
-                <ItemsControl ItemsSource="{Binding Functions}" />
+                <!--<ItemsControl ItemsSource="{Binding Properties}" />
+                <ItemsControl ItemsSource="{Binding Functions}" />-->
+                <TextBlock Text="{Binding BodyText}" />
             </StackPanel>
         </StackPanel>
         <StackPanel Name="Editor" Visibility="{Binding EditInvert, Converter={StaticResource BooleanToVisibilityConverter}}">

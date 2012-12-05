@@ -5,8 +5,31 @@ using System.Text;
 
 namespace ClassDiagram.Models
 {
-    public abstract class Entity : Base, IEntity
+    public class Entity : Base, IEntity
     {
+        public string BodyText
+        {
+            get
+            {
+                string str = "";
+                if (Properties != null)
+                {
+                    Properties.ForEach(x =>
+                    {
+                        str += x + "\n";
+                    });
+                }
+                if (Functions != null)
+                {
+                    Functions.ForEach(x =>
+                    {
+                        str += x + "\n";
+                    });
+                }
+                return str;
+            }
+        }
+
         private int _width;
         public int Width
         {
@@ -33,15 +56,10 @@ namespace ClassDiagram.Models
             }
         }
 
-        protected List<IEntity> Inheritable
+        protected List<Base> Inheritable
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
         private List<Function> _functions;
@@ -49,7 +67,7 @@ namespace ClassDiagram.Models
         {
             get
             {
-                return _functions;
+                return (_functions == null) ? _functions : _functions.OrderBy(x => x.Visibility).ToList();
             }
             set
             {

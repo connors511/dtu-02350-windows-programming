@@ -19,5 +19,23 @@ namespace ClassDiagram.Models
                 _visibility = value;
             }
         }
+
+        public override string ToString()
+        {
+            string str = "";
+            switch (Visibility)
+            {
+                case Visibility.Public:
+                    str += "+";
+                    break;
+                case Visibility.Protected:
+                    str += "#";
+                    break;
+                case Visibility.Private:
+                    str += "-";
+                    break;
+            }
+            return str + base.ToString();
+        }
     }
 }

@@ -1,7 +1,7 @@
 <Window x:Class="ClassDiagram.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Model="clr-namespace:ClassDiagram.Models.Entities;assembly=ClassDiagram.Models"
+        xmlns:Model="clr-namespace:ClassDiagram.Models;assembly=ClassDiagram.Models"
         xmlns:View="clr-namespace:ClassDiagram.View"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
@@ -19,22 +19,7 @@
         <KeyBinding Command="{Binding RedoCommand}" Key="Y" Modifiers="Ctrl" />
     </Window.InputBindings>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type Model:Class}">
-            <Canvas>
-                <View:BaseUserControl/>
-            </Canvas>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type Model:Enum}">
-            <Canvas>
-                <View:BaseUserControl/>
-            </Canvas>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type Model:Struct}">
-            <Canvas>
-                <View:BaseUserControl/>
-            </Canvas>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type Model:AbstractClass}">
+        <DataTemplate DataType="{x:Type Model:Entity}">
             <Canvas>
                 <View:BaseUserControl/>
             </Canvas>

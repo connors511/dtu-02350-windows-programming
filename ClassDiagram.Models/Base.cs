@@ -11,6 +11,40 @@ namespace ClassDiagram.Models
 {
     public abstract class Base : INotifyPropertyChanged
     {
+        private eType _type;
+        public eType Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                if (value != _type)
+                {
+                    _type = value;
+                    switch (_type)
+                    {
+                        case eType.AbstractClass:
+                            this.Color = Brushes.LightSteelBlue;
+                            break;
+                        case eType.Enum:
+                            this.Color = Brushes.LightYellow;
+                            break;
+                        case eType.Struct:
+                            this.Color = Brushes.LightSkyBlue;
+                            break;
+                        case eType.Class:
+                        default:
+                            this.Color = Brushes.LightBlue;
+                            break;
+                    }
+                    NotifyPropertyChanged("Type");
+                    NotifyPropertyChanged("Color");
+                }
+            }
+        }
+
         private bool _edit = false;
         public bool Edit
         {
@@ -20,9 +54,12 @@ namespace ClassDiagram.Models
             }
             set
             {
-                _edit = value;
-                NotifyPropertyChanged("Edit");
-                NotifyPropertyChanged("EditInvert");
+                if (_edit != value)
+                {
+                    _edit = value;
+                    NotifyPropertyChanged("Edit");
+                    NotifyPropertyChanged("EditInvert");
+                }
             }
         }
         public bool EditInvert
@@ -35,29 +72,25 @@ namespace ClassDiagram.Models
             get
             {
                 string str = "";
-                str += this.GetType().Name.ToString().ToLower() + " " + this.Name;
+                var tc = new TypeConverter();
+                str += tc.Convert(this.Type,null,null,null) + " " + this.Name;
                 str += "\n---\n";
                 // render functions and fields
-                if (this.GetType().Name == "Class")
+                if (this.GetType().Name == "Entity")
                 {
-                    var cl = (ClassDiagram.Models.Entities.Class)this;
+                    var cl = (ClassDiagram.Models.Entity)this;
                     if (cl.Properties != null)
                     {
                         cl.Properties.ForEach(x =>
                         {
-                            switch (x.Visibility)
-                            {
-                                case Visibility.Public:
-                                    str += "+";
-                                    break;
-                                case Visibility.Protected:
-                                    str += "#";
-                                    break;
-                                case Visibility.Private:
-                                    str += "-";
-                                    break;
-                            }
-                            str += x.Name + "()\n";
+                            str += x + "\n";
+                        });
+                    }
+                    if (cl.Functions != null)
+                    {
+                        cl.Functions.ForEach(x =>
+                        {
+                            str += x + "\n";
                         });
                     }
                 }
