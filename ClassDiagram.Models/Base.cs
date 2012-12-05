@@ -98,6 +98,7 @@ namespace ClassDiagram.Models
             }
             set
             {
+                // TODO: Reverse engineer the get method
                 string str = value;
                 if (str != this.EditText)
                 {
@@ -125,7 +126,11 @@ namespace ClassDiagram.Models
             }
             set
             {
-                _x = value;
+                if (_x != value)
+                {
+                    _x = value;
+                    NotifyPropertyChanged("X");
+                }
             }
         }
 
@@ -138,7 +143,11 @@ namespace ClassDiagram.Models
             }
             set
             {
-                _y = value;
+                if (_y != value)
+                {
+                    _y = value;
+                    NotifyPropertyChanged("Y");
+                }
             }
         }
 
@@ -151,7 +160,11 @@ namespace ClassDiagram.Models
             }
             set
             {
-                _name = value;
+                if (_name != value)
+                {
+                    _name = value;
+                    NotifyPropertyChanged("Name");
+                }
             }
         }
 
@@ -164,7 +177,11 @@ namespace ClassDiagram.Models
             }
             set
             {
-                _bordercolor = value;
+                if (_bordercolor != value)
+                {
+                    _bordercolor = value;
+                    NotifyPropertyChanged("BorderColor");
+                }
             }
         }
 
@@ -177,8 +194,11 @@ namespace ClassDiagram.Models
             }
             set
             {
-                _color = value;
-                NotifyPropertyChanged("Color");
+                if (_color != value)
+                {
+                    _color = value;
+                    NotifyPropertyChanged("Color");
+                }
             }
         }
 
