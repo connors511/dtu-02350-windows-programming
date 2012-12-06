@@ -177,9 +177,9 @@ namespace ClassDiagram.ViewModel
             undoRedoController.AddAndExecute(new RemoveNodesCommand(Nodes, Edges, _nodes.Cast<Node>().First()));
         }*/
 
-        public void resetStatus()
+        public void resetStatus(double time = 2.0)
         {
-            At.Do(() => status = "", DateTime.Now.AddSeconds(2));
+            At.Do(() => status = "", DateTime.Now.AddSeconds(time));
         }
 
         public void setStatus(string status = "")
@@ -198,10 +198,14 @@ namespace ClassDiagram.ViewModel
 
         public void Open()
         {
+            setStatus("Opening file...");
             var b = new List<Base>();
             SaveLoad.Load(out b, out currentFile);
+            setStatus("Loading..");
             bases.Clear();
             b.ForEach(x => bases.Add(x));
+            setStatus("Loaded.");
+            resetStatus();
         }
 
         public void Save()
@@ -267,14 +271,14 @@ namespace ClassDiagram.ViewModel
         {
             if (e.MouseDevice.RightButton == MouseButtonState.Pressed)
             {
-
                 // Ellipsen skaffes.
                 FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
                 // Ellipsens node skaffes.
                 Base movingEntity = (Base)movingEllipse.DataContext;
+                setStatus("Removing " + movingEntity.GetType().Name);
 
                 undoRedoController.AddAndExecute(new RemoveBaseCommand(bases, movingEntity));
-            
+                resetStatus();
             }
             else
             {
@@ -286,6 +290,7 @@ namespace ClassDiagram.ViewModel
                     FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
                     // Fra ellipsen skaffes punktet som den er bundet til.
                     Base movingNode = (Base)movingEllipse.DataContext;
+                    setStatus("Editing " + movingNode.GetType().Name);
                     movingNode.Edit = !movingNode.Edit;
                 }
             }
@@ -301,6 +306,7 @@ namespace ClassDiagram.ViewModel
                 FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
                 // Fra ellipsen skaffes punktet som den er bundet til.
                 IEntity movingNode = (IEntity)movingEllipse.DataContext;
+                setStatus("Moving " + movingNode.GetType().Name);
                 // Canvaset findes her udfra ellipsen.
                 Canvas canvas = FindParentOfType<Canvas>(movingEllipse);
                 // Musens position i forhold til canvas skaffes her.
@@ -333,6 +339,7 @@ namespace ClassDiagram.ViewModel
                 moveElementPoint = new Point();
                 // Musen frigøres.
                 e.MouseDevice.Target.ReleaseMouseCapture();
+                resetStatus(0.5);
 
             }
         }
