@@ -70,10 +70,10 @@
                 </Grid>
             </Canvas>
             <GridSplitter Grid.Column ="0" Background="Black" Width="2" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,23,0,23"/>
-            <Button Command="{Binding AddBaseCommand}" CommandParameter="Class" Content="Class" Height="40" HorizontalAlignment="Left" Margin="6,29,0,0" Name="bClass" VerticalAlignment="Top" Width="100" />
-            <Button Command="{Binding AddBaseCommand}" CommandParameter="AbstractClass" Content="Abstact Class" Height="40" HorizontalAlignment="Left" Margin="6,76,0,0" Name="bAbstractClass" VerticalAlignment="Top" Width="100" />
-            <Button Command="{Binding AddBaseCommand}" CommandParameter="Enum" Content="Enum" Height="40" Name="bEnum" Width="100" Margin="6,123,9,498" />
-            <Button Command="{Binding AddBaseCommand}" CommandParameter="Struct" Content="Struct" Height="40" Name="bStruct" Width="100" Margin="6,170,9,451" />
+            <Button Command="{Binding AddBaseCommand}" CommandParameter="Class"         Content="Class"         Height="40" Margin="6,30,9,590"     Width="100" Name="bClass" />
+            <Button Command="{Binding AddBaseCommand}" CommandParameter="AbstractClass" Content="Abstact Class" Height="40" Margin="6,80,9,540"     Width="100" Name="bAbstractClass" />
+            <Button Command="{Binding AddBaseCommand}" CommandParameter="Enum"          Content="Enum"          Height="40" Margin="6,130,9,490"    Width="100" Name="bEnum" />
+            <Button Command="{Binding AddBaseCommand}" CommandParameter="Struct"        Content="Struct"        Height="40" Margin="6,180,9,440"    Width="100" Name="bStruct" />
         </Grid>
     </Grid>
 </Window>

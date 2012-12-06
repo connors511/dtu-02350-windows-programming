@@ -14,7 +14,7 @@ namespace ClassDiagram.Models
 {
     public class SaveLoad
     {
-        public static void Save(List<Base> bases, string file = "")
+        public static string Save(List<Base> bases, string file = "")
         {
             if (file == "")
             {
@@ -23,7 +23,7 @@ namespace ClassDiagram.Models
             if (file == "")
             {
                 // TODO: Throw exception?
-                return;
+                return "";
             }
             
             /*XmlSerializer x = new XmlSerializer(bases.GetType(), new Type[] { typeof(Entity), 
@@ -35,12 +35,15 @@ namespace ClassDiagram.Models
             x.Serialize(stream, b.bases);*/
             var se = new Serializer();
             se.SerializeObject(file, bases);
+
+            return file;
         }
 
-        public static void Load(out List<Base> bases)
+        public static void Load(out List<Base> bases, out string currentFile)
         {
             bases = new List<Base>();
             string file = openText();
+            currentFile = file;
             if (file == "")
             {
                 // TODO: Throw exception?

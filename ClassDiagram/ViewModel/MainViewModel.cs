@@ -2,18 +2,14 @@ using ClassDiagram.Command;
 using ClassDiagram.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shapes;
-using ClassDiagram.Models.Arrows;
-using System;
 using System.ComponentModel;
+using System.Windows;
 
 namespace ClassDiagram.ViewModel
 {
@@ -30,6 +26,8 @@ namespace ClassDiagram.ViewModel
         // Gemmer det første punkt som punktet har under en flytning.
         private Point moveElementPoint;
         public double ModeOpacity { get { return isAddingEntity ? 0.4 : 1.0; } }
+
+        private string currentFile = "";
 
         // Formålet med at benytte en ObservableCollection er at den implementere INotifyCollectionChanged, der er forskellige fra INotifyPropertyChanged.
         // INotifyCollectionChanged smider en event når mængden af elementer i en kollektion ændres (altså når et element fjernes eller tilføjes).
@@ -174,15 +172,14 @@ namespace ClassDiagram.ViewModel
         public void Open()
         {
             var b = new List<Base>();
-            System.Console.WriteLine("loading");
-            SaveLoad.Load(out b);
+            SaveLoad.Load(out b, out currentFile);
             bases.Clear();
             b.ForEach(x => bases.Add(x));
         }
 
         public void Save()
         {
-            SaveLoad.Save(bases.ToList());
+            currentFile = SaveLoad.Save(bases.ToList(), currentFile);
         }
 
         public void SaveAs()
@@ -198,9 +195,18 @@ namespace ClassDiagram.ViewModel
         public void Exit()
         {
             // Check if there has been any changes since last save
+            var m = System.Windows.Forms.MessageBox.Show("Do you wish to save first?", "Save your work?", System.Windows.Forms.MessageBoxButtons.YesNoCancel);
+            if (m == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
+            else if (m == System.Windows.Forms.DialogResult.Yes)
+            {
+                Save();
+            }
 
             // shutdown
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
         }
 
         public void Undo()
