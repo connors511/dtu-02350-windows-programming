@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.ComponentModel;
 using System.Windows;
+using System;
 
 namespace ClassDiagram.ViewModel
 {
@@ -28,6 +29,22 @@ namespace ClassDiagram.ViewModel
         public double ModeOpacity { get { return isAddingEntity ? 0.4 : 1.0; } }
 
         private string currentFile = "";
+        private string _status;
+        public string status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    RaisePropertyChanged("status");
+                }
+            }
+        }
 
         // Formålet med at benytte en ObservableCollection er at den implementere INotifyCollectionChanged, der er forskellige fra INotifyPropertyChanged.
         // INotifyCollectionChanged smider en event når mængden af elementer i en kollektion ændres (altså når et element fjernes eller tilføjes).
@@ -160,6 +177,16 @@ namespace ClassDiagram.ViewModel
             undoRedoController.AddAndExecute(new RemoveNodesCommand(Nodes, Edges, _nodes.Cast<Node>().First()));
         }*/
 
+        public void resetStatus()
+        {
+            At.Do(() => status = "", DateTime.Now.AddSeconds(2));
+        }
+
+        public void setStatus(string status = "")
+        {
+            this.status = status;
+        }
+
         #region Commands
         public void New()
         {
@@ -179,12 +206,18 @@ namespace ClassDiagram.ViewModel
 
         public void Save()
         {
+            setStatus("Saving...");
             currentFile = SaveLoad.Save(bases.ToList(), currentFile);
+            setStatus("Saved.");
+            resetStatus();
         }
 
         public void SaveAs()
         {
-
+            setStatus("Saving...");
+            currentFile = SaveLoad.Save(bases.ToList(), "");
+            setStatus("Saved.");
+            resetStatus();
         }
 
         public void Export()

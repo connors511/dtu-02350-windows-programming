@@ -27,7 +27,9 @@
         <vm:ViewModelLocator xmlns:vm="clr-namespace:ClassDiagram.ViewModel" x:Key="Locator" />
     </Window.Resources>
     <Grid>
-        <StatusBar Name="statusBar1" Height="23" VerticalAlignment="Bottom" />
+        <StatusBar Name="statusBar1" Height="23" VerticalAlignment="Bottom">
+            <TextBlock Text="{Binding status}" />
+        </StatusBar>
         <Menu Name="menu1" Height="23" VerticalAlignment="Top">
             <MenuItem Header="_File" ToolTip="Open and Save Files">
                 <MenuItem Header="_New" Command="{Binding NewCommand}" InputGestureText="Ctrl+N" />
@@ -53,19 +55,6 @@
             <ListBox Margin="0,23,0,23" />
             <Canvas Margin="0,23" Grid.Column="1">
                 <Grid Name="PopupHolder">
-                    <Popup IsOpen="{Binding popupOpen}" PlacementTarget="{Binding ElementName=PopupHolder}">
-                        <Popup.Resources>
-                            <DataTemplate DataType="{x:Type mvp:Base}">
-                                <StackPanel Width="100" Margin="5">
-                                    <TextBlock Text="Name" />
-                                    <TextBox Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </Popup.Resources>
-                        <Border BorderThickness="1" BorderBrush="Black" Background="White">
-                            <ContentPresenter Content="{Binding popup.Data}" />
-                        </Border>
-                    </Popup>
                     <ItemsControl Name="items" ItemsSource="{Binding bases}" Canvas.Left="14" Canvas.Top="-23" />
                 </Grid>
             </Canvas>
