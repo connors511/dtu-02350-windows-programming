@@ -45,6 +45,7 @@ namespace ClassDiagram.Models
             XmlSerializer serializer = new XmlSerializer(typeof(List<Base>));
 
             StreamReader reader = new StreamReader(file);
+            // Invalid XML error
             bases = (List<Base>)serializer.Deserialize(reader);
             reader.Close();
 
