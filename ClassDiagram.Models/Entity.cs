@@ -18,9 +18,11 @@ namespace ClassDiagram.Models
             this.Properties = (List<Property>)info.GetValue("Properties", typeof(List<Property>));
         }
 
-        public Entity()
+        public Entity() : base()
         {
             // TODO: Complete member initialization
+            X = Y = 100;
+            Width = Height = 200;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
