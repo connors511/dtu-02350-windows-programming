@@ -11,11 +11,11 @@ namespace ClassDiagram.Models
     {
         public Entity(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
         {
-            this.Width = (int)info.GetValue("Width", typeof(int));
-            this.Height = (int)info.GetValue("Height", typeof(int));
-            this.Inheritable = (List<Base>)info.GetValue("Inheritable", typeof(List<Base>)); // Needed?
-            this.Functions = (List<Function>)info.GetValue("Functions", typeof(List<Function>));
-            this.Properties = (List<Property>)info.GetValue("Properties", typeof(List<Property>));
+            Width = (int)info.GetValue("Width", typeof(int));
+            Height = (int)info.GetValue("Height", typeof(int));
+            Inheritable = (List<Base>)info.GetValue("Inheritable", typeof(List<Base>)); // Needed?
+            Functions = (List<Function>)info.GetValue("Functions", typeof(List<Function>));
+            Properties = (List<Property>)info.GetValue("Properties", typeof(List<Property>));
         }
 
         public Entity() : base()
@@ -28,6 +28,10 @@ namespace ClassDiagram.Models
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("Width", this.Width);
+            info.AddValue("Height", this.Height);
+            info.AddValue("Inheritable", this.Inheritable);
+            info.AddValue("Functions", this.Functions);
+            info.AddValue("Properties", this.Properties);
             base.GetObjectData(info, ctxt);
         }
 

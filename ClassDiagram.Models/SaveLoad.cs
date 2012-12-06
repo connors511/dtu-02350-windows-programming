@@ -8,6 +8,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Markup;
 using System.Xml;
+using System.Runtime.Serialization;
 
 namespace ClassDiagram.Models
 {
@@ -25,11 +26,15 @@ namespace ClassDiagram.Models
                 return;
             }
             
-            XmlSerializer x = new XmlSerializer(bases.GetType(), new Type[] { typeof(Entity), 
+            /*XmlSerializer x = new XmlSerializer(bases.GetType(), new Type[] { typeof(Entity), 
                                                                               typeof(System.Windows.Media.SolidColorBrush),
                                                                               typeof(System.Windows.Media.MatrixTransform)});
             Stream stream = File.Open(file, FileMode.Create);
-            x.Serialize(stream, bases);
+
+            var b = new ListWrapper(bases);
+            x.Serialize(stream, b.bases);*/
+            var se = new Serializer();
+            se.SerializeObject(file, bases);
         }
 
         public static void Load(out List<Base> bases)
@@ -42,13 +47,15 @@ namespace ClassDiagram.Models
                 return;
             }
             
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Base>));
-
+            /*XmlSerializer serializer = new XmlSerializer(typeof(List<Base>));
+            
             StreamReader reader = new StreamReader(file);
             // Invalid XML error
             bases = (List<Base>)serializer.Deserialize(reader);
-            reader.Close();
+            reader.Close();*/
 
+            var se = new Serializer();
+            bases = se.DeSerializeObject(file);
         }
 
         private static string openText()
@@ -92,7 +99,7 @@ namespace ClassDiagram.Models
                 strFileName = dialog.FileName;
             return strFileName;
         }
-
+        
         public class Serializer
         {
             public Serializer()
@@ -110,12 +117,11 @@ namespace ClassDiagram.Models
 
             public List<Base> DeSerializeObject(string filename)
             {
-                List<Base> objectToSerialize;
                 Stream stream = File.Open(filename, FileMode.Open);
                 BinaryFormatter bFormatter = new BinaryFormatter();
-                objectToSerialize = (List<Base>)bFormatter.Deserialize(stream);
+                var o = (List<Base>)bFormatter.Deserialize(stream);
                 stream.Close();
-                return objectToSerialize;
+                return o;
             }
         }
     }

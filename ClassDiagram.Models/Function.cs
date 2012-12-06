@@ -14,7 +14,7 @@ namespace ClassDiagram.Models
             this.Visibility = (Visibility)info.GetValue("Visibility", typeof(Visibility));
             this.Name = (string)info.GetValue("Name", typeof(string));
             this.Type = (string)info.GetValue("Type", typeof(string));
-            this.Arguments = (List<Argument>)info.GetValue("Argument", typeof(List<Argument>));
+            this.Arguments = (List<Argument>)info.GetValue("Arguments", typeof(List<Argument>));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
