@@ -7,6 +7,7 @@ using System.Globalization;
 
 namespace ClassDiagram.Models
 {
+    [Serializable]
     public enum eType
     {
         Class,

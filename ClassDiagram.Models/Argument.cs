@@ -2,11 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace ClassDiagram.Models
 {
-    public class Argument
+    [Serializable()]
+    public class Argument : ISerializable
     {
+        public Argument(SerializationInfo info, StreamingContext ctxt)
+        {
+            this.Name = (string)info.GetValue("Name", typeof(string));
+            this.Type = (string)info.GetValue("Type", typeof(string));
+            this.Value = (string)info.GetValue("Value", typeof(string));
+        }
+
+        public Argument()
+        {
+            // TODO: Complete member initialization
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("Name", this.Name);
+            info.AddValue("Type", this.Type);
+            info.AddValue("Value", this.Value);
+        }
+
         private string _name;
         public string Name
         {

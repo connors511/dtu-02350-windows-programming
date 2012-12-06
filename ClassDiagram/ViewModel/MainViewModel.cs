@@ -12,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using ClassDiagram.Models.Arrows;
-using ClassDiagram.Models.Entities;
 using System;
 using System.ComponentModel;
 
@@ -61,7 +60,7 @@ namespace ClassDiagram.ViewModel
 
         // Kommandoer som UI bindes til.
         public ICommand NewCommand { get; private set; }
-        public ICommand LoadCommand { get; private set; }
+        public ICommand OpenCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
         public ICommand SaveAsCommand { get; private set; }
         public ICommand ExitCommand { get; private set; }
@@ -85,7 +84,7 @@ namespace ClassDiagram.ViewModel
             NewCommand = new RelayCommand(New);
             SaveCommand = new RelayCommand(Save);
             SaveAsCommand = new RelayCommand(SaveAs);
-            LoadCommand = new RelayCommand(Load);
+            OpenCommand = new RelayCommand(Open);
             ExitCommand = new RelayCommand(Exit);
             AboutCommand = new RelayCommand(About);
             //RemoveNodeCommand = new RelayCommand<IList>(RemoveNode, CanRemoveNode);
@@ -174,12 +173,16 @@ namespace ClassDiagram.ViewModel
 
         public void Open()
         {
-
+            var b = new List<Base>();
+            System.Console.WriteLine("loading");
+            SaveLoad.Load(out b);
+            bases.Clear();
+            b.ForEach(x => bases.Add(x));
         }
 
         public void Save()
         {
-
+            SaveLoad.Save(bases.ToList());
         }
 
         public void SaveAs()

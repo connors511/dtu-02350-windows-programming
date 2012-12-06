@@ -2,11 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace ClassDiagram.Models
 {
-    public class Entity : Base, IEntity
+    [Serializable]
+    public class Entity : Base, IEntity, ISerializable
     {
+        public Entity(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
+        {
+            this.Width = (int)info.GetValue("Width", typeof(int));
+            this.Height = (int)info.GetValue("Height", typeof(int));
+            this.Inheritable = (List<Base>)info.GetValue("Inheritable", typeof(List<Base>)); // Needed?
+            this.Functions = (List<Function>)info.GetValue("Functions", typeof(List<Function>));
+            this.Properties = (List<Property>)info.GetValue("Properties", typeof(List<Property>));
+        }
+
+        public Entity()
+        {
+            // TODO: Complete member initialization
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("Width", this.Width);
+            base.GetObjectData(info, ctxt);
+        }
+
         public string BodyText
         {
             get

@@ -2,11 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace ClassDiagram.Models
 {
-    public class Property : Argument
+    [Serializable()]
+    public class Property : Argument, ISerializable
     {
+        public Property(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
+        {
+            this.Visibility = (Visibility)info.GetValue("Visibility", typeof(Visibility));
+        }
+
+        public Property()
+        {
+            // TODO: Complete member initialization
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("Visibility", this.Visibility);
+            base.GetObjectData(info, ctxt);
+        }
+
         private Visibility _visibility;
         public Visibility Visibility
         {

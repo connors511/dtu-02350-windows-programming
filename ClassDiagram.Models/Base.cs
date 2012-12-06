@@ -6,11 +6,38 @@ using System.ComponentModel;
 using System.Windows.Media;
 using System.Windows;
 using System.Text.RegularExpressions;
+using System.Runtime.Serialization;
 
 namespace ClassDiagram.Models
 {
-    public abstract class Base : INotifyPropertyChanged
+    [Serializable()]
+    public abstract class Base : INotifyPropertyChanged, ISerializable
     {
+        public Base(SerializationInfo info, StreamingContext ctxt)
+        {
+            this.Type = (eType)info.GetValue("Type", typeof(eType));
+            this.X = (int)info.GetValue("X", typeof(int));
+            this.Y = (int)info.GetValue("Y", typeof(int));
+            this.Name = (string)info.GetValue("Name", typeof(string));
+            //this.BorderColor = (Brush)info.GetValue("BorderColor", typeof(Brush));
+            //this.Color = (Brush)info.GetValue("Color", typeof(Brush));
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("Type", this.Type);
+            info.AddValue("X", this.X);
+            info.AddValue("Y", this.Y);
+            info.AddValue("Name", this.Name);
+            //info.AddValue("BorderColor", this.BorderColor);
+            //info.AddValue("Color", this.Color);
+        }
+
+        public Base()
+        {
+
+        }
+
         private eType _type;
         public eType Type
         {
