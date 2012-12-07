@@ -28,6 +28,7 @@ namespace ClassDiagram.Models
         public Function()
         {
             Visibility = Models.Visibility.Public;
+            Arguments = new List<Argument>();
         }
 
         public Visibility Visibility

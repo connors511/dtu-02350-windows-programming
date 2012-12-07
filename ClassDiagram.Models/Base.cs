@@ -129,16 +129,103 @@ namespace ClassDiagram.Models
                 string str = value;
                 if (str != this.EditText)
                 {
-                    Match m = Regex.Match(str, @"(abstract class|class|enum|struct) (.+)");
+                    List<string> lines = str.Split('\n').ToList();
+                    Match m = Regex.Match(lines.ElementAt(0).ToLower(), @"(abstract class|class|enum|struct) (.+)");
                     if (m.Success)
                     {
                         // m.Groups[1].Value contains type
                         Name = m.Groups[2].Value;
-                        System.Console.WriteLine(Name);
+                        switch (m.Groups[1].Value)
+                        {
+                            case "class":
+                                Type = eType.Class;
+                                break;
+                            case "abstract class":
+                                Type = eType.AbstractClass;
+                                break;
+                            case "enum":
+                                Type = eType.Enum;
+                                break;
+                            case "struct":
+                                Type = eType.Struct;
+                                break;
+                        }
+                        Console.WriteLine(Name + " : " + Type);
                     }
                     else
                     {
                         throw new FormatException();
+                    }
+                    if (lines.ElementAt(1) != "---")
+                    {
+                        throw new FormatException();
+                    }
+                    lines.RemoveRange(0, 2);
+                    if (this.GetType() == typeof(Entity))
+                    {
+                        ((Entity)this).Functions = new List<Function>();
+                        ((Entity)this).Properties = new List<Property>();
+                    }
+                    foreach (string line in lines)
+                    {
+                        // Match functions
+                        Match ma = Regex.Match(line, @"([#+-])(.+?)\((.+)\)(?: : (.+))");
+                        if (ma.Success)
+                        {
+                            var f = new Function();
+                            switch (ma.Groups[1].Value)
+                            {
+                                case "+":
+                                    f.Visibility = Visibility.Public;
+                                    break;
+                                case "-":
+                                    f.Visibility = Visibility.Private;
+                                    break;
+                                case "#":
+                                    f.Visibility = Visibility.Protected;
+                                    break;
+                            }
+                            f.Name = ma.Groups[2].Value;
+                            f.Type = ma.Groups[4].Value;
+                            foreach (string arg in ma.Groups[3].Value.Split(',').ToList())
+                            {
+                                var a = new Argument();
+                                Match mx = Regex.Match(arg, @"(.+?)(?: = (.+))? : (.+)");
+                                if (mx.Success)
+                                {
+                                    a.Name = mx.Groups[1].Value;
+                                    a.Value = mx.Groups[2].Value;
+                                    a.Type = mx.Groups[3].Value;
+                                }
+                                f.Arguments.Add(a);
+                            }
+                            ((Entity)this).Functions.Add(f);
+                            Console.WriteLine(((Entity)this).Functions.Count + " : " + f);
+
+                        }
+                        // Match properties
+                        ma = Regex.Match(line, @"([#+-])(.+?)(?: = (.+?))?(?: : (.+))");
+                        if (ma.Success)
+                        {
+                            var p = new Property() {
+                                Name = ma.Groups[2].Value,
+                                Type = ma.Groups[4].Value,
+                                Value = ma.Groups[3].Value
+                            };
+                            switch (ma.Groups[1].Value)
+                            {
+                                case "+":
+                                    p.Visibility = Visibility.Public;
+                                    break;
+                                case "-":
+                                    p.Visibility = Visibility.Private;
+                                    break;
+                                case "#":
+                                    p.Visibility = Visibility.Protected;
+                                    break;
+                            }
+                            ((Entity)this).Properties.Add(p);
+                        }
                     }
                 }
             }
