@@ -122,7 +122,7 @@ namespace ClassDiagram.ViewModel
             // Needed to refresh gui
             bases.Clear();
 
-            var Props = new List<Models.Property>();
+            var Props = new ObservableCollection<Models.Property>();
             Props.Add(new Models.Property() { Name = "PublicMethod", Visibility = Models.Visibility.Public, Type = "string" });
             Props.Add(new Models.Property() { Name = "_privateMethod", Visibility = Models.Visibility.Private, Type = "int" });
             Props.Add(new Models.Property() { Name = "protectedMethod", Visibility = Models.Visibility.Protected, Type = "Entity" });
@@ -136,7 +136,7 @@ namespace ClassDiagram.ViewModel
             var t = new Models.Function() { Name = "test", Type = "string", Visibility = Models.Visibility.Public, Arguments = args };
 
             bases.Add(new Entity() { Type = eType.Class, Name = "Hej", X = 30, Y = 40, Width = 300, Height = 300, Properties = Props, Color = Brushes.LightBlue });
-            bases.Add(new Entity() { Type = eType.AbstractClass, Name = "Hello", X = 480, Y = 280, Width = 300, Height = 300, Functions = new List<Function>() { t } });
+            bases.Add(new Entity() { Type = eType.AbstractClass, Name = "Hello", X = 480, Y = 280, Width = 300, Height = 300, Functions = new ObservableCollection<Function>() { t } });
 
             popupOpen = false;
         }
@@ -283,13 +283,18 @@ namespace ClassDiagram.ViewModel
             else
             {
                 if (!(isAddingEntity)) e.MouseDevice.Target.CaptureMouse();
+
+                FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
+                // Fra ellipsen skaffes punktet som den er bundet til.
+                Base movingNode = (Base)movingEllipse.DataContext;
+                if (movingNode.Edit)
+                {
+                    movingNode.Edit = false;
+                    resetStatus(1);
+                }
                 if (e.ClickCount == 2)
                 {
                     e.MouseDevice.Target.ReleaseMouseCapture();
-                
-                    FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
-                    // Fra ellipsen skaffes punktet som den er bundet til.
-                    Base movingNode = (Base)movingEllipse.DataContext;
                     setStatus("Editing " + movingNode.GetType().Name);
                     movingNode.Edit = !movingNode.Edit;
                 }
@@ -339,7 +344,11 @@ namespace ClassDiagram.ViewModel
                 moveElementPoint = new Point();
                 // Musen frigøres.
                 e.MouseDevice.Target.ReleaseMouseCapture();
-                resetStatus(0.5);
+                if (!((Base)movingEntity).Edit)
+                {
+                    // Only reset if youre we did not enter edit mode
+                    resetStatus(0.5);
+                }
 
             }
         }

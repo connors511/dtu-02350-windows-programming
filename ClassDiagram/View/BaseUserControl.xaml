@@ -45,6 +45,16 @@
                 <TextBlock Text="{Binding BodyText}" />
             </StackPanel>
         </StackPanel>
+        <Rectangle Opacity="0" Stroke="{Binding BorderColor}" StrokeThickness="2" Fill="Transparent"
+                   Width="{Binding Width}" Height="{Binding Height}" 
+                   Visibility="{Binding EditInvert, Converter={StaticResource BooleanToVisibilityConverter}}" >
+            <!--Her bliver de tre events MouseDown, MouseMove og MouseUp bundet til de tilsvarende kommandoer på MainViewModel.-->
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <cmd:EventToCommand Command="{Binding DataContext.MouseDownNodeCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Rectangle>
         <StackPanel Name="Editor" Visibility="{Binding EditInvert, Converter={StaticResource BooleanToVisibilityConverter}}">
             <TextBox Text="{Binding EditText, Mode=TwoWay}" Margin="5" Background="Transparent" VerticalAlignment="Stretch" xml:space="preserve"
                      AcceptsReturn="True" />

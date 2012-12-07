@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
 
 namespace ClassDiagram.Models
 {
@@ -13,9 +14,9 @@ namespace ClassDiagram.Models
         {
             Width = (int)info.GetValue("Width", typeof(int));
             Height = (int)info.GetValue("Height", typeof(int));
-            Inheritable = (List<Base>)info.GetValue("Inheritable", typeof(List<Base>)); // Needed?
-            Functions = (List<Function>)info.GetValue("Functions", typeof(List<Function>));
-            Properties = (List<Property>)info.GetValue("Properties", typeof(List<Property>));
+            ((List<Base>)info.GetValue("Inheritable", typeof(List<Base>))).ForEach(x => Inheritable.Add(x));
+            ((List<Function>)info.GetValue("Functions", typeof(List<Function>))).ForEach(x => Functions.Add(x));
+            ((List<Property>)info.GetValue("Properties", typeof(List<Property>))).ForEach(x => Properties.Add(x));
         }
 
         public Entity() : base()
@@ -29,9 +30,9 @@ namespace ClassDiagram.Models
         {
             info.AddValue("Width", this.Width);
             info.AddValue("Height", this.Height);
-            info.AddValue("Inheritable", this.Inheritable);
-            info.AddValue("Functions", this.Functions);
-            info.AddValue("Properties", this.Properties);
+            info.AddValue("Inheritable", this.Inheritable.ToList());
+            info.AddValue("Functions", this.Functions.ToList());
+            info.AddValue("Properties", this.Properties.ToList());
             base.GetObjectData(info, ctxt);
         }
 
@@ -42,14 +43,14 @@ namespace ClassDiagram.Models
                 string str = "";
                 if (Properties != null)
                 {
-                    Properties.ForEach(x =>
+                    Properties.ToList().ForEach(x =>
                     {
                         str += x + "\n";
                     });
                 }
                 if (Functions != null)
                 {
-                    Functions.ForEach(x =>
+                    Functions.ToList().ForEach(x =>
                     {
                         str += x + "\n";
                     });
@@ -84,18 +85,18 @@ namespace ClassDiagram.Models
             }
         }
 
-        protected List<Base> Inheritable
+        protected ObservableCollection<Base> Inheritable
         {
             get;
             set;
         }
 
-        private List<Function> _functions;
-        public List<Function> Functions
+        private ObservableCollection<Function> _functions = new ObservableCollection<Function>();
+        public ObservableCollection<Function> Functions
         {
             get
             {
-                return (_functions == null) ? _functions : _functions.OrderBy(x => x.Visibility).ToList();
+                return (_functions == null) ? _functions : _functions;
             }
             set
             {
@@ -103,12 +104,12 @@ namespace ClassDiagram.Models
             }
         }
 
-        private List<Property> _properties;
-        public List<Property> Properties
+        private ObservableCollection<Property> _properties = new ObservableCollection<Property>();
+        public ObservableCollection<Property> Properties
         {
             get
             {
-                return (_properties == null) ? _properties : _properties.OrderBy(x => x.Visibility).ToList();
+                return (_properties == null) ? _properties : _properties;
             }
             set
             {

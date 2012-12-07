@@ -108,14 +108,14 @@ namespace ClassDiagram.Models
                     var cl = (ClassDiagram.Models.Entity)this;
                     if (cl.Properties != null)
                     {
-                        cl.Properties.ForEach(x =>
+                        cl.Properties.ToList().ForEach(x =>
                         {
                             str += x + "\n";
                         });
                     }
                     if (cl.Functions != null)
                     {
-                        cl.Functions.ForEach(x =>
+                        cl.Functions.ToList().ForEach(x =>
                         {
                             str += x + "\n";
                         });
@@ -163,8 +163,8 @@ namespace ClassDiagram.Models
                     lines.RemoveRange(0, 2);
                     if (this.GetType() == typeof(Entity))
                     {
-                        ((Entity)this).Functions = new List<Function>();
-                        ((Entity)this).Properties = new List<Property>();
+                        ((Entity)this).Functions.Clear();
+                        ((Entity)this).Properties.Clear();
                     }
                     foreach (string line in lines)
                     {
@@ -228,6 +228,8 @@ namespace ClassDiagram.Models
                         }
                     }
                 }
+                NotifyPropertyChanged("Name");
+                NotifyPropertyChanged("Type");
             }
         }
 
