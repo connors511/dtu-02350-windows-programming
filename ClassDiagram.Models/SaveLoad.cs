@@ -71,9 +71,10 @@ namespace ClassDiagram.Models
 
             //Now set the file type
             dialog.Filter = "ClassDiagrammer files (*.cdf)|*.cdf|All files (*.*)|*.*";
+            dialog.RestoreDirectory = true;
 
             //Set the starting directory and the title.
-            dialog.InitialDirectory = "C:";
+            //dialog.InitialDirectory = "C:";
             dialog.Title = "Select a ClassDiagrammer file";
 
             //Present to the user.
@@ -92,9 +93,10 @@ namespace ClassDiagram.Models
 
             //Now set the file type
             dialog.Filter = "ClassDiagrammer files (*.cdf)|*.cdf|All files (*.*)|*.*";
+            dialog.RestoreDirectory = true;
 
             //Set the starting directory and the title.
-            dialog.InitialDirectory = "C:";
+            //dialog.InitialDirectory = "C:";
             dialog.Title = "Select a ClassDiagrammer file";
 
             //Present to the user.
