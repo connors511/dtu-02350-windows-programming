@@ -130,7 +130,7 @@ namespace ClassDiagram.Models
                 if (str != this.EditText)
                 {
                     List<string> lines = str.Split('\n').ToList();
-                    Match m = Regex.Match(lines.ElementAt(0).ToLower(), @"(abstract class|class|enum|struct) (.+)");
+                    Match m = Regex.Match(lines.ElementAt(0), @"(abstract class|class|enum|struct) (.+)", RegexOptions.IgnoreCase);
                     if (m.Success)
                     {
                         // m.Groups[1].Value contains type
@@ -191,10 +191,15 @@ namespace ClassDiagram.Models
                             {
                                 var a = new Argument();
                                 Match mx = Regex.Match(arg, @"(.+?)(?: = (.+))? : (.+)");
+                                string vl = mx.Groups[2].Value;
+                                if (mx.Groups[2].Value == "")
+                                {
+                                    vl = null;
+                                }
                                 if (mx.Success)
                                 {
                                     a.Name = mx.Groups[1].Value;
-                                    a.Value = mx.Groups[2].Value;
+                                    a.Value = vl;
                                     a.Type = mx.Groups[3].Value;
                                 }
                                 f.Arguments.Add(a);
@@ -207,10 +212,15 @@ namespace ClassDiagram.Models
                         ma = Regex.Match(line, @"([#+-])(.+?)(?: = (.+?))?(?: : (.+))");
                         if (ma.Success)
                         {
+                            string val = ma.Groups[3].Value;
+                            if (ma.Groups[3].Value == "")
+                            {
+                                val = null;
+                            }
                             var p = new Property() {
                                 Name = ma.Groups[2].Value,
                                 Type = ma.Groups[4].Value,
-                                Value = ma.Groups[3].Value
+                                Value = val
                             };
                             switch (ma.Groups[1].Value)
                             {
@@ -230,6 +240,7 @@ namespace ClassDiagram.Models
                 }
                 NotifyPropertyChanged("Name");
                 NotifyPropertyChanged("Type");
+                NotifyPropertyChanged("BodyText");
             }
         }
 

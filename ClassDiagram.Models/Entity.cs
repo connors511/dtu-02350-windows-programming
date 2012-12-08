@@ -14,8 +14,14 @@ namespace ClassDiagram.Models
         {
             Width = (int)info.GetValue("Width", typeof(int));
             Height = (int)info.GetValue("Height", typeof(int));
-            ((List<Function>)info.GetValue("Functions", typeof(List<Function>))).ForEach(x => Functions.Add(x));
-            ((List<Property>)info.GetValue("Properties", typeof(List<Property>))).ForEach(x => Properties.Add(x));
+            var fs = ((List<Function>)info.GetValue("Functions", typeof(List<Function>)));
+            var of = new ObservableCollection<Function>();
+            fs.ForEach(x => of.Add(x));
+            Functions = of;
+            var ps = ((List<Property>)info.GetValue("Properties", typeof(List<Property>)));
+            var op = new ObservableCollection<Property>();
+            ps.ForEach(x => op.Add(x));
+            Properties = op;
         }
 
         public Entity() : base()
