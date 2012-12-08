@@ -46,6 +46,24 @@ namespace ClassDiagram.ViewModel
             }
         }
 
+        private int _intervalTime;
+        public int intervalTime
+        {
+            get
+            {
+                return _intervalTime;
+            }
+            set
+            {
+                if (_intervalTime != value)
+                {
+                    _intervalTime = value;
+                    RaisePropertyChanged("intervalTime");
+                }
+            }
+        }
+        private System.Windows.Forms.Timer autoSaver;
+
         // Formålet med at benytte en ObservableCollection er at den implementere INotifyCollectionChanged, der er forskellige fra INotifyPropertyChanged.
         // INotifyCollectionChanged smider en event når mængden af elementer i en kollektion ændres (altså når et element fjernes eller tilføjes).
         // Denne event giver GUI'en besked om ændringen.
@@ -111,7 +129,49 @@ namespace ClassDiagram.ViewModel
             MouseDownNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseDownNode);
             MouseMoveNodeCommand = new RelayCommand<MouseEventArgs>(MouseMoveNode);
             MouseUpNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseUpNode);
-            
+
+
+            PropertyChanged += new PropertyChangedEventHandler(autoSaver_tick);
+            intervalTime = 5000; // 5 seconds
+        }
+
+        private void autoSaver_tick(object sender, EventArgs e)
+        {   
+            if (e.GetType() == typeof(PropertyChangedEventArgs))
+            {
+                if (((PropertyChangedEventArgs)e).PropertyName != "intervalTime")
+                {
+                    // Only modify the timer if intervalTime changed
+                    return;
+                }
+                else
+                {
+                    if (autoSaver != null)
+                    {
+                        autoSaver.Stop();
+                    }
+                    autoSaver = new System.Windows.Forms.Timer();
+                    autoSaver.Tick += new EventHandler(autoSaver_tick);
+                    autoSaver.Interval = intervalTime;
+                    autoSaver.Start();
+                }
+            }
+            if (autoSaver == null)
+            {
+                autoSaver = new System.Windows.Forms.Timer();
+                autoSaver.Tick += new EventHandler(autoSaver_tick);
+                autoSaver.Interval = intervalTime;
+                autoSaver.Start();
+            }
+
+            if (currentFile != "")
+            {
+                Save();
+            }
+            else
+            {
+                Console.WriteLine("Ignoring autosave");
+            }
         }
 
         private void Load()
@@ -177,9 +237,9 @@ namespace ClassDiagram.ViewModel
             undoRedoController.AddAndExecute(new RemoveNodesCommand(Nodes, Edges, _nodes.Cast<Node>().First()));
         }*/
 
-        public void resetStatus(double time = 2.0)
+        public void resetStatus(double time = 2.0, string s = "")
         {
-            At.Do(() => status = "", DateTime.Now.AddSeconds(time));
+            At.Do(() => status = s, DateTime.Now.AddSeconds(time));
         }
 
         public void setStatus(string status = "")
@@ -187,11 +247,17 @@ namespace ClassDiagram.ViewModel
             this.status = status;
         }
 
+        public string getStatus()
+        {
+            return this.status;
+        }
+
         #region Commands
         public void New()
         {
             // Do you want to save first?
-
+            Console.WriteLine("Hi!");
+            intervalTime = 10000;
             // Reset!
             Load();
         }
@@ -210,10 +276,11 @@ namespace ClassDiagram.ViewModel
 
         public void Save()
         {
+            var s = getStatus();
             setStatus("Saving...");
             currentFile = SaveLoad.Save(bases.ToList(), currentFile);
             setStatus("Saved.");
-            resetStatus();
+            resetStatus(1, s);
         }
 
         public void SaveAs()

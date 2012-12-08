@@ -14,7 +14,6 @@ namespace ClassDiagram.Models
         {
             Width = (int)info.GetValue("Width", typeof(int));
             Height = (int)info.GetValue("Height", typeof(int));
-            ((List<Base>)info.GetValue("Inheritable", typeof(List<Base>))).ForEach(x => Inheritable.Add(x));
             ((List<Function>)info.GetValue("Functions", typeof(List<Function>))).ForEach(x => Functions.Add(x));
             ((List<Property>)info.GetValue("Properties", typeof(List<Property>))).ForEach(x => Properties.Add(x));
         }
@@ -30,7 +29,6 @@ namespace ClassDiagram.Models
         {
             info.AddValue("Width", this.Width);
             info.AddValue("Height", this.Height);
-            info.AddValue("Inheritable", this.Inheritable.ToList());
             info.AddValue("Functions", this.Functions.ToList());
             info.AddValue("Properties", this.Properties.ToList());
             base.GetObjectData(info, ctxt);
@@ -84,13 +82,7 @@ namespace ClassDiagram.Models
                 _height = value;
             }
         }
-
-        protected ObservableCollection<Base> Inheritable
-        {
-            get;
-            set;
-        }
-
+        
         private ObservableCollection<Function> _functions = new ObservableCollection<Function>();
         public ObservableCollection<Function> Functions
         {
