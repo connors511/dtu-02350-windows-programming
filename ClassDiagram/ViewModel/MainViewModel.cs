@@ -28,6 +28,8 @@ namespace ClassDiagram.ViewModel
         private Point moveElementPoint;
         public double ModeOpacity { get { return isAddingEntity ? 0.4 : 1.0; } }
 
+        private Base editingElem = null;
+
         private string currentFile = "";
         private string _status;
         public string status
@@ -92,6 +94,7 @@ namespace ClassDiagram.ViewModel
         public ICommand RedoCommand { get; private set; }
 
         // Kommandoer som UI bindes til.
+        public ICommand DoneEditCommand { get; private set; }
         public ICommand NewCommand { get; private set; }
         public ICommand OpenCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
@@ -114,6 +117,7 @@ namespace ClassDiagram.ViewModel
 
             // Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
             AddBaseCommand = new RelayCommand<string>((s) => AddBase(s));
+            DoneEditCommand = new RelayCommand(DoneEdit);
             NewCommand = new RelayCommand(New);
             SaveCommand = new RelayCommand(Save);
             SaveAsCommand = new RelayCommand(SaveAs);
@@ -253,6 +257,12 @@ namespace ClassDiagram.ViewModel
         }
 
         #region Commands
+
+        public void DoneEdit()
+        {
+            Console.WriteLine("eheh");
+        }
+
         public void New()
         {
             // Do you want to save first?
@@ -354,13 +364,20 @@ namespace ClassDiagram.ViewModel
                 FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
                 // Fra ellipsen skaffes punktet som den er bundet til.
                 Base movingNode = (Base)movingEllipse.DataContext;
-                if (movingNode.Edit)
+                //if (movingNode.Edit)
+                //{
+                    //movingNode.Edit = false;
+                //    resetStatus(1);
+                //}
+                if (e.ClickCount == 2 && editingElem != movingNode)
                 {
-                    movingNode.Edit = false;
-                    resetStatus(1);
-                }
-                if (e.ClickCount == 2)
-                {
+                    if (editingElem != null)
+                    {
+                        editingElem.Edit = false;
+                    }
+                    editingElem = movingNode;
+
+
                     e.MouseDevice.Target.ReleaseMouseCapture();
                     setStatus("Editing " + movingNode.GetType().Name);
                     movingNode.Edit = !movingNode.Edit;
