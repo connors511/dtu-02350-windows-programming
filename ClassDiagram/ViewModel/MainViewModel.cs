@@ -359,17 +359,21 @@ namespace ClassDiagram.ViewModel
             }
             else
             {
-                if (!(isAddingEntity)) e.MouseDevice.Target.CaptureMouse();
-
+                
+                // Lock target and get current element
+                e.MouseDevice.Target.CaptureMouse();
                 FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
-                // Fra ellipsen skaffes punktet som den er bundet til.
                 Base movingNode = (Base)movingEllipse.DataContext;
-                //if (movingNode.Edit)
-                //{
-                    //movingNode.Edit = false;
-                //    resetStatus(1);
-                //}
-                if (e.ClickCount == 2 && editingElem != movingNode)
+
+                if(movingNode.Edit) {
+                    movingNode.Edit = false;
+                    editingElem = null;
+                    resetStatus(5,"Saved");
+                    e.MouseDevice.Target.ReleaseMouseCapture();
+                }
+                else
+                {
+                     if (e.ClickCount == 2 && editingElem != movingNode)
                 {
                     if (editingElem != null)
                     {
@@ -382,7 +386,10 @@ namespace ClassDiagram.ViewModel
                     setStatus("Editing " + movingNode.GetType().Name);
                     movingNode.Edit = !movingNode.Edit;
                 }
-            }
+                }   
+
+                }
+
         }
 
         // Bruges til at flytter punkter.
