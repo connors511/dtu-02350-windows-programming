@@ -208,33 +208,37 @@ namespace ClassDiagram.Models
                             Console.WriteLine(((Entity)this).Functions.Count + " : " + f);
 
                         }
-                        // Match properties
-                        ma = Regex.Match(line, @"([#+-])(.+?)(?: ?= ?(.+?))?(?: ?: ?(.+))");
-                        if (ma.Success)
+                        else
                         {
-                            string val = ma.Groups[3].Value;
-                            if (ma.Groups[3].Value == "")
+                            // Match properties
+                            ma = Regex.Match(line, @"([#+-])(.+?)(?: ?= ?(.+?))?(?: ?: ?(.+))");
+                            if (ma.Success)
                             {
-                                val = null;
+                                string val = ma.Groups[3].Value;
+                                if (ma.Groups[3].Value == "")
+                                {
+                                    val = null;
+                                }
+                                var p = new Property()
+                                {
+                                    Name = ma.Groups[2].Value,
+                                    Type = ma.Groups[4].Value,
+                                    Value = val
+                                };
+                                switch (ma.Groups[1].Value)
+                                {
+                                    case "+":
+                                        p.Visibility = Visibility.Public;
+                                        break;
+                                    case "-":
+                                        p.Visibility = Visibility.Private;
+                                        break;
+                                    case "#":
+                                        p.Visibility = Visibility.Protected;
+                                        break;
+                                }
+                                ((Entity)this).Properties.Add(p);
                             }
-                            var p = new Property() {
-                                Name = ma.Groups[2].Value,
-                                Type = ma.Groups[4].Value,
-                                Value = val
-                            };
-                            switch (ma.Groups[1].Value)
-                            {
-                                case "+":
-                                    p.Visibility = Visibility.Public;
-                                    break;
-                                case "-":
-                                    p.Visibility = Visibility.Private;
-                                    break;
-                                case "#":
-                                    p.Visibility = Visibility.Protected;
-                                    break;
-                            }
-                            ((Entity)this).Properties.Add(p);
                         }
                     }
                 }
