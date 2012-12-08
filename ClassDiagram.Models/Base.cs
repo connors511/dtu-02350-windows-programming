@@ -169,7 +169,7 @@ namespace ClassDiagram.Models
                     foreach (string line in lines)
                     {
                         // Match functions
-                        Match ma = Regex.Match(line, @"([#+-])(.+?)\((.+)\)(?: : (.+))");
+                        Match ma = Regex.Match(line, @"([#+-])(.+?)\((.+)\)(?: ?: ?(.+))");
                         if (ma.Success)
                         {
                             var f = new Function();
@@ -190,7 +190,7 @@ namespace ClassDiagram.Models
                             foreach (string arg in ma.Groups[3].Value.Split(',').ToList())
                             {
                                 var a = new Argument();
-                                Match mx = Regex.Match(arg, @"(.+?)(?: = (.+))? : (.+)");
+                                Match mx = Regex.Match(arg, @"(.+?)(?: ?= ?(.+))? ?: ?(.+)");
                                 string vl = mx.Groups[2].Value;
                                 if (mx.Groups[2].Value == "")
                                 {
@@ -209,7 +209,7 @@ namespace ClassDiagram.Models
 
                         }
                         // Match properties
-                        ma = Regex.Match(line, @"([#+-])(.+?)(?: = (.+?))?(?: : (.+))");
+                        ma = Regex.Match(line, @"([#+-])(.+?)(?: ?= ?(.+?))?(?: ?: ?(.+))");
                         if (ma.Success)
                         {
                             string val = ma.Groups[3].Value;
