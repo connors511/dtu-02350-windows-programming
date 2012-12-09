@@ -130,6 +130,7 @@ namespace ClassDiagram.Models
             {
                 this.X = value - this.Width / 2;
                 NotifyPropertyChanged("X");
+                NotifyPropertyChanged("CanvasCenterX");
             }
         }
 
@@ -143,6 +144,7 @@ namespace ClassDiagram.Models
             {
                 this.Y = value - this.Height / 2;
                 NotifyPropertyChanged("Y");
+                NotifyPropertyChanged("CanvasCenterY");
             }
         }
 

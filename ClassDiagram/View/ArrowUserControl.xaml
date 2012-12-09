@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="ClassDiagram.View.ArrowUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <!--<Line Stroke="Black" X1="{Binding Start.CanvasCenterX}" Y1="{Binding Start.CanvasCenterY}" 
+              X2="{Binding End.CanvasCenterX}" Y2="{Binding End.CanvasCenterY}" StrokeThickness="2"  />-->
+        <Line Stroke="Black" X1="{Binding startX}" Y1="{Binding startY}" 
+              X2="{Binding endX}" Y2="{Binding endY}" StrokeThickness="2"  />
+        <Path Fill="Black" Data="{Binding ArrowData}" />
+    </Grid>
+</UserControl>

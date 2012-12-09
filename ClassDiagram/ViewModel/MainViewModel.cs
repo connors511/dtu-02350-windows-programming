@@ -178,11 +178,19 @@ namespace ClassDiagram.ViewModel
                         var z = (from b in bases
                                  where b.Name == y.Type
                                  select b).ToList();
-                        z.ForEach(i => connections.Add(x, i));
+                        z.ForEach(i => {
+                            if (!connections.Contains(new KeyValuePair<Base,Base>(x, i))) {
+                                connections.Add(x, i);
+                            }
+                        });
                     });
                 });
                 // Convert connections to arrows on canvas
-
+                foreach (var con in connections)
+                {
+                    Console.WriteLine(con.Key.Name + " => " + con.Value.Name);
+                    bases.Add((Base)new Association() { Start = (Entity)con.Key, End = (Entity)con.Value });
+                }
             }
         }
 
@@ -249,7 +257,7 @@ namespace ClassDiagram.ViewModel
 
             bases.Add(new Entity() { Type = eType.Class, Name = "Hej", X = 30, Y = 40, Width = 200, Height = 100, Properties = Props, Color = Brushes.LightBlue });
 			bases.Add(new Entity() { Type = eType.AbstractClass, Name = "Hello", X = 480, Y = 280, Width = 400, Height = 100, Functions = new ObservableCollection<Function>() { t } });
-
+            //bases.Add(new Association() { Start = (Entity)bases.ElementAt(0), End = (Entity)bases.ElementAt(1) });
 			popupOpen = false;
 		}
 
@@ -394,55 +402,54 @@ namespace ClassDiagram.ViewModel
 		// Hvis der ikke er ved at blive tilføjet en kant så fanges musen når en musetast trykkes ned. Dette bruges til at flytte punkter.
 		public void MouseDownNode(MouseButtonEventArgs e)
 		{
-			if (e.MouseDevice.RightButton == MouseButtonState.Pressed)
-			{
-				// Ellipsen skaffes.
-				FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
-				// Ellipsens node skaffes.
-				Base movingEntity = (Base)movingEllipse.DataContext;
-				setStatus("Removing " + movingEntity.GetType().Name);
+            if (e.MouseDevice.RightButton == MouseButtonState.Pressed)
+            {
+                // Ellipsen skaffes.
+                FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
+                // Ellipsens node skaffes.
+                Base movingEntity = (Base)movingEllipse.DataContext;
+                setStatus("Removing " + movingEntity.GetType().Name);
 
-				undoRedoController.AddAndExecute(new RemoveBaseCommand(bases, movingEntity));
-				resetStatus();
-			}
-			else
-			{
-				
-				// Lock target and get current element
-				e.MouseDevice.Target.CaptureMouse();
-				FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
-				Base movingNode = (Base)movingEllipse.DataContext;
-				if(movingNode.Edit) {
+                undoRedoController.AddAndExecute(new RemoveBaseCommand(bases, movingEntity));
+                resetStatus();
+            }
+            else
+            {
+
+                // Lock target and get current element
+                e.MouseDevice.Target.CaptureMouse();
+                FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
+                Base movingNode = (Base)movingEllipse.DataContext;
+                if (movingNode.Edit)
+                {
 
                     ((Entity)movingNode).Width = (int)movingEllipse.ActualWidth;
                     ((Entity)movingNode).Height = (int)movingEllipse.ActualHeight;
 
-                    
-
-					movingNode.Edit = false;
-					editingElem = null;
-					setStatus("Saved");
-					e.MouseDevice.Target.ReleaseMouseCapture();
-				}
-				else
-				{
-					 if (e.ClickCount == 2 && editingElem != movingNode)
-				{
-					if (editingElem != null)
-					{
-						editingElem.Edit = false;
-					}
-					editingElem = movingNode;
 
 
-					e.MouseDevice.Target.ReleaseMouseCapture();
-					setStatus("Editing " + movingNode.GetType().Name);
-					movingNode.Edit = true;
-				}
-				}   
+                    movingNode.Edit = false;
+                    editingElem = null;
+                    setStatus("Saved");
+                    e.MouseDevice.Target.ReleaseMouseCapture();
+                }
+                else
+                {
+                    if (e.ClickCount == 2 && editingElem != movingNode)
+                    {
+                        if (editingElem != null)
+                        {
+                            editingElem.Edit = false;
+                        }
+                        editingElem = movingNode;
 
-				}
 
+                        e.MouseDevice.Target.ReleaseMouseCapture();
+                        setStatus("Editing " + movingNode.GetType().Name);
+                        movingNode.Edit = true;
+                    }
+                }
+            }
 		}
 
 		// Bruges til at flytter punkter.
