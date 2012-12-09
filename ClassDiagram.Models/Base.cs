@@ -245,6 +245,8 @@ namespace ClassDiagram.Models
                 NotifyPropertyChanged("Name");
                 NotifyPropertyChanged("Type");
                 NotifyPropertyChanged("BodyText");
+                NotifyPropertyChanged("Functions");
+                NotifyPropertyChanged("Properties");
             }
         }
 

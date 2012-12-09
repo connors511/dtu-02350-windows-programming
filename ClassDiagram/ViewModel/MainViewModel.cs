@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.ComponentModel;
 using System.Windows;
 using System;
+using System.Linq;
+using ClassDiagram.Models.Arrows;
 
 namespace ClassDiagram.ViewModel
 {
@@ -138,7 +140,51 @@ namespace ClassDiagram.ViewModel
 
 			PropertyChanged += new PropertyChangedEventHandler(autoSaver_tick);
 			intervalTime = 5000; // 5 seconds
+
 		}
+
+        private void baseChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs args)
+        {
+            //You get notified here two times.
+            if (args.OldItems != null)
+                foreach (Base oldItem in args.OldItems)
+                    oldItem.PropertyChanged -= new PropertyChangedEventHandler(Youritem_PropertyChanged);
+
+            if (args.NewItems != null)
+                foreach (Base newItem in args.NewItems)
+                    newItem.PropertyChanged += new PropertyChangedEventHandler(Youritem_PropertyChanged);
+
+        }
+
+        private void Youritem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName == "Properties")
+            {
+                // Remove all current arrows
+                List<Base> removes = (from b in bases
+                                      where b.GetType() != typeof(Entity) // Gets all arrows
+                                      select b).ToList();
+                removes.ForEach(x => bases.Remove(x));
+                // Re-add all arrows
+                List<Base> bs = (from b in bases
+                                 where b.GetType() == typeof(Entity)
+                                 select b).ToList();
+                Dictionary<Base, Base> connections = new Dictionary<Base, Base>();
+                // We can do this, because all arrows has been removed
+                bs.ForEach(x =>
+                {
+                    ((Entity)x).Properties.ToList().ForEach(y =>
+                    {
+                        var z = (from b in bases
+                                 where b.Name == y.Type
+                                 select b).ToList();
+                        z.ForEach(i => connections.Add(x, i));
+                    });
+                });
+                // Convert connections to arrows on canvas
+
+            }
+        }
 
 		private void autoSaver_tick(object sender, EventArgs e)
 		{   
@@ -185,7 +231,8 @@ namespace ClassDiagram.ViewModel
 
 			bases = new ObservableCollection<Base>();
 			// Needed to refresh gui
-			bases.Clear();
+            bases.Clear();
+            bases.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(baseChanged);
 
 			var Props = new ObservableCollection<Models.Property>();
 			Props.Add(new Models.Property() { Name = "PublicMethod", Visibility = Models.Visibility.Public, Type = "string" });
