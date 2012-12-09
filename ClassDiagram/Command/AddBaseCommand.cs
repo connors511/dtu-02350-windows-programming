@@ -21,11 +21,13 @@ namespace ClassDiagram.Command
 
         public void Execute()
         {
+            _base.Edit = true;
             this._bases.Add(_base);
         }
 
         public void UnExecute()
         {
+            _base.Edit = false;
             this._bases.Remove(_base);
         }
     }
