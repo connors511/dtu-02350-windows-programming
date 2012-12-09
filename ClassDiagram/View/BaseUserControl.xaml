@@ -61,7 +61,7 @@
         </StackPanel>
         <!-- How to leave edit mode? -->
         <Rectangle Opacity="0" Stroke="{Binding BorderColor}" StrokeThickness="2" Fill="Transparent"
-                   Width="{Binding Width}" Height="{Binding Height}" 
+                   MinWidth="200" MinHeight="100" 
                    Visibility="{Binding Edit, Converter={StaticResource BooleanToVisibilityConverter}}" >
             <!--Her bliver de tre events MouseDown, MouseMove og MouseUp bundet til de tilsvarende kommandoer på MainViewModel.-->
             <i:Interaction.Triggers>

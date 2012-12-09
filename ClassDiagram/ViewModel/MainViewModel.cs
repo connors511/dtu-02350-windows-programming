@@ -29,6 +29,7 @@ namespace ClassDiagram.ViewModel
 		public double ModeOpacity { get { return isAddingEntity ? 0.4 : 1.0; } }
 
 		private Base editingElem = null;
+        private IEntity movingElem = null;
 
 		private string currentFile = "";
 		private string _status;
@@ -364,10 +365,12 @@ namespace ClassDiagram.ViewModel
 				e.MouseDevice.Target.CaptureMouse();
 				FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
 				Base movingNode = (Base)movingEllipse.DataContext;
-
 				if(movingNode.Edit) {
 
                     ((Entity)movingNode).Width = (int)movingEllipse.ActualWidth;
+                    ((Entity)movingNode).Height = (int)movingEllipse.ActualHeight;
+
+                    
 
 					movingNode.Edit = false;
 					editingElem = null;
@@ -399,50 +402,91 @@ namespace ClassDiagram.ViewModel
 		public void MouseMoveNode(MouseEventArgs e)
 		{
 			// Tjek at musen er fanget og at der ikke er ved at blive tilføjet en kant.
-			if (Mouse.Captured != null && !isAddingEntity)
+			if (Mouse.Captured != null)
 			{
+
 				// Musen er nu fanget af ellipserne og den ellipse som musen befinder sig over skaffes her.
 				FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
 				// Fra ellipsen skaffes punktet som den er bundet til.
-				IEntity movingNode = (IEntity)movingEllipse.DataContext;
-				setStatus("Moving " + movingNode.GetType().Name);
+				movingElem = (IEntity)movingEllipse.DataContext;
+				setStatus("Moving " + movingElem.GetType().Name);
 				// Canvaset findes her udfra ellipsen.
 				Canvas canvas = FindParentOfType<Canvas>(movingEllipse);
 				// Musens position i forhold til canvas skaffes her.
 				Point mousePosition = Mouse.GetPosition(canvas);
 				// Når man flytter noget med musen vil denne metode blive kaldt mange gange for hvert lille ryk, 
 				// derfor gemmes her positionen før det første ryk så den sammen med den sidste position kan benyttes til at flytte punktet med en kommando.
-				if (moveElementPoint == default(Point)) moveElementPoint = mousePosition;
-				// Punktets position ændres og beskeden bliver så sendt til UI med INotifyPropertyChanged mønsteret.
-				movingNode.CanvasCenterX = (int)mousePosition.X;
-				movingNode.CanvasCenterY = (int)mousePosition.Y;
+				if (moveElementPoint == default(Point))
+                {
+                    if ((mousePosition.Y - ((Entity)movingElem).Height / 2) <= 0)
+                    {
+                        moveElementPoint.Y = (((Entity)movingElem).Height / 2);
+                    }
+                    else
+                    {
+                        moveElementPoint.Y = mousePosition.Y;
+                    }
+                    if ((mousePosition.X - ((Entity)movingElem).Width / 2) <= 0)
+                    {
+                        moveElementPoint.X = (((Entity)movingElem).Width / 2);
+                    }
+                    else
+                    {
+                        moveElementPoint.X = mousePosition.X;
+                    }
+                }
+                    
+                    
+
+                if ((mousePosition.Y - ((Entity)movingElem).Height / 2) <= 0)
+                {
+                    movingElem.CanvasCenterY = (((Entity)movingElem).Height / 2);
+                }
+                //else if ((mousePosition.Y + ((Entity)movingNode).Height / 2) >= canvas.ActualHeight)
+                //{
+                //    movingNode.CanvasCenterY = (int)canvas.ActualHeight - (((Entity)movingNode).Height / 2);
+                //}
+                else
+                {
+                    movingElem.CanvasCenterY = (int)mousePosition.Y;
+                }
+
+                if ((mousePosition.X - ((Entity)movingElem).Width / 2) <= 0)
+                {
+                    movingElem.CanvasCenterX = (((Entity)movingElem).Width / 2);
+                }
+                //else if ((mousePosition.Y + ((Entity)movingNode).Height / 2) >= canvas.ActualHeight)
+                //{
+                //    movingNode.CanvasCenterY = (int)canvas.ActualHeight - (((Entity)movingNode).Height / 2);
+                //}
+                else
+                {
+                    movingElem.CanvasCenterX = (int)mousePosition.X;
+                }
+
 			}
 		}
 
 		// Benyttes til at flytte punkter og tilføje kanter.
 		public void MouseUpNode(MouseButtonEventArgs e)
 		{
-			if (Mouse.Captured != null)
+			if (Mouse.Captured != null && movingElem != null)
 			{
-				// Ellipsen skaffes.
-				FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
-				// Ellipsens node skaffes.
-				IEntity movingEntity = (IEntity)movingEllipse.DataContext;
-				// Canvaset skaffes.
-				Canvas canvas = FindParentOfType<Canvas>(movingEllipse);
-				// Musens position på canvas skaffes.
-				Point mousePosition = Mouse.GetPosition(canvas);
-				// Punktet flyttes med kommando. Den flyttes egentlig bare det sidste stykke i en række af mange men da de originale punkt gemmes er der ikke noget problem med undo/redo.
-				undoRedoController.AddAndExecute(new MoveEntityCommand(movingEntity, (int)mousePosition.X, (int)mousePosition.Y, (int)moveElementPoint.X, (int)moveElementPoint.Y));
-				// Nulstil værdier.
-				moveElementPoint = new Point();
+
+				// Save coordinates finally
+                undoRedoController.AddAndExecute(new MoveEntityCommand(movingElem, movingElem.CanvasCenterX, movingElem.CanvasCenterY, (int)moveElementPoint.X, (int)moveElementPoint.Y));
+				
 				// Musen frigøres.
 				e.MouseDevice.Target.ReleaseMouseCapture();
-				if (!((Base)movingEntity).Edit)
+				if (!((Base)movingElem).Edit)
 				{
 					// Only reset if youre we did not enter edit mode
 					resetStatus(0.5);
 				}
+                
+                // Nulstil værdier.
+				moveElementPoint = new Point();
+                movingElem = null;
 
 			}
 		}
