@@ -10,21 +10,21 @@
              xmlns:converters="clr-namespace:ClassDiagram.Models;assembly=ClassDiagram.Models"
              Canvas.Left="{Binding X}" 
              Canvas.Top="{Binding Y}" 
-             Width="{Binding Width}" 
-             Height="{Binding Height}" 
-             d:DesignHeight="200" d:DesignWidth="300">
+             MinWidth="200" 
+             MinHeight="100" 
+             d:DesignHeight="100" d:DesignWidth="200">
     <UserControl.Resources>
         <converters:ColorConverter x:Key='ColorConverter' />
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <DataTemplate DataType="{x:Type Model:Function}">
             <StackPanel Orientation="Horizontal">
-                <TextBlock TextAlignment="Center" Width="10" Text="{Binding Visibility, Converter={StaticResource ColorConverter}}" />
+                <TextBlock TextAlignment="Center" Text="{Binding Visibility, Converter={StaticResource ColorConverter}}" />
                 <TextBlock TextAlignment="Center" Text="{Binding Name}" />
             </StackPanel>
         </DataTemplate>
         <DataTemplate DataType="{x:Type Model:Property}">
             <StackPanel Orientation="Horizontal">
-                <TextBlock TextAlignment="Center" Width="10" Text="{Binding Visibility, Converter={StaticResource ColorConverter}}" />
+                <TextBlock TextAlignment="Center" Text="{Binding Visibility, Converter={StaticResource ColorConverter}}" />
                 <TextBlock TextAlignment="Center" Text="{Binding Name}" />
             </StackPanel>
         </DataTemplate>
@@ -34,11 +34,11 @@
         <!--Tredje lag er den øverste Rectangle med animation og gradient.-->
         <Rectangle Opacity="1" 
                    Stroke="{Binding BorderColor}" StrokeThickness="2" Fill="{Binding Color}"
-                   Width="{Binding Width}" Height="{Binding Height}">
+                   MinWidth="200" MinHeight="100">
         </Rectangle>
         <StackPanel Name="SP" Visibility="{Binding Edit, Converter={StaticResource BooleanToVisibilityConverter}}">
             <TextBlock TextAlignment="Center" Text="{Binding Name}" Margin="5" />
-            <Line Stroke="Black" X1="0" Y1="0" X2="{Binding Width}" Y2="0" StrokeThickness="2" />
+            <Line Stroke="Black" X1="0" Y1="0" X2="1" Y2="0" StrokeThickness="2" Stretch="Fill" />
             <StackPanel Margin="5">
                 <!--<ItemsControl ItemsSource="{Binding Properties}" />
                 <ItemsControl ItemsSource="{Binding Functions}" />-->
@@ -46,7 +46,7 @@
             </StackPanel>
         </StackPanel>
         <Rectangle Opacity="0" Stroke="{Binding BorderColor}" StrokeThickness="2" Fill="Transparent"
-                   Width="{Binding Width}" Height="{Binding Height}" 
+                   MinWidth="200" MinHeight="100" 
                    Visibility="{Binding EditInvert, Converter={StaticResource BooleanToVisibilityConverter}}" >
             <!--Her bliver de tre events MouseDown, MouseMove og MouseUp bundet til de tilsvarende kommandoer på MainViewModel.-->
             <i:Interaction.Triggers>
