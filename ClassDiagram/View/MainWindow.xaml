@@ -59,7 +59,7 @@
                 <ColumnDefinition Width="870*" />
             </Grid.ColumnDefinitions>
             <ListBox Margin="0,23,0,23" />
-            <Canvas Margin="0,23" Grid.Column="1">
+            <Canvas Margin="0,23" Grid.Column="1" Name="ClassCanvas">
                 <Grid>
                     <ItemsControl Name="items" ItemsSource="{Binding bases}" />
                 </Grid>
