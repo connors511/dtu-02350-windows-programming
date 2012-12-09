@@ -248,7 +248,7 @@ namespace ClassDiagram.ViewModel
 			var t = new Models.Function() { Name = "test", Type = "string", Visibility = Models.Visibility.Public, Arguments = args };
 
             bases.Add(new Entity() { Type = eType.Class, Name = "Hej", X = 30, Y = 40, Width = 200, Height = 100, Properties = Props, Color = Brushes.LightBlue });
-			bases.Add(new Entity() { Type = eType.AbstractClass, Name = "Hello", X = 480, Y = 280, Width = 400, Height = 100, Functions = new ObservableCollection<Function>() { t } });
+			bases.Add(new Entity() { Type = eType.AbstractClass, Name = "Hello", X = 80, Y = 80, Width = 400, Height = 100, Functions = new ObservableCollection<Function>() { t } });
 
 			popupOpen = false;
 		}
@@ -257,6 +257,7 @@ namespace ClassDiagram.ViewModel
 		public void AddBase(string parameter)
 		{
 			Base obj = new Entity();
+            obj.Name = "New_"+parameter;
 			switch (parameter)
 			{
 				case "AbstractClass":
@@ -463,6 +464,8 @@ namespace ClassDiagram.ViewModel
 				setStatus("Moving " + movingElem.GetType().Name);
 				// Canvaset findes her udfra ellipsen.
 				Canvas canvas = FindParentOfType<Canvas>(movingEllipse);
+                Window window = FindParentOfType<Window>(movingEllipse);
+                Canvas itemcanvas = (Canvas)window.FindName("ClassCanvas");
 				// Musens position i forhold til canvas skaffes her.
 				Point mousePosition = Mouse.GetPosition(canvas);
 				// Når man flytter noget med musen vil denne metode blive kaldt mange gange for hvert lille ryk, 
@@ -473,6 +476,10 @@ namespace ClassDiagram.ViewModel
                     {
                         moveElementPoint.Y = (((Entity)movingElem).Height / 2);
                     }
+                    else if ((mousePosition.Y + ((Entity)movingElem).Height / 2) >= itemcanvas.ActualHeight)
+                    {
+                        moveElementPoint.Y = (int)itemcanvas.ActualHeight - (((Entity)movingElem).Height / 2);
+                    }
                     else
                     {
                         moveElementPoint.Y = mousePosition.Y;
@@ -480,6 +487,10 @@ namespace ClassDiagram.ViewModel
                     if ((mousePosition.X - ((Entity)movingElem).Width / 2) <= 0)
                     {
                         moveElementPoint.X = (((Entity)movingElem).Width / 2);
+                    }
+                    else if ((mousePosition.X + ((Entity)movingElem).Width / 2) >= itemcanvas.ActualWidth)
+                    {
+                        moveElementPoint.X = (int)itemcanvas.ActualWidth - (((Entity)movingElem).Width / 2);
                     }
                     else
                     {
@@ -493,10 +504,10 @@ namespace ClassDiagram.ViewModel
                 {
                     movingElem.CanvasCenterY = (((Entity)movingElem).Height / 2);
                 }
-                //else if ((mousePosition.Y + ((Entity)movingNode).Height / 2) >= canvas.ActualHeight)
-                //{
-                //    movingNode.CanvasCenterY = (int)canvas.ActualHeight - (((Entity)movingNode).Height / 2);
-                //}
+                else if ((mousePosition.Y + ((Entity)movingElem).Height / 2) >= itemcanvas.ActualHeight)
+                {
+                    movingElem.CanvasCenterY = (int)itemcanvas.ActualHeight - (((Entity)movingElem).Height / 2);
+                }
                 else
                 {
                     movingElem.CanvasCenterY = (int)mousePosition.Y;
@@ -506,10 +517,10 @@ namespace ClassDiagram.ViewModel
                 {
                     movingElem.CanvasCenterX = (((Entity)movingElem).Width / 2);
                 }
-                //else if ((mousePosition.Y + ((Entity)movingNode).Height / 2) >= canvas.ActualHeight)
-                //{
-                //    movingNode.CanvasCenterY = (int)canvas.ActualHeight - (((Entity)movingNode).Height / 2);
-                //}
+                else if ((mousePosition.X + ((Entity)movingElem).Width / 2) >= itemcanvas.ActualWidth)
+                {
+                    movingElem.CanvasCenterX = (int)itemcanvas.ActualWidth - (((Entity)movingElem).Width / 2);
+                }
                 else
                 {
                     movingElem.CanvasCenterX = (int)mousePosition.X;
