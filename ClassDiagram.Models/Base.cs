@@ -161,7 +161,7 @@ namespace ClassDiagram.Models
                     {
                         throw new FormatException();
                     }
-                    lines.RemoveRange(0, 2);
+
                     if (this.GetType() == typeof(Entity))
                     {
                         ((Entity)this).Functions.Clear();

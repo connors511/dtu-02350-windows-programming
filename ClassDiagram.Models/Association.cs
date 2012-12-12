@@ -71,6 +71,8 @@ namespace ClassDiagram.Models.Arrows
                             NotifyPropertyChanged("startY");
                             NotifyPropertyChanged("endX");
                             NotifyPropertyChanged("endY");
+                            NotifyPropertyChanged("CenterY");
+                            NotifyPropertyChanged("CenterX");
                         }
                     });
                 }
@@ -86,6 +88,8 @@ namespace ClassDiagram.Models.Arrows
                             NotifyPropertyChanged("startY");
                             NotifyPropertyChanged("endX");
                             NotifyPropertyChanged("endY");
+                            NotifyPropertyChanged("CenterY");
+                            NotifyPropertyChanged("CenterX");
                         }
                     });
                 }
@@ -181,27 +185,15 @@ namespace ClassDiagram.Models.Arrows
         {
             get
             {
-                return this._centerX;
-            }
-            set
-            {
-                this._centerX = Math.Abs(Start.CanvasCenterX + End.CanvasCenterX) / 2;
-                NotifyPropertyChanged("CenterX");
+                return Math.Abs(Start.CanvasCenterX + End.CanvasCenterX) / 2;
             }
         }
 
-        private int _centerY;
         public int CenterY
         {
             get
             {
-                return this._centerY;
-            }
-            set
-            {
-                this._centerY = 200;
-                //this._centerY = Math.Abs(Start.CanvasCenterY + End.CanvasCenterY) / 2;
-                NotifyPropertyChanged("CenterY");
+                return Math.Abs(Start.CanvasCenterY + End.CanvasCenterY) / 2;
             }
         }
 
