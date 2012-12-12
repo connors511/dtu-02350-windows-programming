@@ -33,7 +33,7 @@ namespace ClassDiagram.ViewModel
         private IEntity movingElem = null;
 
 		private string currentFile = "";
-		private string _status;
+		private string _status = "";
 		public string status
 		{
 			get
@@ -147,7 +147,7 @@ namespace ClassDiagram.ViewModel
 
 
 			PropertyChanged += new PropertyChangedEventHandler(autoSaver_tick);
-			intervalTime = 5000; // 5 seconds
+			intervalTime = 10000; // 10 seconds
 
 		}
 
@@ -191,6 +191,8 @@ namespace ClassDiagram.ViewModel
                         });
                     });
                 });
+
+                RaisePropertyChanged("bases");
             }
         }
 
@@ -242,7 +244,7 @@ namespace ClassDiagram.ViewModel
             bases.Clear();
             bases.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(baseChanged);
 
-			var Props = new List<Models.Property>();
+			/*var Props = new List<Models.Property>();
 			Props.Add(new Models.Property() { Name = "PublicMethod", Visibility = Models.Visibility.Public, Type = "string" });
 			Props.Add(new Models.Property() { Name = "_privateMethod", Visibility = Models.Visibility.Private, Type = "int" });
 			Props.Add(new Models.Property() { Name = "protectedMethod", Visibility = Models.Visibility.Protected, Type = "Entity" });
@@ -254,10 +256,10 @@ namespace ClassDiagram.ViewModel
 			args.Add(new Argument() { Name = "subject", Type = "string", Value = "" });
 			args.Add(new Argument() { Name = "matches", Type = "list<string>", Value = "null" });
 			var t = new Models.Function() { Name = "test", Type = "string", Visibility = Models.Visibility.Public, Arguments = args };
-
-            bases.Add(new Entity() { Type = eType.Class, Name = "Hej", X = 30, Y = 40, Width = 200, Height = 100, Properties = Props, Color = Brushes.LightBlue });
+            */
+            //bases.Add(new Entity() { Type = eType.Class, Name = "Hej", X = 30, Y = 40, Width = 200, Height = 100, Properties = Props, Color = Brushes.LightBlue });
             //bases.Add(new Association() { Start = (Entity)bases.ElementAt(0), End = (Entity)bases.ElementAt(1) });
-			bases.Add(new Entity() { Type = eType.AbstractClass, Name = "Hello", X = 80, Y = 80, Width = 400, Height = 100, Functions = new List<Function>() { t } });
+			//bases.Add(new Entity() { Type = eType.AbstractClass, Name = "Hello", X = 80, Y = 80, Width = 400, Height = 100, Functions = new List<Function>() { t } });
 
 			popupOpen = false;
 		}
@@ -327,29 +329,62 @@ namespace ClassDiagram.ViewModel
         {
             setStatus("Opening file...");
             var b = new List<Base>();
-            SaveLoad.Load(out b, out currentFile);
-            setStatus("Loading..");
-            bases.Clear();
-            b.ForEach(x => bases.Add(x));
-            setStatus("Loaded.");
-            resetStatus();
+            var t = currentFile;
+            try
+            {
+                SaveLoad.Load(out b, out currentFile);
+                autoSaver.Stop();
+                setStatus("Loading..");
+                bases.Clear();
+                b.ForEach(x => bases.Add(x));
+                setStatus("Loaded.");
+                resetStatus(1);
+                autoSaver.Start();
+            }
+            catch (Exception e)
+            {
+                currentFile = t;
+                setStatus("Cancelled");
+                resetStatus(1, "");
+            }
         }
 
         public void Save()
         {
             var s = getStatus();
             setStatus("Saving...");
-            currentFile = SaveLoad.Save(bases.ToList(), currentFile);
-            setStatus("Saved.");
-            resetStatus(1, s);
+            var t = currentFile;
+            try
+            {
+                currentFile = SaveLoad.Save(bases.ToList(), currentFile);
+                setStatus("Saved.");
+                resetStatus(1, s);
+            }
+            catch (Exception e)
+            {
+                setStatus("Cancelled");
+                resetStatus(1, s);
+                currentFile = t;
+            }
         }
 
         public void SaveAs()
         {
+            var s = getStatus();
             setStatus("Saving...");
-            currentFile = SaveLoad.Save(bases.ToList(), "");
-            setStatus("Saved.");
-            resetStatus();
+            var t = currentFile;
+            try
+            {
+                currentFile = SaveLoad.Save(bases.ToList(), "");
+                setStatus("Saved.");
+                resetStatus(1, s);
+            }
+            catch (Exception e)
+            {
+                setStatus("Cancelled");
+                resetStatus(1, s);
+                currentFile = t;
+            }
         }
 
         public void Export()

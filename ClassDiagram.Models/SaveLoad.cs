@@ -22,8 +22,7 @@ namespace ClassDiagram.Models
             }
             if (file == "")
             {
-                // TODO: Throw exception?
-                return "";
+                throw new Exception();
             }
             
             /*XmlSerializer x = new XmlSerializer(bases.GetType(), new Type[] { typeof(Entity), 
@@ -43,12 +42,11 @@ namespace ClassDiagram.Models
         {
             bases = new List<Base>();
             string file = openText();
-            currentFile = file;
             if (file == "")
             {
-                // TODO: Throw exception?
-                return;
+                throw new Exception();
             }
+            currentFile = file;
             
             /*XmlSerializer serializer = new XmlSerializer(typeof(List<Base>));
             
