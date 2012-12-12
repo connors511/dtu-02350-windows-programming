@@ -30,7 +30,8 @@ namespace ClassDiagram.Models
         {
             // TODO: Complete member initialization
             X = Y = 100;
-            Width = Height = 200;
+            Width = 200;
+            Height = 100;
             Functions = new List<Function>();
             Properties = new List<Property>();
         }

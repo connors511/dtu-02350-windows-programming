@@ -23,12 +23,8 @@ namespace ClassDiagram.ViewModel
         // Holder styr på undo/redo.
         private UndoRedoController undoRedoController = UndoRedoController.GetInstance();
 
-        // Bruges til at ændre tilstand når en kant er ved at blive tilføjet.
-        private bool isAddingEntity;
         // Gemmer det første punkt som punktet har under en flytning.
         private Point moveElementPoint;
-        public double ModeOpacity { get { return isAddingEntity ? 0.4 : 1.0; } }
-
         private Base editingElem = null;
         private IEntity movingElem = null;
 
@@ -140,7 +136,6 @@ namespace ClassDiagram.ViewModel
 			//RemoveEdgesCommand = new RelayCommand<IList>(RemoveEdges, CanRemoveEdges);
 
 			// Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
-			MouseDoubleClickCommand = new RelayCommand<MouseButtonEventArgs>(MouseDoubleClick);
 			MouseDownNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseDownNode);
 			MouseMoveNodeCommand = new RelayCommand<MouseEventArgs>(MouseMoveNode);
 			MouseUpNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseUpNode);
@@ -153,6 +148,7 @@ namespace ClassDiagram.ViewModel
 
         private void baseChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs args)
         {
+
             RaisePropertyChanged("basesList");   
             //You get notified here two times.
             if (args.OldItems != null)
@@ -163,36 +159,16 @@ namespace ClassDiagram.ViewModel
                 foreach (Base newItem in args.NewItems)
                     newItem.PropertyChanged += new PropertyChangedEventHandler(Youritem_PropertyChanged);
 
+            
+
         }
 
         private void Youritem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs args)
         {
             if (args.PropertyName == "Properties")
             {
-                // Remove all current arrows
-                List<Base> removes = (from b in bases
-                                      where b.GetType() != typeof(Entity) // Gets all arrows
-                                      select b).ToList();
-                removes.ForEach(x => bases.Remove(x));
-                // Re-add all arrows
-                List<Base> bs = (from b in bases
-                                 where b.GetType() == typeof(Entity)
-                                 select b).ToList();
-                // We can do this, because all arrows has been removed
-                bs.ForEach(x =>
-                {
-                    ((Entity)x).Properties.ToList().ForEach(y =>
-                    {
-                        var z = (from b in bases
-                                 where b.Name == y.Type
-                                 select b).ToList();
-                        z.ForEach(i => {
-                            bases.Add((Base)new Association() { Start = (Entity)x, End = (Entity)i });
-                        });
-                    });
-                });
-
-                RaisePropertyChanged("bases");
+                bases = buildAssocs(bases);
+                //RaisePropertyChanged("bases");
             }
         }
 
@@ -425,10 +401,6 @@ namespace ClassDiagram.ViewModel
         }
         #endregion
 
-        public void MouseDoubleClick(MouseButtonEventArgs e)
-        {
-        }
-
         // Hvis der ikke er ved at blive tilføjet en kant så fanges musen når en musetast trykkes ned. Dette bruges til at flytte punkter.
         public void MouseDownNode(MouseButtonEventArgs e)
         {
@@ -575,5 +547,34 @@ namespace ClassDiagram.ViewModel
             if (parent == null) return null;
             return parent is T ? parent as T : FindParentOfType<T>(parent);
         }
+
+        public static ObservableCollection<Base> buildAssocs(ObservableCollection<Base> bases)
+        {
+            // Remove all current arrows
+            List<Base> removes = (from b in bases
+                                  where b.GetType() != typeof(Entity) // Gets all arrows
+                                  select b).ToList();
+            removes.ForEach(x => bases.Remove(x));
+            // Re-add all arrows
+            List<Base> bs = (from b in bases
+                             where b.GetType() == typeof(Entity)
+                             select b).ToList();
+            // We can do this, because all arrows has been removed
+            bs.ForEach(x =>
+            {
+                ((Entity)x).Properties.ToList().ForEach(y =>
+                {
+                    var z = (from b in bases
+                             where b.Name == y.Type
+                             select b).ToList();
+                    z.ForEach(i =>
+                    {
+                        bases.Add((Base)new Association() { Start = (Entity)x, End = (Entity)i });
+                    });
+                });
+            });
+            return bases;
+        }
+
     }
 }

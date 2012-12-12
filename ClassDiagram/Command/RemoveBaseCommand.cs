@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using ClassDiagram.Models.Entities;
 using ClassDiagram.Models;
 using ClassDiagram.Models.Arrows;
+using ClassDiagram.ViewModel;
 
 namespace ClassDiagram.Command
 {
@@ -23,40 +24,13 @@ namespace ClassDiagram.Command
         public void Execute()
         {
             this._bases.Remove(_base);
-            this.editAssoc();
+            _bases = MainViewModel.buildAssocs(_bases);
         }
 
         public void UnExecute()  
         {
             this._bases.Add(_base);
-            this.editAssoc();
-        }
-
-        private void editAssoc()
-        {
-            // Remove all current arrows
-            List<Base> removes = (from b in _bases
-                                  where b.GetType() != typeof(Entity) // Gets all arrows
-                                  select b).ToList();
-            removes.ForEach(x => _bases.Remove(x));
-            // Re-add all arrows
-            List<Base> bs = (from b in _bases
-                             where b.GetType() == typeof(Entity)
-                             select b).ToList();
-            // We can do this, because all arrows has been removed
-            bs.ForEach(x =>
-            {
-                ((Entity)x).Properties.ToList().ForEach(y =>
-                {
-                    var z = (from b in _bases
-                             where b.Name == y.Type
-                             select b).ToList();
-                    z.ForEach(i =>
-                    {
-                        _bases.Add((Base)new Association() { Start = (Entity)x, End = (Entity)i });
-                    });
-                });
-            });
+            _bases = MainViewModel.buildAssocs(_bases);
         }
 
     }
