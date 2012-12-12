@@ -11,26 +11,25 @@ using System.Windows.Media;
 using System.ComponentModel;
 using System.Windows;
 using System;
-using System.Linq;
 using ClassDiagram.Models.Arrows;
 
 namespace ClassDiagram.ViewModel
 {
-	/// <summary>
-	/// Denne ViewModel er bundet til MainWindow.
-	/// </summary>
-	public class MainViewModel : ViewModelBase, INotifyPropertyChanged
-	{
-		// Holder styr på undo/redo.
-		private UndoRedoController undoRedoController = UndoRedoController.GetInstance();
+    /// <summary>
+    /// Denne ViewModel er bundet til MainWindow.
+    /// </summary>
+    public class MainViewModel : ViewModelBase, INotifyPropertyChanged
+    {
+        // Holder styr på undo/redo.
+        private UndoRedoController undoRedoController = UndoRedoController.GetInstance();
 
-		// Bruges til at ændre tilstand når en kant er ved at blive tilføjet.
-		private bool isAddingEntity;
-		// Gemmer det første punkt som punktet har under en flytning.
-		private Point moveElementPoint;
-		public double ModeOpacity { get { return isAddingEntity ? 0.4 : 1.0; } }
+        // Bruges til at ændre tilstand når en kant er ved at blive tilføjet.
+        private bool isAddingEntity;
+        // Gemmer det første punkt som punktet har under en flytning.
+        private Point moveElementPoint;
+        public double ModeOpacity { get { return isAddingEntity ? 0.4 : 1.0; } }
 
-		private Base editingElem = null;
+        private Base editingElem = null;
         private IEntity movingElem = null;
 
 		private string currentFile = "";
@@ -195,51 +194,51 @@ namespace ClassDiagram.ViewModel
             }
         }
 
-		private void autoSaver_tick(object sender, EventArgs e)
-		{   
-			if (e.GetType() == typeof(PropertyChangedEventArgs))
-			{
-				if (((PropertyChangedEventArgs)e).PropertyName != "intervalTime")
-				{
-					// Only modify the timer if intervalTime changed
-					return;
-				}
-				else
-				{
-					if (autoSaver != null)
-					{
-						autoSaver.Stop();
-					}
-					autoSaver = new System.Windows.Forms.Timer();
-					autoSaver.Tick += new EventHandler(autoSaver_tick);
-					autoSaver.Interval = intervalTime;
-					autoSaver.Start();
-				}
-			}
-			if (autoSaver == null)
-			{
-				autoSaver = new System.Windows.Forms.Timer();
-				autoSaver.Tick += new EventHandler(autoSaver_tick);
-				autoSaver.Interval = intervalTime;
-				autoSaver.Start();
-			}
+        private void autoSaver_tick(object sender, EventArgs e)
+        {
+            if (e.GetType() == typeof(PropertyChangedEventArgs))
+            {
+                if (((PropertyChangedEventArgs)e).PropertyName != "intervalTime")
+                {
+                    // Only modify the timer if intervalTime changed
+                    return;
+                }
+                else
+                {
+                    if (autoSaver != null)
+                    {
+                        autoSaver.Stop();
+                    }
+                    autoSaver = new System.Windows.Forms.Timer();
+                    autoSaver.Tick += new EventHandler(autoSaver_tick);
+                    autoSaver.Interval = intervalTime;
+                    autoSaver.Start();
+                }
+            }
+            if (autoSaver == null)
+            {
+                autoSaver = new System.Windows.Forms.Timer();
+                autoSaver.Tick += new EventHandler(autoSaver_tick);
+                autoSaver.Interval = intervalTime;
+                autoSaver.Start();
+            }
 
-			if (currentFile != "")
-			{
-				Save();
-			}
-			else
-			{
-				Console.WriteLine("Ignoring autosave");
-			}
-		}
+            if (currentFile != "")
+            {
+                Save();
+            }
+            else
+            {
+                Console.WriteLine("Ignoring autosave");
+            }
+        }
 
-		private void Load()
-		{
-			undoRedoController.Reset();
+        private void Load()
+        {
+            undoRedoController.Reset();
 
-			bases = new ObservableCollection<Base>();
-			// Needed to refresh gui
+            bases = new ObservableCollection<Base>();
+            // Needed to refresh gui
             bases.Clear();
             bases.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(baseChanged);
 
@@ -284,291 +283,262 @@ namespace ClassDiagram.ViewModel
 					obj.Type = eType.Class;
 					break;
 			}
+
             if (editingElem != null)
                 editingElem.Edit = false;
 
             editingElem = obj;
 
-			undoRedoController.AddAndExecute(new AddBaseCommand(bases, obj));
-		}
+            undoRedoController.AddAndExecute(new AddBaseCommand(bases, obj));
+        }
 
-		// Tjekker om valgte punkt/er kan fjernes. Det kan de hvis der er nogle der er valgt.
-		/*public bool CanRemoveNode(IList _nodes)
-		{
-			return _nodes.Count == 1;
-		}
+        public void resetStatus(double time = 2.0, string s = "")
+        {
+            At.Do(() => status = s, DateTime.Now.AddSeconds(time));
+        }
 
-		// Fjerner valgte punkter med kommando.
-		public void RemoveNode(IList _nodes)
-		{
-			undoRedoController.AddAndExecute(new RemoveNodesCommand(Nodes, Edges, _nodes.Cast<Node>().First()));
-		}*/
+        public void setStatus(string status = "")
+        {
+            this.status = status;
+        }
 
-		public void resetStatus(double time = 2.0, string s = "")
-		{
-			At.Do(() => status = s, DateTime.Now.AddSeconds(time));
-		}
+        public string getStatus()
+        {
+            return this.status;
+        }
 
-		public void setStatus(string status = "")
-		{
-			this.status = status;
-		}
+        #region Commands
 
-		public string getStatus()
-		{
-			return this.status;
-		}
+        public void DoneEdit()
+        {
+            Console.WriteLine("eheh");
+        }
 
-		#region Commands
+        public void New()
+        {
+            // Do you want to save first?
+            Console.WriteLine("Hi!");
+            intervalTime = 10000;
+            // Reset!
+            Load();
+        }
 
-		public void DoneEdit()
-		{
-			Console.WriteLine("eheh");
-		}
+        public void Open()
+        {
+            setStatus("Opening file...");
+            var b = new List<Base>();
+            SaveLoad.Load(out b, out currentFile);
+            setStatus("Loading..");
+            bases.Clear();
+            b.ForEach(x => bases.Add(x));
+            setStatus("Loaded.");
+            resetStatus();
+        }
 
-		public void New()
-		{
-			// Do you want to save first?
-			Console.WriteLine("Hi!");
-			intervalTime = 10000;
-			// Reset!
-			Load();
-		}
+        public void Save()
+        {
+            var s = getStatus();
+            setStatus("Saving...");
+            currentFile = SaveLoad.Save(bases.ToList(), currentFile);
+            setStatus("Saved.");
+            resetStatus(1, s);
+        }
 
-		public void Open()
-		{
-			setStatus("Opening file...");
-			var b = new List<Base>();
-			SaveLoad.Load(out b, out currentFile);
-			setStatus("Loading..");
-			bases.Clear();
-			b.ForEach(x => bases.Add(x));
-			setStatus("Loaded.");
-			resetStatus();
-		}
+        public void SaveAs()
+        {
+            setStatus("Saving...");
+            currentFile = SaveLoad.Save(bases.ToList(), "");
+            setStatus("Saved.");
+            resetStatus();
+        }
 
-		public void Save()
-		{
-			var s = getStatus();
-			setStatus("Saving...");
-			currentFile = SaveLoad.Save(bases.ToList(), currentFile);
-			setStatus("Saved.");
-			resetStatus(1, s);
-		}
+        public void Export()
+        {
 
-		public void SaveAs()
-		{
-			setStatus("Saving...");
-			currentFile = SaveLoad.Save(bases.ToList(), "");
-			setStatus("Saved.");
-			resetStatus();
-		}
+        }
 
-		public void Export()
-		{
+        public void Exit()
+        {
+            // Check if there has been any changes since last save
+            var m = System.Windows.Forms.MessageBox.Show("Do you wish to save first?", "Save your work?", System.Windows.Forms.MessageBoxButtons.YesNoCancel);
+            if (m == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
+            else if (m == System.Windows.Forms.DialogResult.Yes)
+            {
+                Save();
+            }
 
-		}
+            // shutdown
+            System.Windows.Application.Current.Shutdown();
+        }
 
-		public void Exit()
-		{
-			// Check if there has been any changes since last save
-			var m = System.Windows.Forms.MessageBox.Show("Do you wish to save first?", "Save your work?", System.Windows.Forms.MessageBoxButtons.YesNoCancel);
-			if (m == System.Windows.Forms.DialogResult.Cancel)
-			{
-				return;
-			}
-			else if (m == System.Windows.Forms.DialogResult.Yes)
-			{
-				Save();
-			}
+        public void Undo()
+        {
 
-			// shutdown
-			System.Windows.Application.Current.Shutdown();
-		}
+        }
 
-		public void Undo()
-		{
+        public void Redo()
+        {
 
-		}
+        }
 
-		public void Redo()
-		{
+        public void About()
+        {
+            // Display about box
+        }
+        #endregion
 
-		}
+        public void MouseDoubleClick(MouseButtonEventArgs e)
+        {
+        }
 
-		public void About()
-		{
-			// Display about box
-		}
-		#endregion
+        // Hvis der ikke er ved at blive tilføjet en kant så fanges musen når en musetast trykkes ned. Dette bruges til at flytte punkter.
+        public void MouseDownNode(MouseButtonEventArgs e)
+        {
+            FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
+            Base movingNode = (Base)movingEllipse.DataContext;
 
-		public void MouseDoubleClick(MouseButtonEventArgs e)
-		{
-		}
-
-		// Hvis der ikke er ved at blive tilføjet en kant så fanges musen når en musetast trykkes ned. Dette bruges til at flytte punkter.
-		public void MouseDownNode(MouseButtonEventArgs e)
-		{
             if (e.MouseDevice.RightButton == MouseButtonState.Pressed)
             {
-                // Ellipsen skaffes.
-                FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
-                // Ellipsens node skaffes.
-                Base movingEntity = (Base)movingEllipse.DataContext;
-                setStatus("Removing " + movingEntity.GetType().Name);
-
-                undoRedoController.AddAndExecute(new RemoveBaseCommand(bases, movingEntity));
+                setStatus("Removing " + movingNode.GetType().Name);
+                undoRedoController.AddAndExecute(new RemoveBaseCommand(bases, movingNode));
                 resetStatus();
             }
             else
             {
-
-                // Lock target and get current element
-                e.MouseDevice.Target.CaptureMouse();
-                FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
-                Base movingNode = (Base)movingEllipse.DataContext;
-                if (movingNode.Edit)
+                if (e.ClickCount == 2 && editingElem != movingNode)
                 {
+                    if (editingElem != null)
+                    {
+                        editingElem.Edit = false;
+                    }
+                    editingElem = movingNode;
 
+                    setStatus("Editing " + movingNode.GetType().Name);
+                    movingNode.Edit = true;
+                }
+                else if (movingNode.Edit)
+                {
                     ((Entity)movingNode).Width = (int)movingEllipse.ActualWidth;
                     ((Entity)movingNode).Height = (int)movingEllipse.ActualHeight;
 
-
-
                     movingNode.Edit = false;
                     editingElem = null;
-                    setStatus("Saved");
-                    e.MouseDevice.Target.ReleaseMouseCapture();
+                    setStatus("Saved" + movingNode.GetType().Name);
                 }
                 else
                 {
-                    if (e.ClickCount == 2 && editingElem != movingNode)
-                    {
-                        if (editingElem != null)
-                        {
-                            editingElem.Edit = false;
-                        }
-                        editingElem = movingNode;
-
-
-                        e.MouseDevice.Target.ReleaseMouseCapture();
-                        setStatus("Editing " + movingNode.GetType().Name);
-                        movingNode.Edit = true;
-                    }
+                    e.MouseDevice.Target.CaptureMouse();
+                    movingElem = (IEntity)movingEllipse.DataContext;
                 }
             }
-		}
+        }
 
-		// Bruges til at flytter punkter.
-		public void MouseMoveNode(MouseEventArgs e)
-		{
-			// Tjek at musen er fanget og at der ikke er ved at blive tilføjet en kant.
-			if (Mouse.Captured != null)
-			{
+        // Bruges til at flytter punkter.
+        public void MouseMoveNode(MouseEventArgs e)
+        {
+            if (Mouse.Captured != null)
+            {
 
-				// Musen er nu fanget af ellipserne og den ellipse som musen befinder sig over skaffes her.
-				FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;
-				// Fra ellipsen skaffes punktet som den er bundet til.
-				movingElem = (IEntity)movingEllipse.DataContext;
-				setStatus("Moving " + movingElem.GetType().Name);
-				// Canvaset findes her udfra ellipsen.
-				Canvas canvas = FindParentOfType<Canvas>(movingEllipse);
+                FrameworkElement movingEllipse = (FrameworkElement)e.MouseDevice.Target;    
+                setStatus("Moving " + movingElem.GetType().Name);
                 Window window = FindParentOfType<Window>(movingEllipse);
                 Canvas itemcanvas = (Canvas)window.FindName("ClassCanvas");
-				// Musens position i forhold til canvas skaffes her.
-				Point mousePosition = Mouse.GetPosition(canvas);
-				// Når man flytter noget med musen vil denne metode blive kaldt mange gange for hvert lille ryk, 
-				// derfor gemmes her positionen før det første ryk så den sammen med den sidste position kan benyttes til at flytte punktet med en kommando.
-				if (moveElementPoint == default(Point))
+                Point mousePosition = Mouse.GetPosition(itemcanvas);
+                
+                if (moveElementPoint == default(Point))
                 {
-                    if ((mousePosition.Y - ((Entity)movingElem).Height / 2) <= 0)
+                    if ((mousePosition.Y - ((Entity)movingElem).CenterY) <= 0)
                     {
-                        moveElementPoint.Y = (((Entity)movingElem).Height / 2);
+                        moveElementPoint.Y = (((Entity)movingElem).CenterY);
                     }
-                    else if ((mousePosition.Y + ((Entity)movingElem).Height / 2) >= itemcanvas.ActualHeight)
+                    else if ((mousePosition.Y + ((Entity)movingElem).CenterY) >= itemcanvas.ActualHeight)
                     {
-                        moveElementPoint.Y = (int)itemcanvas.ActualHeight - (((Entity)movingElem).Height / 2);
+                        moveElementPoint.Y = (int)(itemcanvas.ActualHeight - (((Entity)movingElem).CenterY));
                     }
                     else
                     {
                         moveElementPoint.Y = mousePosition.Y;
                     }
-                    if ((mousePosition.X - ((Entity)movingElem).Width / 2) <= 0)
+                    if ((mousePosition.X - ((Entity)movingElem).CenterX) <= 0)
                     {
-                        moveElementPoint.X = (((Entity)movingElem).Width / 2);
+                        moveElementPoint.X = (((Entity)movingElem).CenterX);
                     }
-                    else if ((mousePosition.X + ((Entity)movingElem).Width / 2) >= itemcanvas.ActualWidth)
+                    else if ((mousePosition.X + ((Entity)movingElem).CenterX) >= itemcanvas.ActualWidth)
                     {
-                        moveElementPoint.X = (int)itemcanvas.ActualWidth - (((Entity)movingElem).Width / 2);
+                        moveElementPoint.X = (int)(itemcanvas.ActualWidth - (((Entity)movingElem).CenterX));
                     }
                     else
                     {
                         moveElementPoint.X = mousePosition.X;
                     }
                 }
-                    
-                    
 
-                if ((mousePosition.Y - ((Entity)movingElem).Height / 2) <= 0)
+                if ((mousePosition.Y - ((Entity)movingElem).CenterY) <= 0)
                 {
-                    movingElem.CanvasCenterY = (((Entity)movingElem).Height / 2);
+                    movingElem.CanvasCenterY = (((Entity)movingElem).CenterY);
                 }
-                else if ((mousePosition.Y + ((Entity)movingElem).Height / 2) >= itemcanvas.ActualHeight)
+                else if ((mousePosition.Y + ((Entity)movingElem).CenterY) >= itemcanvas.ActualHeight)
                 {
-                    movingElem.CanvasCenterY = (int)itemcanvas.ActualHeight - (((Entity)movingElem).Height / 2);
+                    movingElem.CanvasCenterY = (int)(itemcanvas.ActualHeight - (((Entity)movingElem).CenterY));
                 }
                 else
                 {
                     movingElem.CanvasCenterY = (int)mousePosition.Y;
                 }
 
-                if ((mousePosition.X - ((Entity)movingElem).Width / 2) <= 0)
+                if ((mousePosition.X - ((Entity)movingElem).CenterX) <= 0)
                 {
-                    movingElem.CanvasCenterX = (((Entity)movingElem).Width / 2);
+                    movingElem.CanvasCenterX = (((Entity)movingElem).CenterX);
                 }
-                else if ((mousePosition.X + ((Entity)movingElem).Width / 2) >= itemcanvas.ActualWidth)
+                else if ((mousePosition.X + ((Entity)movingElem).CenterX) >= itemcanvas.ActualWidth)
                 {
-                    movingElem.CanvasCenterX = (int)itemcanvas.ActualWidth - (((Entity)movingElem).Width / 2);
+                    movingElem.CanvasCenterX = (int)(itemcanvas.ActualWidth - (((Entity)movingElem).CenterX));
                 }
                 else
                 {
                     movingElem.CanvasCenterX = (int)mousePosition.X;
                 }
 
-			}
-		}
+            }
+        }
 
-		// Benyttes til at flytte punkter og tilføje kanter.
-		public void MouseUpNode(MouseButtonEventArgs e)
-		{
-			if (Mouse.Captured != null && movingElem != null)
-			{
+        // Benyttes til at flytte punkter og tilføje kanter.
+        public void MouseUpNode(MouseButtonEventArgs e)
+        {
+            if (Mouse.Captured != null)
+            {
+                if (movingElem != null)
+                {
 
-				// Save coordinates finally
-                undoRedoController.AddAndExecute(new MoveEntityCommand(movingElem, movingElem.CanvasCenterX, movingElem.CanvasCenterY, (int)moveElementPoint.X, (int)moveElementPoint.Y));
-				
-				// Musen frigøres.
-				e.MouseDevice.Target.ReleaseMouseCapture();
-				if (!((Base)movingElem).Edit)
-				{
-					// Only reset if youre we did not enter edit mode
-					resetStatus(0.5);
-				}
+                    // Save coordinates finally
+                    undoRedoController.AddAndExecute(new MoveEntityCommand(movingElem, movingElem.CanvasCenterX, movingElem.CanvasCenterY, (int)moveElementPoint.X, (int)moveElementPoint.Y));
+
+                    // Musen frigøres.
+                    e.MouseDevice.Target.ReleaseMouseCapture();
+
+                    // Nulstil værdier.
+                    moveElementPoint = new Point();
+                    movingElem = null;
+                    
+
+                }
                 
-                // Nulstil værdier.
-				moveElementPoint = new Point();
-                movingElem = null;
+                    
+            }
+            if(editingElem == null)
+                resetStatus(1);
+        }
 
-			}
-		}
-
-		// Rekursiv metode der benyttes til at finde et af et grafisk elements forfædre ved hjælp af typen, der ledes højere og højere op indtil en af typen findes.
-		// Syntaksen "() ? () : ()" betyder hvis den første del bliver sand så skal værdien være den anden del, ellers skal den være den tredje del.
-		private static T FindParentOfType<T>(DependencyObject o) where T : class
-		{
-			DependencyObject parent = VisualTreeHelper.GetParent(o);
-			if (parent == null) return null;
-			return parent is T ? parent as T : FindParentOfType<T>(parent);
-		}
-	}
+        // Rekursiv metode der benyttes til at finde et af et grafisk elements forfædre ved hjælp af typen, der ledes højere og højere op indtil en af typen findes.
+        // Syntaksen "() ? () : ()" betyder hvis den første del bliver sand så skal værdien være den anden del, ellers skal den være den tredje del.
+        private static T FindParentOfType<T>(DependencyObject o) where T : class
+        {
+            DependencyObject parent = VisualTreeHelper.GetParent(o);
+            if (parent == null) return null;
+            return parent is T ? parent as T : FindParentOfType<T>(parent);
+        }
+    }
 }
