@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.Windows;
 using System.Text.RegularExpressions;
 using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
 
 namespace ClassDiagram.Models
 {
@@ -135,7 +136,7 @@ namespace ClassDiagram.Models
                     {
                         // m.Groups[1].Value contains type
                         Name = m.Groups[2].Value;
-                        switch (m.Groups[1].Value)
+                        switch (m.Groups[1].Value.ToLower())
                         {
                             case "class":
                                 Type = eType.Class;
@@ -154,7 +155,7 @@ namespace ClassDiagram.Models
                     }
                     else
                     {
-                        throw new FormatException();
+                        // Erhm?
                     }
                     if (lines.ElementAt(1) != "---")
                     {

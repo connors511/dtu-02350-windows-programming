@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 
 namespace ClassDiagram.Models.Arrows
 {
+    [Serializable()]
     public class Association : Base, ISerializable
     {
         private Entity _start;
@@ -103,7 +104,7 @@ namespace ClassDiagram.Models.Arrows
             get
             {
                 // M 5,5 l 10,0 l -5,6 Z
-                return string.Format("M {0},{1} l 10,0 l -5,6 Z", End.CanvasCenterX, End.CanvasCenterY);
+                return string.Format("M {0},{1} l 10,0 l -5,6 Z", endX - 2, endY - 2);
             }
         }
 
@@ -145,13 +146,16 @@ namespace ClassDiagram.Models.Arrows
         {
             get
             {
-                
-                if (End.X < Start.X + Start.Height / 2)
+                if (Start.X + Start.Width > End.X)
+                {
+                    return End.X + End.Width;
+                }
+                else if (End.X + End.Width > Start.X)
                 {
                     return End.X;
                 }
-
-                return End.X + End.Height / 2;
+                // Be aware of special case where startY also falls through if-statements
+                return End.X + End.Width / 2;
             }
         }
 
@@ -159,7 +163,16 @@ namespace ClassDiagram.Models.Arrows
         {
             get
             {
-                return End.Y;
+                if (Start.Y + Start.Height > End.Y)
+                {
+                    return End.Y + End.Height;
+                }
+                else if (End.Y + End.Height > Start.Y)
+                {
+                    return End.Y;
+                }
+                // Be aware of special case where startX also falls through if-statements
+                return End.Y + End.Height / 2;
             }
         }
     }

@@ -19,7 +19,7 @@ namespace ClassDiagram.Models
             // TODO: Complete member initialization
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        public new void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("Visibility", this.Visibility);
             base.GetObjectData(info, ctxt);

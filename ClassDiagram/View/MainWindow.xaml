@@ -61,7 +61,7 @@
             <ListBox Margin="0,23,0,23" />
             <Canvas Margin="0,23" Grid.Column="1" Name="ClassCanvas">
                 <Grid>
-                    <ItemsControl Name="items" ItemsSource="{Binding bases}" />
+                    <ItemsControl Name="items" ItemsSource="{Binding basesList}" />
                 </Grid>
             </Canvas>
             <GridSplitter Grid.Column ="0" Background="Black" Width="2" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,23,0,23"/>

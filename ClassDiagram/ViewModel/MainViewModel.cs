@@ -75,6 +75,15 @@ namespace ClassDiagram.ViewModel
 		// Dette er en generisk kollektion. Det betyder at den kan defineres til at indeholde alle slags klasser, 
 		// men den holder kun klasser af en type når den benyttes.
 		public ObservableCollection<Base> bases { get; set; }
+        // Helper list for layering elements correctly
+        public List<Base> basesList
+        {
+            get
+            {
+                return bases.ToList().OrderBy(x => x.GetType().Name).ToList();
+            }
+        }
+
 		private bool _popupOpen = false;
 		public bool popupOpen
 		{
@@ -145,6 +154,7 @@ namespace ClassDiagram.ViewModel
 
         private void baseChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs args)
         {
+            RaisePropertyChanged("basesList");   
             //You get notified here two times.
             if (args.OldItems != null)
                 foreach (Base oldItem in args.OldItems)
@@ -169,7 +179,6 @@ namespace ClassDiagram.ViewModel
                 List<Base> bs = (from b in bases
                                  where b.GetType() == typeof(Entity)
                                  select b).ToList();
-                Dictionary<Base, Base> connections = new Dictionary<Base, Base>();
                 // We can do this, because all arrows has been removed
                 bs.ForEach(x =>
                 {
@@ -179,18 +188,10 @@ namespace ClassDiagram.ViewModel
                                  where b.Name == y.Type
                                  select b).ToList();
                         z.ForEach(i => {
-                            if (!connections.Contains(new KeyValuePair<Base,Base>(x, i))) {
-                                connections.Add(x, i);
-                            }
+                            bases.Add((Base)new Association() { Start = (Entity)x, End = (Entity)i });
                         });
                     });
                 });
-                // Convert connections to arrows on canvas
-                foreach (var con in connections)
-                {
-                    Console.WriteLine(con.Key.Name + " => " + con.Value.Name);
-                    bases.Add((Base)new Association() { Start = (Entity)con.Key, End = (Entity)con.Value });
-                }
             }
         }
 
@@ -242,7 +243,7 @@ namespace ClassDiagram.ViewModel
             bases.Clear();
             bases.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(baseChanged);
 
-			var Props = new ObservableCollection<Models.Property>();
+			var Props = new List<Models.Property>();
 			Props.Add(new Models.Property() { Name = "PublicMethod", Visibility = Models.Visibility.Public, Type = "string" });
 			Props.Add(new Models.Property() { Name = "_privateMethod", Visibility = Models.Visibility.Private, Type = "int" });
 			Props.Add(new Models.Property() { Name = "protectedMethod", Visibility = Models.Visibility.Protected, Type = "Entity" });
@@ -257,7 +258,7 @@ namespace ClassDiagram.ViewModel
 
             bases.Add(new Entity() { Type = eType.Class, Name = "Hej", X = 30, Y = 40, Width = 200, Height = 100, Properties = Props, Color = Brushes.LightBlue });
             //bases.Add(new Association() { Start = (Entity)bases.ElementAt(0), End = (Entity)bases.ElementAt(1) });
-			bases.Add(new Entity() { Type = eType.AbstractClass, Name = "Hello", X = 80, Y = 80, Width = 400, Height = 100, Functions = new ObservableCollection<Function>() { t } });
+			bases.Add(new Entity() { Type = eType.AbstractClass, Name = "Hello", X = 80, Y = 80, Width = 400, Height = 100, Functions = new List<Function>() { t } });
 
 			popupOpen = false;
 		}
