@@ -286,11 +286,11 @@ namespace ClassDiagram.ViewModel
 					break;
 			}
 
-            if (editingElem != null)
+            /*if (editingElem != null)
                 editingElem.Edit = false;
 
             editingElem = obj;
-
+            */
             undoRedoController.AddAndExecute(new AddBaseCommand(bases, obj));
         }
 
