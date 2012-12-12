@@ -175,5 +175,35 @@ namespace ClassDiagram.Models.Arrows
                 return End.Y + End.Height / 2;
             }
         }
+
+        private int _centerX;
+        public int CenterX
+        {
+            get
+            {
+                return this._centerX;
+            }
+            set
+            {
+                this._centerX = Math.Abs(Start.CanvasCenterX + End.CanvasCenterX) / 2;
+                NotifyPropertyChanged("CenterX");
+            }
+        }
+
+        private int _centerY;
+        public int CenterY
+        {
+            get
+            {
+                return this._centerY;
+            }
+            set
+            {
+                this._centerY = 200;
+                //this._centerY = Math.Abs(Start.CanvasCenterY + End.CanvasCenterY) / 2;
+                NotifyPropertyChanged("CenterY");
+            }
+        }
+
     }
 }

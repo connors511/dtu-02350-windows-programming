@@ -10,6 +10,11 @@
         <converter:ArithmeticConverter x:Key="AScript" />
     </UserControl.Resources>
     <Grid>
+        <TextBlock Name="message" Text="Assoc">
+            <TextBlock.RenderTransform>
+                <TranslateTransform X="{Binding CenterX}" Y="{Binding CenterY}" />
+            </TextBlock.RenderTransform>
+        </TextBlock>
         <Line Stroke="Black" X1="{Binding Start.CanvasCenterX}" Y1="{Binding Start.CanvasCenterY}" 
               X2="{Binding End.CanvasCenterX}" Y2="{Binding End.CanvasCenterY}" StrokeThickness="2"  />
         <!--<Line Stroke="Black" X1="{Binding startX}" Y1="{Binding startY}" 
