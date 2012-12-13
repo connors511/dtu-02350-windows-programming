@@ -2,18 +2,61 @@
 \label{sec:design_and_implementation}
 
 \section{GUI}
-\label{sec:backend}
-
+\label{sec:gui}
 TÆLLER 35
 
+The GUI consists of a menu, a two-column grid and a status bar. The features that can be interacted with in the GUI have been outlined below.
+
+\subsection{Editable classes}
+
+There are different gestures for creating, updating and deleting classes, each chosen to get the best user experience. In the left grid column, one can click on a button to create a specific type of class in the application. At the moment there are four types to choose among:
+
+\begin{itemize}
+  \item Class
+  \item Abstract Class
+  \item Enum
+  \item Struct
+\end{itemize}
+
+Clicking one of the buttons will also insert a box in the right grid column representing the class in the application. The color of the boxes are determined by the type of the classes.\\
+
+Deleting a class is done by right clicking on the specific box representing that class.\\
+
+If one wants to edit a class, this is done by double (left) clicking on the specific box. This will cause the box to switch to an editable field where one can type in the name, properties and methods for the class in accordance with the syntax of UML class diagrams. Clicking on the same box again or double clicking on another box will save the changes, and the boxes will automatically resize to fit its content. Thus, only one class can be edited at a time.
+
+\subsubsection{Regex}
+
+\subsection{Movable classes}
+
+It is possible to freely move the boxes around in the right grid column, but only there. That means that it is not possible to e.g. move the boxes out of the window or into the left grid column.\\
+When editing a box, one cannot move it, but it is still possible to move other boxes.
+
+\subsection{Undo and redo}
+
+\subsection{Relations}
+
+\subsection{Menu and shortcuts}
+
+In the top menu, 
+
+\subsection{Status bar}
+
+On the bottom of the GUI a status bar can be seen. Here, the user gets messages about what is going on in the application.
+
+\section{Save and load}
+\label{sec:design_pattern}
+
 \section{Application layer}
-\label{sec:frontend}
+\label{sec:app_layer}
 
 TÆLLER 20
 
+dll
+different class types
+thread
 
 \section{Design patterns}
-\label{sec:speed_optimization}
+\label{sec:design_pattern}
 
 2-3
 
@@ -21,11 +64,11 @@ TÆLLER 10
 
 
 \section{Tests}
-\label{sec:cross-platform}
+\label{sec:tests}
 
 TÆLLER 10
 
 \section{Noget der ikke er udnervist i}
-\label{sec:cross-platform}
+
 
 TÆLLER 5

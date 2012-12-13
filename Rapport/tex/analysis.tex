@@ -5,41 +5,28 @@ A lot of considerations have gone into the development process of the applicatio
 TÆLLER 5
 
 \section{Choice of diagram}
-\label{sec:the_data}
+\label{sec:choice_diagram}
 
-
-
+While state and sequence diagrams show how (part of) an application works in a detailed way, class diagrams give an overview over all or some classes in the application, what properties and methods they contain and how they are related to each other. In this way, class diagrams can be used to easily see how an application is modelled and thus how it can be altered or extended. Therefore, class diagrams are used more often than state and sequence diagrams when it comes to software architecture, and therefore an application to manage class diagrams has been chosen.
 
 \subsubsection{Solution strategy}
-\label{sec:analysis_timezones}
+\label{sec:sol_strat}
 
-iterationsplan
+Due to limited time, not all specifications for a UML class diagram can be implemented in the application, and thus we have made a prioritized specification list, an iteration plan, where the first element is of highest priority and will be designed and implemented first.
 
-\section{Risks}
-\label{sec:graphical_user_interface}
+\begin{enumerate}
+  \item Different types of classes
+  \item Undo and redo functionality
+  \item CRUD for classes
+  \item Movable classes
+  \item Relations between classes
+  \item Save and load functionality
+  \item Automatic save functionality
+\end{enumerate}
 
-Fremgangsmåden ved risikovurderinger er:
+One should think that \textit{CRUD for classes} and \textit{Movable classes} is more important than \textit{Undo and redo functionality}, but as they are highly dependent on \textit{Undo and redo functionality}, this has higher priority. E.g. if \textit{CRUD for classes} was made before \textit{Undo and redo functionality}, one could risk having to modify it all again in order to get undo and redo to work properly in the end.
 
-    Identifikation af risici
-    Vurdering af risici
-    Handlinger mod risici
-    Opfølgning
+\subsection{Risks}
 
-
-\section{Comparison}
-\label{sec:comparison}
-It has been discussed if it should be possible to compare data from multiple wind farms at the same time, and how it should be done if that was the case.
-
-One of the ideas was to let single click on a windmill put it in a `selected' state and a double click on a windmill would trigger the comparison view between all the windmills in the `selected' state.
-
-The comparison view was also discussed to be either one chart, like the one implemented, but with all the data represented with different colors for each wind farm.
-Another way of viewing them was to have multiple, small, draggable windows, each one representing a wind farm. This would allow browsing the data for each wind farm independent of each other, but also make it annoying when wanting to compare at the same time and having to manually move back or forth in time on each window.
-
-\section{Time handling}
-\label{sec:time_handling}
-As time goes by, one would expect the application to contain massive amounts of data.
-In the provided test data\footnote{Data02122.tar.gz provided by Pierre-Julien Trombe on CampusNet}, the application contains \textasciitilde 140 rows of data for \textsf{wrk} files and \textasciitilde 73,000 rows of data for the \textsf{csv} file.
-
-It was discussed how we should limit the view of data, since it would require quite a lot of processing power to display that much data.
-
-A `from' and `to' field for selecting a date range that all data on the application would be limited to which would increase performance, reduce server load and increase overall UX.
+Because of the solution strategy where a functionality has been given a priority corresponding to its importance, the risks of not implementing one of the specifications due to limited time have been minimized. If \textit{Automatic save functionality} was left out, it would not cause the application to work improperly as it has no impact on the actual purpose - that is, creating an application that can manage UML class diagrams.\\
+This is an advantage of using an iteration plan in the process of software development.
