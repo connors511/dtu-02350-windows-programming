@@ -1,0 +1,29 @@
+\select@language {english}
+\contentsline {chapter}{Abstract}{i}{chapter*.1}
+\contentsline {chapter}{Contents}{ii}{section*.2}
+\contentsline {chapter}{List of Figures}{iv}{section*.4}
+\contentsline {chapter}{List of Tables}{v}{section*.6}
+\contentsline {chapter}{List of Source code}{vi}{section*.8}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Analysis}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}Choice of diagram}{2}{section.2.1}
+\contentsline {subsubsection}{\numberline {2.1.0.1}Solution strategy}{2}{subsubsection.2.1.0.1}
+\contentsline {section}{\numberline {2.2}Risks}{2}{section.2.2}
+\contentsline {section}{\numberline {2.3}Comparison}{2}{section.2.3}
+\contentsline {section}{\numberline {2.4}Time handling}{3}{section.2.4}
+\contentsline {chapter}{\numberline {3}Design \& Implementation}{4}{chapter.3}
+\contentsline {section}{\numberline {3.1}GUI}{4}{section.3.1}
+\contentsline {section}{\numberline {3.2}Application layer}{4}{section.3.2}
+\contentsline {section}{\numberline {3.3}Design patterns}{4}{section.3.3}
+\contentsline {section}{\numberline {3.4}Tests}{4}{section.3.4}
+\contentsline {section}{\numberline {3.5}Noget der ikke er udnervist i}{4}{section.3.5}
+\contentsline {chapter}{\numberline {4}Conclusion}{5}{chapter.4}
+\contentsline {section}{\numberline {4.1}Future work}{5}{section.4.1}
+\contentsline {chapter}{Appendix}{6}{section*.11}
+\contentsline {chapter}{\numberline {A}Use cases}{6}{appendix.A}
+\contentsline {section}{\numberline {A.1}Clicking on a radar at the map}{6}{section.A.1}
+\contentsline {section}{\numberline {A.2}Clicking on a wind farm at the map}{6}{section.A.2}
+\contentsline {section}{\numberline {A.3}Changing view in chart for wind farm}{7}{section.A.3}
+\contentsline {section}{\numberline {A.4}Changing data set in chart}{7}{section.A.4}
+\contentsline {section}{\numberline {A.5}Using control buttons in chart for wind farm}{7}{section.A.5}
+\contentsline {section}{\numberline {A.6}Upload file}{8}{section.A.6}

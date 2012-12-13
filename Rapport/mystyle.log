@@ -1,0 +1,14 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdftex 2012.11.16)  16 NOV 2012 16:08
+entering extended mode
+**D:/wamp/www/fagprojekt-wdv/Rapport/mystyle.sty
+(D:/wamp/www/fagprojekt-wdv/Rapport/mystyle.sty
+! Undefined control sequence.
+l.1 \ProvidesPackage
+                    {mystyle}
+? 
+! Emergency stop.
+l.1 \ProvidesPackage
+                    {mystyle}
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!

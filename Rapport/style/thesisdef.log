@@ -1,0 +1,14 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdftex 2012.11.16)  16 NOV 2012 16:09
+entering extended mode
+**D:/wamp/www/fagprojekt-wdv/Rapport/style/thesisdef.sty
+(D:/wamp/www/fagprojekt-wdv/Rapport/style/thesisdef.sty
+! Undefined control sequence.
+l.12 \ProvidesPackage
+                     {style/thesisdef}
+? 
+! Emergency stop.
+l.12 \ProvidesPackage
+                     {style/thesisdef}
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!

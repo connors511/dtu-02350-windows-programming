@@ -1,0 +1,6 @@
+\nomenclatureentry{a\textbf{The application}@[{\textbf{The application}}]\begingroup The web site part of the developed software\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{a\textbf{Data parser}@[{\textbf{Data parser}}]\begingroup The executable part of the developed software\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{a\textbf{Web server}@[{\textbf{Web server}}]\begingroup A server with Apache or similar installed\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{a\textbf{The server}@[{\textbf{The server}}]\begingroup The web server running an instance of the software\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{a\textbf{Domain name}@[{\textbf{Domain name}}]\begingroup The name of the domain e.g. `google.com'\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{a\textbf{The software}@[{\textbf{The software}}]\begingroup The application and data parser\nomeqref {0}|nompageref}{1}
