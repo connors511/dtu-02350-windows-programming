@@ -1,119 +1,80 @@
-We have two types of actors:
+Actors:
 \begin{itemize}
-\item User: Visitor.
-\item Admin: User with access to the administration panel.
+\item User: Person using the application.
 \end{itemize}
 
-\section{Clicking on a radar at the map}
+\section{Create a class}
 \textbf{Actor:} User
-
 \textbf{Scenario:}
 \begin{itemize}
-\item Checks if there is data for the date
-\item If images is not generated, it will generate them real time.
-\item Radar shows images over an interval.
-\item \emph{One click for play/pause and double click for reset.}
-\item When there is no more data, the radar resets.
+\item User left clicks once on Class in the left grid column
+\item Class \textit{New\_Class} is created and shown in the right grid column
+\end{itemize}
+
+\section{Remove a class}
+\textbf{Actor:} User
+\textbf{Scenario:}
+\begin{itemize}
+\item User right clicks once on a specific class in the right grid column
+\item The specific class is deleted and removed from the right grid column
+\end{itemize}
+
+\section{Edit a class}
+\textbf{Actor:} User
+\textbf{Scenario:}
+\begin{itemize}
+\item User left clicks twice on a specific class in the right grid column
+\item The specific class becomes editable
+\item User types in some valid content for the class
+\item User left clicks once on the specific class
+\item The specific class returns to normal state and changes are saved
 \end{itemize}
 \textbf{Alternative scenario:} 
 \begin{enumerate}
-\item No data is available for that moment and a message appears.
+\item User types in some invalid content for the class
+\item Invalid content gets ignored on save
 \end{enumerate}
 
-\section{Clicking on a wind farm at the map}
+\section{Move a class}
 \textbf{Actor:} User
-
 \textbf{Scenario:}
 \begin{itemize}
-\item Opens chart dialog.
-\item Chart data is retrieved in the background
-\item Data is visualized if available
-\end{itemize}
-
-\section{Changing view in chart for wind farm}
-\textbf{Actor:} User
-
-\textbf{Scenario:}
-\begin{enumerate}
-\item Changing to 2-week view.
-\begin{itemize}
-\item Changing chart view interval to 2 weeks.
-\item Load new data for the new interval.
-\end{itemize}
-\item Changing to weekly view.
-\begin{itemize}
-\item Changing chart view interval to 1 week.
-\item Load new data for the new interval.
-\end{itemize}
-\item Changing to daily view.
-\begin{itemize}
-\item Changing chart view interval to 1 day.
-\item Load new data for the new interval.
-\end{itemize}
-\end{enumerate}
-
-\section{Changing data set in chart}
-\textbf{Actor:} User
-
-\textbf{Scenario:}
-\begin{itemize}
-\item Selecting a new data set
-\item The data is retrieved from the server
-\item Visualize the data if available
-\end{itemize}
-\textbf{Alternative scenario}
-\begin{itemize}
-\item Unselecting a data set
-\item The data is removed from the chart
-\end{itemize}
-
-\section{Using control buttons in chart for wind farm}
-\textbf{Actor:} User
-
-\textbf{Scenario:}
-\begin{enumerate}
-\item Pressing fast backward.
-\begin{itemize}
-\item Go two weeks back on 2-week view, one week back on weekly view and one day on daily view.
-\item Loads new data.
-\end{itemize}
-\item Pressing backward.
-\begin{itemize}
-\item Go one week back on 2-week view, one day back on weekly view and one hour on daily view.
-\item Loads new data.
-\end{itemize}
-\item Pressing play.
-\begin{itemize}
-\item Change to daily view and go one hour forward every second.
-\item Loads new data.
-\end{itemize}
-\item Pressing forward.
-\begin{itemize}
-\item Go one week forward on 2-week view, one day forward on weekly view and one hour on daily view.
-\item Loads new data.
-\end{itemize}
-\item Pressing fast forward.
-\begin{itemize}
-\item Go two weeks forward on 2-week view, one week forward on weekly view and one day on daily view.
-\item Loads new data.
-\end{itemize}
-\end{enumerate}
-
-\section{Upload file}
-\textbf{Actor:} Admin
-
-\textbf{Scenario:}
-\begin{itemize}
-\item Sign in with correct username and password.
-\item Add new file (CSV, WRK, ZIP) and enter correct timezone.
-\item If file is ZIP, it will decompress.
-\item File is uploaded.
-\item File is being parsed.
+\item User left clicks once and hold on a specific class in the right grid column
+\item User drags class around in the right grid column
+\item User releases mouse button and the new class position is saved
 \end{itemize}
 \textbf{Alternative scenario:} 
 \begin{enumerate}
-\item Sign in with wrong username or password.
-\item Adding file that is not correct format and get an error message.
-\item Adding ZIP file, but files inside zip are not correct. They will be skipped.
-\item File exists and will not be uploaded.
+\item User tries to move the class out of right grid column
+\item The class is stopped by the edges 
+\end{enumerate}
+
+\section{Save a file}
+\textbf{Actor:} User
+\textbf{Scenario:}
+\begin{itemize}
+\item User goes to File > Save (or clicks Ctrl+S)
+\item A Save File dialogue pops up
+\item User specifies a name and clicks Save
+\item File is saved
+\end{itemize}
+\textbf{Alternative scenario:} 
+\begin{enumerate}
+\item User cancels Save File dialogue
+\item File is not saved 
+\end{enumerate}
+
+\section{Open a file}
+\textbf{Actor:} User
+\textbf{Scenario:}
+\begin{itemize}
+\item User goes to File > Open (or clicks Ctrl+O)
+\item A Open File dialogue pops up
+\item User picks a relevant file and clicks Open
+\item File is opened and content shown in the application
+\end{itemize}
+\textbf{Alternative scenario:} 
+\begin{enumerate}
+\item User cancels Open File dialogue
+\item File is not opened and current content remains in the application 
 \end{enumerate}

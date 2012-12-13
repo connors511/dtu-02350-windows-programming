@@ -22,7 +22,8 @@ Clicking one of the buttons will also insert a box in the right grid column repr
 
 Deleting a class is done by right clicking on the specific box representing that class.\\
 
-If one wants to edit a class, this is done by double (left) clicking on the specific box. This will cause the box to switch to an editable field where one can type in the name, properties and methods for the class in accordance with the syntax of UML class diagrams. Clicking on the same box again or double clicking on another box will save the changes, and the boxes will automatically resize to fit its content. Thus, only one class can be edited at a time.
+If one wants to edit a class, this is done by double (left) clicking on the specific box. This will cause the box to switch to an editable field where one can type in the name, properties and methods for the class in accordance with the syntax of UML class diagrams. Clicking on the same box again or double clicking on another box will save the changes, and the boxes will automatically resize to fit its content. Thus, only one class can be edited at a time.\\
+Choosing inline text edit instead of a pop-up window or likewise is because the UML class diagram content syntax is so simple and understandable and because it (for a software architect's point of view) is much faster to use this text based UI than pick the different properties and methods etc. in a GUI.
 
 \subsubsection{Regex}
 
@@ -35,13 +36,38 @@ When editing a box, one cannot move it, but it is still possible to move other b
 
 \subsection{Relations}
 
+Relations will be created, updated and deleted automatically based on the classes (boxes) present.
+
 \subsection{Menu and shortcuts}
 
-In the top menu, 
+In the top menu, one can find various options and functions. Each of them has been given a shortcut key combination that correspond to the default shortcut for its type (if it exists). The options and their shortcuts can be seen in table \ref{tab:menu_shortcut}.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Option} & \textbf{Shortcut}\\
+\hline
+New file & Ctrl+N\\
+\hline
+Open file & Ctrl+O\\
+\hline
+Save file & Ctrl+S\\
+\hline
+Save as & Ctrl+A\\
+\hline
+Undo & Ctrl+Z\\
+\hline
+Redo & Ctrl+Y\\
+\hline
+\end{tabular}
+\caption{Shortcuts of menu options}
+\label{tab:menu_shortcut}
+\end{table}
 
 \subsection{Status bar}
 
-On the bottom of the GUI a status bar can be seen. Here, the user gets messages about what is going on in the application.
+On the bottom of the GUI a status bar can be seen. Here, the user gets messages about what the status is, i.e. what is going on in the application. E.g. if a box is being edited, removed, moved or if a file is being (automatically) saved or loaded.
 
 \section{Save and load}
 \label{sec:design_pattern}
