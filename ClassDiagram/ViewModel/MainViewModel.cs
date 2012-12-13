@@ -118,31 +118,7 @@ namespace ClassDiagram.ViewModel
 		public MainViewModel()
 		{
 			Load();
-			// Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes. Her vidersendes metode kaldne til UndoRedoControlleren.
-			UndoCommand = new RelayCommand(undoRedoController.Undo, undoRedoController.CanUndo);
-			RedoCommand = new RelayCommand(undoRedoController.Redo, undoRedoController.CanRedo);
-
-			// Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
-			AddBaseCommand = new RelayCommand<string>((s) => AddBase(s));
-			DoneEditCommand = new RelayCommand(DoneEdit);
-			NewCommand = new RelayCommand(New);
-			SaveCommand = new RelayCommand(Save);
-			SaveAsCommand = new RelayCommand(SaveAs);
-			OpenCommand = new RelayCommand(Open);
-			ExitCommand = new RelayCommand(Exit);
-			AboutCommand = new RelayCommand(About);
-			//RemoveNodeCommand = new RelayCommand<IList>(RemoveNode, CanRemoveNode);
-			//AddEdgeCommand = new RelayCommand(AddEdge);
-			//RemoveEdgesCommand = new RelayCommand<IList>(RemoveEdges, CanRemoveEdges);
-
-			// Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
-			MouseDownNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseDownNode);
-			MouseMoveNodeCommand = new RelayCommand<MouseEventArgs>(MouseMoveNode);
-			MouseUpNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseUpNode);
-
-
-			PropertyChanged += new PropertyChangedEventHandler(autoSaver_tick);
-			intervalTime = 10000; // 10 seconds
+            intervalTime = 10000; // 10 seconds
 
 		}
 
@@ -168,7 +144,7 @@ namespace ClassDiagram.ViewModel
             if (args.PropertyName == "Properties")
             {
                 bases = buildAssocs(bases);
-                //RaisePropertyChanged("bases");
+                RaisePropertyChanged("bases");
             }
         }
 
@@ -218,7 +194,35 @@ namespace ClassDiagram.ViewModel
             bases = new ObservableCollection<Base>();
             // Needed to refresh gui
             bases.Clear();
+            movingElem = null;
+            editingElem = null;
+            moveElementPoint = new Point();
+            currentFile = "";
             bases.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(baseChanged);
+
+            // Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes. Her vidersendes metode kaldne til UndoRedoControlleren.
+            UndoCommand = new RelayCommand(undoRedoController.Undo, undoRedoController.CanUndo);
+            RedoCommand = new RelayCommand(undoRedoController.Redo, undoRedoController.CanRedo);
+
+            // Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
+            AddBaseCommand = new RelayCommand<string>((s) => AddBase(s));
+            NewCommand = new RelayCommand(New);
+            SaveCommand = new RelayCommand(Save);
+            SaveAsCommand = new RelayCommand(SaveAs);
+            OpenCommand = new RelayCommand(Open);
+            ExitCommand = new RelayCommand(Exit);
+            AboutCommand = new RelayCommand(About);
+            //RemoveNodeCommand = new RelayCommand<IList>(RemoveNode, CanRemoveNode);
+            //AddEdgeCommand = new RelayCommand(AddEdge);
+            //RemoveEdgesCommand = new RelayCommand<IList>(RemoveEdges, CanRemoveEdges);
+
+            // Kommandoerne som UI kan kaldes bindes til de metoder der skal kaldes.
+            MouseDownNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseDownNode);
+            MouseMoveNodeCommand = new RelayCommand<MouseEventArgs>(MouseMoveNode);
+            MouseUpNodeCommand = new RelayCommand<MouseButtonEventArgs>(MouseUpNode);
+
+
+            PropertyChanged += new PropertyChangedEventHandler(autoSaver_tick);
 
 			/*var Props = new List<Models.Property>();
 			Props.Add(new Models.Property() { Name = "PublicMethod", Visibility = Models.Visibility.Public, Type = "string" });
@@ -286,11 +290,6 @@ namespace ClassDiagram.ViewModel
         }
 
         #region Commands
-
-        public void DoneEdit()
-        {
-            Console.WriteLine("eheh");
-        }
 
         public void New()
         {
