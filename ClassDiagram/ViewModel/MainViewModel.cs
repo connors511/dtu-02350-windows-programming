@@ -117,6 +117,7 @@ namespace ClassDiagram.ViewModel
 
 		public MainViewModel()
 		{
+            bases = new ObservableCollection<Base>();
 			Load();
             intervalTime = 10000; // 10 seconds
 
@@ -191,7 +192,7 @@ namespace ClassDiagram.ViewModel
         {
             undoRedoController.Reset();
 
-            bases = new ObservableCollection<Base>();
+            //bases = new ObservableCollection<Base>();
             // Needed to refresh gui
             bases.Clear();
             movingElem = null;
