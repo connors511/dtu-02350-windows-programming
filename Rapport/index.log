@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=latex 2012.9.10)  13 DEC 2012 16:38
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=latex 2012.9.10)  14 DEC 2012 16:45
 entering extended mode
 **index.tex
 
@@ -1584,7 +1584,10 @@ No file index.nls.
 ("C:\Users\Joachim\Documents\Visual Studio 2012\ClassDiagrammer\Rapport\tex\int
 roduction.tex"
 Chapter 1.
-)
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 28.
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd"
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+))
 ("C:\Users\Joachim\Documents\Visual Studio 2012\ClassDiagrammer\Rapport\tex\ana
 lysis.tex" [1
 
@@ -1607,10 +1610,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [3]
 Chapter 3.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 15.
-("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd"
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
+
 Underfull \hbox (badness 10000) in paragraph at lines 21--22
 
  []
@@ -1622,7 +1622,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
 [4
 
-])
+]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+)
 ("C:\Users\Joachim\Documents\Visual Studio 2012\ClassDiagrammer\Rapport\tex\con
 clusion.tex"
 
@@ -1631,16 +1648,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5]
+[6]
 Chapter 4.
 )
 ("C:\Users\Joachim\Documents\Visual Studio 2012\ClassDiagrammer\Rapport\tex\fut
-urework.tex"
-
-LaTeX Warning: Reference `sec:known_issues' on page 6 undefined on input line 3
-.
-
-) [6
+urework.tex") [7
 
 ]
 ("C:\Users\Joachim\Documents\Visual Studio 2012\ClassDiagrammer\Rapport\tex\app
@@ -1648,7 +1660,7 @@ endix.tex"
 Appendix A.
 
 ("C:\Users\Joachim\Documents\Visual Studio 2012\ClassDiagrammer\Rapport\tex\use
-case.tex" [7
+case.tex" [8
 
 
 
@@ -1659,47 +1671,50 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8]))
+[9]))
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9]
+[10]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 212.
 \tf@thm=\write12
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 216.
- [10
+ [11
 
 
 
-] [11]
+] [12]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 216.
 
 ("C:\Users\Joachim\Documents\Visual Studio 2012\ClassDiagrammer\Rapport\index.a
 ux")
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 216.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 216.
-Package rerunfilecheck Info: File `index.out' has not changed.
-(rerunfilecheck)             Checksum: CADB831AF7EABE2344E071D8B764C678;2080.
 
 
-LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `index.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
 
+Package rerunfilecheck Info: Checksums for `index.out':
+(rerunfilecheck)             Before: 08415F5D9803CECFD3556DEF3B727BF0;2188
+(rerunfilecheck)             After:  F83C936FDA418553178D1BB5C2892E21;2261.
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 216.
  ) 
 Here is how much of TeX's memory you used:
- 21551 strings out of 494046
- 362894 string characters out of 3148404
- 474064 words of memory out of 3000000
- 24313 multiletter control sequences out of 15000+200000
- 93223 words of font info for 75 fonts, out of 3000000 for 9000
+ 21556 strings out of 494046
+ 362983 string characters out of 3148404
+ 475064 words of memory out of 3000000
+ 24318 multiletter control sequences out of 15000+200000
+ 99208 words of font info for 77 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 70i,18n,94p,605b,484s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 70i,17n,94p,605b,480s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on index.dvi (20 pages, 71156 bytes).
+Output written on index.dvi (21 pages, 76848 bytes).

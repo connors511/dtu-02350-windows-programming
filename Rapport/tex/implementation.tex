@@ -36,7 +36,7 @@ When editing a box, one cannot move it, but it is still possible to move other b
 
 \subsection{Relations}
 
-Relations will be created, updated and deleted automatically based on the classes (boxes) present.
+Relations will be created, updated and deleted automatically based on the classes (boxes) present. Also, a text will say what kind of relation
 
 \subsection{Menu and shortcuts}
 
@@ -69,17 +69,22 @@ Redo & Ctrl+Y\\
 
 On the bottom of the GUI a status bar can be seen. Here, the user gets messages about what the status is, i.e. what is going on in the application. E.g. if a box is being edited, removed, moved or if a file is being (automatically) saved or loaded.
 
-\section{Save and load}
-\label{sec:design_pattern}
-
 \section{Application layer}
 \label{sec:app_layer}
 
 TÆLLER 20
 
-dll
-different class types
-thread
+\subsection{dll}
+
+models
+
+\subsection{Save and load}
+
+The save functionality has been implemented in its own thread, because the application could otherwise be halted while this operation were executed.\\
+
+When saving a file FORMAT\\
+
+After a file has been saved the first time, the application will automatically save it continuously in a specific time interval. This way, the user does not have to worry about losing hours of work if the computer crashes or shuts down.
 
 \section{Design patterns}
 \label{sec:design_pattern}
@@ -92,9 +97,10 @@ TÆLLER 10
 \section{Tests}
 \label{sec:tests}
 
-TÆLLER 10
+The application has been tested with various use cases that can be found in appendix \ref{ap:usecase}.
 
 \section{Noget der ikke er udnervist i}
 
-
 TÆLLER 5
+
+regex

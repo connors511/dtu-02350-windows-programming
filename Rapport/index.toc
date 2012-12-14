@@ -18,18 +18,22 @@
 \contentsline {subsection}{\numberline {3.1.4}Relations}{5}{subsection.3.1.4}
 \contentsline {subsection}{\numberline {3.1.5}Menu and shortcuts}{5}{subsection.3.1.5}
 \contentsline {subsection}{\numberline {3.1.6}Status bar}{5}{subsection.3.1.6}
-\contentsline {section}{\numberline {3.2}Save and load}{5}{section.3.2}
-\contentsline {section}{\numberline {3.3}Application layer}{5}{section.3.3}
-\contentsline {section}{\numberline {3.4}Design patterns}{5}{section.3.4}
-\contentsline {section}{\numberline {3.5}Tests}{5}{section.3.5}
-\contentsline {section}{\numberline {3.6}Noget der ikke er udnervist i}{5}{section.3.6}
-\contentsline {chapter}{\numberline {4}Conclusion}{6}{chapter.4}
-\contentsline {section}{\numberline {4.1}Future work}{6}{section.4.1}
-\contentsline {chapter}{Appendix}{7}{section*.11}
-\contentsline {chapter}{\numberline {A}Use cases}{7}{appendix.A}
-\contentsline {section}{\numberline {A.1}Clicking on a radar at the map}{7}{section.A.1}
-\contentsline {section}{\numberline {A.2}Clicking on a wind farm at the map}{7}{section.A.2}
-\contentsline {section}{\numberline {A.3}Changing view in chart for wind farm}{8}{section.A.3}
-\contentsline {section}{\numberline {A.4}Changing data set in chart}{8}{section.A.4}
-\contentsline {section}{\numberline {A.5}Using control buttons in chart for wind farm}{8}{section.A.5}
-\contentsline {section}{\numberline {A.6}Upload file}{9}{section.A.6}
+\contentsline {section}{\numberline {3.2}Application layer}{5}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}dll}{6}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Save and load}{6}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Design patterns}{6}{section.3.3}
+\contentsline {section}{\numberline {3.4}Tests}{6}{section.3.4}
+\contentsline {section}{\numberline {3.5}Noget der ikke er udnervist i}{6}{section.3.5}
+\contentsline {chapter}{\numberline {4}Conclusion}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}Future work}{7}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Code scaffold}{7}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Export}{7}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Code scaffold}{7}{subsection.4.1.3}
+\contentsline {chapter}{Appendix}{8}{section*.12}
+\contentsline {chapter}{\numberline {A}Use cases}{8}{appendix.A}
+\contentsline {section}{\numberline {A.1}Create a class}{8}{section.A.1}
+\contentsline {section}{\numberline {A.2}Remove a class}{8}{section.A.2}
+\contentsline {section}{\numberline {A.3}Edit a class}{8}{section.A.3}
+\contentsline {section}{\numberline {A.4}Move a class}{9}{section.A.4}
+\contentsline {section}{\numberline {A.5}Save a file}{9}{section.A.5}
+\contentsline {section}{\numberline {A.6}Open a file}{9}{section.A.6}
