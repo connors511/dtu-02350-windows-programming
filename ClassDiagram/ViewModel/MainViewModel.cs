@@ -119,7 +119,7 @@ namespace ClassDiagram.ViewModel
 		{
             bases = new ObservableCollection<Base>();
 			Load();
-            intervalTime = 10000; // 10 seconds
+            intervalTime = 60000; // 10 seconds
 
 		}
 
@@ -296,7 +296,7 @@ namespace ClassDiagram.ViewModel
         {
             // Do you want to save first?
             Console.WriteLine("Hi!");
-            intervalTime = 10000;
+            intervalTime = 60000;
             // Reset!
             Load();
         }

@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Markup;
 using System.Xml;
 using System.Runtime.Serialization;
+using System.Threading;
 
 namespace ClassDiagram.Models
 {
@@ -25,15 +26,10 @@ namespace ClassDiagram.Models
                 throw new Exception();
             }
             
-            /*XmlSerializer x = new XmlSerializer(bases.GetType(), new Type[] { typeof(Entity), 
-                                                                              typeof(System.Windows.Media.SolidColorBrush),
-                                                                              typeof(System.Windows.Media.MatrixTransform)});
-            Stream stream = File.Open(file, FileMode.Create);
-
-            var b = new ListWrapper(bases);
-            x.Serialize(stream, b.bases);*/
-            var se = new Serializer();
-            se.SerializeObject(file, bases);
+            //var se = new Serializer();
+            //se.SerializeObject(file, bases);
+            Serializer.Instance.filename = file;
+            ThreadPool.QueueUserWorkItem(Serializer.SerializeObject, bases);
 
             return file;
         }
@@ -47,15 +43,8 @@ namespace ClassDiagram.Models
                 throw new Exception();
             }
             currentFile = file;
-            
-            /*XmlSerializer serializer = new XmlSerializer(typeof(List<Base>));
-            
-            StreamReader reader = new StreamReader(file);
-            // Invalid XML error
-            bases = (List<Base>)serializer.Deserialize(reader);
-            reader.Close();*/
 
-            var se = new Serializer();
+            var se = Serializer.Instance;
             bases = se.DeSerializeObject(file);
         }
 
@@ -105,13 +94,27 @@ namespace ClassDiagram.Models
         
         public class Serializer
         {
-            public Serializer()
+            public string filename { get; set; }
+
+            private static Serializer instance;
+            private Serializer()
             {
             }
-
-            public void SerializeObject(string filename, object objectToSerialize)
+            public static Serializer Instance
             {
-                Stream stream = File.Open(filename, FileMode.Create);
+                get
+                {
+                    if (instance == null)
+                    {
+                        instance = new Serializer();
+                    }
+                    return instance;
+                }
+            }
+
+            public static void SerializeObject(object objectToSerialize)
+            {
+                Stream stream = File.Open(Serializer.Instance.filename, FileMode.Create);
                 BinaryFormatter bFormatter = new BinaryFormatter();
                 bFormatter.Serialize(stream, objectToSerialize);
                 stream.Close();
