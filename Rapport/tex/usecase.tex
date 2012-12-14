@@ -30,10 +30,10 @@ Actors:
 \item The specific class returns to normal state and changes are saved
 \end{itemize}
 \textbf{Alternative scenario:} 
-\begin{enumerate}
+\begin{itemize}
 \item User types in some invalid content for the class
 \item Invalid content gets ignored on save
-\end{enumerate}
+\end{itemize}
 
 \section{Move a class}
 \textbf{Actor:} User
@@ -44,10 +44,10 @@ Actors:
 \item User releases mouse button and the new class position is saved
 \end{itemize}
 \textbf{Alternative scenario:} 
-\begin{enumerate}
+\begin{itemize}
 \item User tries to move the class out of right grid column
 \item The class is stopped by the edges 
-\end{enumerate}
+\end{itemize}
 
 \section{Save a file}
 \textbf{Actor:} User
@@ -59,10 +59,10 @@ Actors:
 \item File is saved
 \end{itemize}
 \textbf{Alternative scenario:} 
-\begin{enumerate}
+\begin{itemize}
 \item User cancels Save File dialogue
 \item File is not saved 
-\end{enumerate}
+\end{itemize}
 
 \section{Open a file}
 \textbf{Actor:} User
@@ -74,7 +74,17 @@ Actors:
 \item File is opened and content shown in the application
 \end{itemize}
 \textbf{Alternative scenario:} 
-\begin{enumerate}
+\begin{itemize}
 \item User cancels Open File dialogue
 \item File is not opened and current content remains in the application 
-\end{enumerate}
+\end{itemize}
+
+\section{New class diagram}
+\textbf{Actor:} User
+\textbf{Scenario:}
+\begin{itemize}
+\item User creates a class
+\item User moves created class
+\item User goes to File > New (or clicks Ctrl+N)
+\item All classes (and undo redo stack) are cleared and the right grid column becomes blank
+\end{itemize}
