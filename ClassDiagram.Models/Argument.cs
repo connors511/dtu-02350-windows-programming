@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace ClassDiagram.Models
 {
     [Serializable()]
-    public class Argument : ISerializable
+    public class Argument : ISerializable, INotifyPropertyChanged
     {
         public Argument(SerializationInfo info, StreamingContext ctxt)
         {
@@ -71,5 +72,14 @@ namespace ClassDiagram.Models
         {
             return Name + ((Value != null) ? " = " + (Value == "" ? "\"\"" : Value) : "") + ((Type != null) ? " : " + Type : "");
         }
-    }
+        
+        // Event handler
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }  
+
 }

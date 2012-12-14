@@ -42,11 +42,29 @@ namespace ClassDiagram.Models.Arrows
             }
         }
 
+        private Property _property;
+        public Property Property
+        {
+            get
+            {
+                return _property;
+            }
+            set
+            {
+                if (_property != value)
+                {
+                    _property = value;
+                    NotifyPropertyChanged("Property");
+                }
+            }
+        }
+
         #region Constructor
         public Association(SerializationInfo info, StreamingContext ctxt)
         {
             this.Start = (Entity)info.GetValue("Start", typeof(Entity));
             this.End = (Entity)info.GetValue("End", typeof(Entity));
+            this.Property = (Property)info.GetValue("Property", typeof(Argument));
             events();
         }
 
@@ -73,6 +91,7 @@ namespace ClassDiagram.Models.Arrows
                             NotifyPropertyChanged("endY");
                             NotifyPropertyChanged("CenterY");
                             NotifyPropertyChanged("CenterX");
+                            NotifyPropertyChanged("Property");
                         }
                     });
                 }
@@ -90,6 +109,17 @@ namespace ClassDiagram.Models.Arrows
                             NotifyPropertyChanged("endY");
                             NotifyPropertyChanged("CenterY");
                             NotifyPropertyChanged("CenterX");
+                            NotifyPropertyChanged("Property");
+                        }
+                    });
+                }
+                else
+                {
+                    Property.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler((se, ev) =>
+                    {
+                        if (ev.PropertyName == "Count")
+                        {
+                            NotifyPropertyChanged("Text");
                         }
                     });
                 }
@@ -101,6 +131,7 @@ namespace ClassDiagram.Models.Arrows
         {
             info.AddValue("Start", this.Start);
             info.AddValue("End", this.End);
+            info.AddValue("Property", this.Property);
         }
 
         public string ArrowData
@@ -180,7 +211,6 @@ namespace ClassDiagram.Models.Arrows
             }
         }
 
-        private int _centerX;
         public int CenterX
         {
             get
@@ -196,6 +226,15 @@ namespace ClassDiagram.Models.Arrows
                 return Math.Abs(Start.CanvasCenterY + End.CanvasCenterY) / 2;
             }
         }
+
+        public string Text
+        {
+            get
+            {
+                return (Property.Count > 1 ? "0.." : "") + Property.Count;
+            }
+        }
+
 
     }
 }

@@ -10,7 +10,7 @@
         <converter:ArithmeticConverter x:Key="AScript" />
     </UserControl.Resources>
     <Grid>
-        <TextBlock Name="message" Text="Assoc">
+        <TextBlock Name="message" Text="{Binding Text}">
             <TextBlock.RenderTransform>
                 <TranslateTransform X="{Binding CenterX}" Y="{Binding CenterY}" />
             </TextBlock.RenderTransform>

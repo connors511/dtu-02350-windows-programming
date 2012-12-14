@@ -38,6 +38,20 @@ namespace ClassDiagram.Models
             }
         }
 
+        private int _count;
+        public int Count
+        {
+            get
+            {
+                return _count;
+            }
+            set
+            {
+                _count = value;
+                NotifyPropertyChanged("Count");
+            }
+        }
+
         public override string ToString()
         {
             string str = "";
@@ -53,7 +67,8 @@ namespace ClassDiagram.Models
                     str += "-";
                     break;
             }
-            return str + base.ToString();
+            //return str + base.ToString();
+            return str + Name + (Count > 1 ? "["+Count+"]" : "") + ((Value != null) ? " = " + (Value == "" ? "\"\"" : Value) : "") + ((Type != null) ? " : " + Type : "");
         }
     }
 }

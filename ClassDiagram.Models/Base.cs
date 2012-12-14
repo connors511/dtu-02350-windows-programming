@@ -212,7 +212,7 @@ namespace ClassDiagram.Models
                         else
                         {
                             // Match properties
-                            ma = Regex.Match(line, @"([#+-])(.+?)(?: ?= ?(.+?))?(?: ?: ?(.+))");
+                            ma = Regex.Match(line, @"([#+-])(.+?)(?: ?= ?(.+?))?(?: ?: ?(.+))?(?\[ \[([0-9]+)\])");
                             if (ma.Success)
                             {
                                 string val = ma.Groups[3].Value;
@@ -224,7 +224,8 @@ namespace ClassDiagram.Models
                                 {
                                     Name = ma.Groups[2].Value,
                                     Type = ma.Groups[4].Value,
-                                    Value = val
+                                    Value = val,
+                                    Count = ma.Groups[5].Value == "" ? 1 : Convert.ToInt16(ma.Groups[5].Value)
                                 };
                                 switch (ma.Groups[1].Value)
                                 {

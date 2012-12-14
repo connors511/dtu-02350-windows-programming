@@ -569,7 +569,7 @@ namespace ClassDiagram.ViewModel
                              select b).ToList();
                     z.ForEach(i =>
                     {
-                        bases.Add((Base)new Association() { Start = (Entity)x, End = (Entity)i });
+                        bases.Add((Base)new Association() { Start = (Entity)x, End = (Entity)i, Property = (Property)y });
                     });
                 });
             });
