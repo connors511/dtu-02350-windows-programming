@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections.ObjectModel;
 using ClassDiagram.Models.Entities;
 using ClassDiagram.Models;
+using ClassDiagram.ViewModel;
 
 namespace ClassDiagram.Command
 {
@@ -23,12 +24,14 @@ namespace ClassDiagram.Command
         {
             //_base.Edit = true;
             this._bases.Add(_base);
+            _bases = MainViewModel.buildAssocs(_bases);
         }
 
         public void UnExecute()
         {
             //_base.Edit = false;
             this._bases.Remove(_base);
+            _bases = MainViewModel.buildAssocs(_bases);
         }
     }
 }

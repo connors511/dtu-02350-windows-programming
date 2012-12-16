@@ -517,7 +517,7 @@ namespace ClassDiagram.ViewModel
         {
             if (Mouse.Captured != null)
             {
-                if (movingElem != null)
+                if (movingElem != null && moveElementPoint != default(Point))
                 {
 
                     // Save coordinates finally

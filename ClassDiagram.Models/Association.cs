@@ -231,7 +231,7 @@ namespace ClassDiagram.Models.Arrows
         {
             get
             {
-                return "1.." + Property.Count;
+                return (Property.Count > 1 ? "0" : "1") + ".." + Property.Count;
             }
         }
 
