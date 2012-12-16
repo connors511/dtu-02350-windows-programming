@@ -12,6 +12,7 @@ namespace ClassDiagram.Models
         public Property(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
         {
             this.Visibility = (Visibility)info.GetValue("Visibility", typeof(Visibility));
+            this.Count = (int)info.GetValue("Count", typeof(int));
         }
 
         public Property()
@@ -22,6 +23,7 @@ namespace ClassDiagram.Models
         public new void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("Visibility", this.Visibility);
+            info.AddValue("Count", this.Count);
             base.GetObjectData(info, ctxt);
         }
 

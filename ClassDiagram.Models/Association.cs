@@ -64,7 +64,7 @@ namespace ClassDiagram.Models.Arrows
         {
             this.Start = (Entity)info.GetValue("Start", typeof(Entity));
             this.End = (Entity)info.GetValue("End", typeof(Entity));
-            this.Property = (Property)info.GetValue("Property", typeof(Argument));
+            this.Property = (Property)info.GetValue("Property", typeof(Property));
             events();
         }
 
