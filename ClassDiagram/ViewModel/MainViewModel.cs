@@ -313,6 +313,7 @@ namespace ClassDiagram.ViewModel
                 setStatus("Loading..");
                 bases.Clear();
                 b.ForEach(x => bases.Add(x));
+                MainViewModel.buildAssocs(bases);
                 setStatus("Loaded.");
                 resetStatus(1);
                 autoSaver.Start();
