@@ -12,28 +12,32 @@
 \contentsline {chapter}{\numberline {3}Design \& Implementation}{4}{chapter.3}
 \contentsline {section}{\numberline {3.1}GUI}{4}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Editable classes}{4}{subsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.1.1}Regex}{5}{subsubsection.3.1.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Movable classes}{5}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Undo and redo}{5}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Relations}{5}{subsection.3.1.4}
-\contentsline {subsection}{\numberline {3.1.5}Menu and shortcuts}{5}{subsection.3.1.5}
-\contentsline {subsection}{\numberline {3.1.6}Status bar}{5}{subsection.3.1.6}
-\contentsline {section}{\numberline {3.2}Application layer}{5}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}dll}{6}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Save and load}{6}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Design patterns}{6}{section.3.3}
-\contentsline {section}{\numberline {3.4}Tests}{6}{section.3.4}
-\contentsline {section}{\numberline {3.5}Noget der ikke er udnervist i}{6}{section.3.5}
-\contentsline {chapter}{\numberline {4}Conclusion}{7}{chapter.4}
-\contentsline {section}{\numberline {4.1}Future work}{7}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Code scaffold}{7}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Export}{7}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Code scaffold}{7}{subsection.4.1.3}
-\contentsline {chapter}{Appendix}{8}{section*.12}
-\contentsline {chapter}{\numberline {A}Use cases}{8}{appendix.A}
-\contentsline {section}{\numberline {A.1}Create a class}{8}{section.A.1}
-\contentsline {section}{\numberline {A.2}Remove a class}{8}{section.A.2}
-\contentsline {section}{\numberline {A.3}Edit a class}{8}{section.A.3}
-\contentsline {section}{\numberline {A.4}Move a class}{9}{section.A.4}
-\contentsline {section}{\numberline {A.5}Save a file}{9}{section.A.5}
-\contentsline {section}{\numberline {A.6}Open a file}{9}{section.A.6}
+\contentsline {subsubsection}{\numberline {3.1.1.1}RegEx}{5}{subsubsection.3.1.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Movable classes}{6}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Undo and redo}{6}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Relations}{6}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.5}Menu and shortcuts}{6}{subsection.3.1.5}
+\contentsline {subsection}{\numberline {3.1.6}Status bar}{6}{subsection.3.1.6}
+\contentsline {section}{\numberline {3.2}Application layer}{7}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}DLL}{7}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Save and load}{7}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Design patterns}{8}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Singleton}{8}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Command}{8}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}MVVM}{8}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}Tests}{9}{section.3.4}
+\contentsline {section}{\numberline {3.5}Noget der ikke er udnervist i}{9}{section.3.5}
+\contentsline {chapter}{\numberline {4}Conclusion}{10}{chapter.4}
+\contentsline {section}{\numberline {4.1}Future work}{10}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Copy and paste classes}{10}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Code scaffold}{10}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Export}{10}{subsection.4.1.3}
+\contentsline {chapter}{Appendix}{11}{section*.12}
+\contentsline {chapter}{\numberline {A}Use cases}{11}{appendix.A}
+\contentsline {section}{\numberline {A.1}Create a class}{11}{section.A.1}
+\contentsline {section}{\numberline {A.2}Remove a class}{11}{section.A.2}
+\contentsline {section}{\numberline {A.3}Edit a class}{11}{section.A.3}
+\contentsline {section}{\numberline {A.4}Move a class}{12}{section.A.4}
+\contentsline {section}{\numberline {A.5}Save a file}{12}{section.A.5}
+\contentsline {section}{\numberline {A.6}Open a file}{12}{section.A.6}
+\contentsline {section}{\numberline {A.7}New class diagram}{13}{section.A.7}

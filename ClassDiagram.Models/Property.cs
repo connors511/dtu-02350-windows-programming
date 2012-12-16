@@ -68,7 +68,7 @@ namespace ClassDiagram.Models
                     break;
             }
             //return str + base.ToString();
-            return str + Name + (Count > 1 ? "["+Count+"]" : "") + ((Value != null) ? " = " + (Value == "" ? "\"\"" : Value) : "") + ((Type != null) ? " : " + Type : "");
+            return str + Name + ((Value != null) ? " = " + (Value == "" ? "\"\"" : Value) : "") + ((Type != null) ? " : " + Type : "") + (Count > 1 ? "["+Count+"]" : "");
         }
     }
 }

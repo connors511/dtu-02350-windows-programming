@@ -25,7 +25,49 @@ Deleting a class is done by right clicking on the specific box representing that
 If one wants to edit a class, this is done by double (left) clicking on the specific box. This will cause the box to switch to an editable field where one can type in the name, properties and methods for the class in accordance with the syntax of UML class diagrams. Clicking on the same box again or double clicking on another box will save the changes, and the boxes will automatically resize to fit its content. Thus, only one class can be edited at a time.\\
 Choosing inline text edit instead of a pop-up window or likewise is because the UML class diagram content syntax is so simple and understandable and because it (for a software architect's point of view) is much faster to use this text based UI than pick the different properties and methods etc. in a GUI.
 
-\subsubsection{Regex}
+\subsubsection{RegEx}
+\label{sec:regex}
+To validate and parse the text from inline edit regular expressions, or RegEx, is used. RegEx is extremely useful to parse text using defined patterns and extract parts of text.
+
+The RegEx implemented parses the text according to the following pattern:
+\begin{enumerate}
+\item A visibility token\footnote{+ for public, - for private and \# for protected.}
+\item A variable name
+\item Optional space
+\item Optional default value noted by $=$, optional space followed by the value
+\item Optional space if default value specified
+\item A colon ( : )
+\item Optional space
+\item The variables type
+\item The carnality of the relation
+\end{enumerate}
+
+The RegEx parsing is done in multiple steps. The first line is the first one to be parsed against the pattern shown in listings \ref{lst:regex}. When the name and type has been parsed it checks if the second line consists of exactly three dashes ``$---$'' denoting that the rest of the lines will be either properties of functions of the class.
+
+\begin{lstlisting}[caption={RegEx for class type and name matching},label=lst:regex]
+(abstract class|class|enum|struct) (.+)
+\end{lstlisting}
+
+Each line is then matched against two patterns to see if its a function or property. If the line matches the function pattern shown in listings \ref{lst:regexfunc} the parser takes the matched groups and populates a function entry for the current class.
+
+\begin{lstlisting}[caption={RegEx for function matching},label=lst:regexfunc]
+([#+-])(.+?)\((.+)\)(?: ?: ?(.+))
+\end{lstlisting}
+
+If the line does not match the function pattern, but instead matches the property pattern as shown in listings \ref{lst:regexprop} further processing is done otherwise the line is skipped.
+
+If a line has been successfully matched to the property pattern the type group of the pattern is then again matched against the pattern given in listings \ref{lst:regexarray} to see if it has been defined as an array.
+
+\begin{lstlisting}[caption={RegEx for property matching},label=lst:regexprop]
+([#+-])(.+?)(?: ?= ?(.+?))?(?: ?: ?(.+))
+\end{lstlisting}
+
+\begin{lstlisting}[caption={RegEx for array matching},label=lst:regexarray]
+(.+?)\[([0-9]+)\]
+\end{lstlisting}
+
+The property entry is then populated with the matched groups, and if the matched type group is a name of a class already on the canvas a line is drawn between them, and the carnality is written on the line.
+The carnality of the relationship is taken from the array size if specified otherwise 1 is used.
 
 \subsection{Movable classes}
 
@@ -33,10 +75,15 @@ It is possible to freely move the boxes around in the right grid column, but onl
 When editing a box, one cannot move it, but it is still possible to move other boxes.
 
 \subsection{Undo and redo}
+The undo-redo functionality has been implemented with the command pattern.
+Every time there is a change to the item canvas; add, removal or moving of classes the action is put on the undo stack.
+
+When the undo command is then called, the stack is popped, the command is executed thus reversing the action and putting it on the redo stack. The redo command then acts in the same way as the undo command, if there is anything on the stack.
 
 \subsection{Relations}
+Relations will be created, updated and deleted automatically based on the classes (boxes) present. Also, a text will say what kind of relation.
 
-Relations will be created, updated and deleted automatically based on the classes (boxes) present. Also, a text will say what kind of relation
+The relationship text is depending on the information provided for the carnality as described in section \ref{sec:regex}.
 
 \subsection{Menu and shortcuts}
 
@@ -74,22 +121,54 @@ On the bottom of the GUI a status bar can be seen. Here, the user gets messages 
 
 TÆLLER 20
 
-\subsection{dll}
+\subsection{DLL}
+To ensure the application is extensible all models have been put in a separate DLL file.
 
-models
+This also allows for development of other tools using the same models, for instance a web based UML diagrammer.
 
 \subsection{Save and load}
+The save functionality has been implemented in its own thread, because the application could otherwise be halted while this operation were executed. The load functionality remains in the same thread as the GUI, because one should not be able to modify the canvas while loading a file.
 
-The save functionality has been implemented in its own thread, because the application could otherwise be halted while this operation were executed.\\
+A prettier solution would be to use background workers to load the file meanwhile the GUI was disabled or perhaps showing a progress bar. When the background workers had completed loading the GUI was to be enabled again.
 
 When saving a file FORMAT\\
 
 After a file has been saved the first time, the application will automatically save it continuously in a specific time interval. This way, the user does not have to worry about losing hours of work if the computer crashes or shuts down.
 
+The application saves the applications state by taking the list of classes on the canvas (\textsf{List<Base>} in the source code) and serializing the entire list with a binary formatter whose output is then saved to a file on the computer.
+
 \section{Design patterns}
 \label{sec:design_pattern}
+\subsection{Singleton}
+The singleton design pattern restricts the inistantation of a class to one object.
+The pattern is useful when exactly one object is needed to coordinate actions or use of data throughout the system, such as a config class or data model.
 
-2-3
+The singleton pattern is implemented in the \textsf{Serializer} class, that is used when saving and loading files. 
+
+The singleton pattern is also used by the MVVM framework GallaSoft for interacting with the \textsf{MainViewModel} to ensure, that it is the same instance of the class that is being used throughout the application, thus the same data.
+
+\subsection{Command}
+The command pattern is a behavioural design pattern where an object is used to encapsulate all information needed to call a method at a later time.
+The command pattern is useful for implementing GUI button, undo/redo, wizards and transactional behavior.
+
+The command pattern has been used to implement the undo-redo feature.
+
+\subsection{MVVM}
+The Model View ViewModel is an architechtural design pattern used in software development. It originated from Microsoft and was introduced by Martin Fowler.
+MVVM is targeted at modern UI development platforms which supports event-driven programming such as Windows Presentation Foundation, Silverlight and HTML5.
+MVVM is largely based on the Model View Controller, MVC, pattern which strives to separate presentation logic from business logic and data.
+
+MVVM has the same data separation as MVC, as it uses a ViewModel to expose the data from the data model to the view for presentation.
+The pattern was designed to make use of the data binding functions of WPF, which would facilitate the separation of the view layer development
+from the rest of the pattern thus removing almost all GUI code from the view layer.
+
+Instead of the user interface developers to write GUI code, it is possible for them to use markup language instead (such as XAML)
+and create data bindings to the ViewModel, which is made by the application developers.
+
+This seperation allows for higher productivity because application and UX developers are working on different parts of the program, 
+without them having to worry about the other party's code.
+Even if the application is developed by a single developer, said developer would still benefit from this separation of logic 
+in the late development cycles where the UI often changes frequently based on end-user feedback.
 
 TÆLLER 10
 

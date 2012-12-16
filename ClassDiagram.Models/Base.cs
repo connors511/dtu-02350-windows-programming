@@ -161,6 +161,10 @@ namespace ClassDiagram.Models
                     {
                         throw new FormatException();
                     }
+                    // Remove first two lines
+                    lines.RemoveAt(0);
+                    lines.RemoveAt(0);
+                    lines.Remove("");
 
                     if (this.GetType() == typeof(Entity))
                     {
@@ -212,7 +216,7 @@ namespace ClassDiagram.Models
                         else
                         {
                             // Match properties
-                            ma = Regex.Match(line, @"([#+-])(.+?)(?: ?= ?(.+?))?(?: ?: ?(.+))?(?\[ \[([0-9]+)\])");
+                            ma = Regex.Match(line, @"([#+-])(.+?)(?: ?= ?(.+?))?(?: ?: ?(.+))");
                             if (ma.Success)
                             {
                                 string val = ma.Groups[3].Value;
@@ -220,12 +224,20 @@ namespace ClassDiagram.Models
                                 {
                                     val = null;
                                 }
+                                string type = ma.Groups[4].Value;
+                                int c = 1;
+                                var mat = Regex.Match(type, @"(.+?)\[([0-9]+)\]");
+                                if (mat.Success)
+                                {
+                                    type = mat.Groups[1].Value;
+                                    c = Convert.ToInt16(mat.Groups[2].Value);
+                                }
                                 var p = new Property()
                                 {
                                     Name = ma.Groups[2].Value,
-                                    Type = ma.Groups[4].Value,
+                                    Type = type,
                                     Value = val,
-                                    Count = ma.Groups[5].Value == "" ? 1 : Convert.ToInt16(ma.Groups[5].Value)
+                                    Count = c
                                 };
                                 switch (ma.Groups[1].Value)
                                 {
