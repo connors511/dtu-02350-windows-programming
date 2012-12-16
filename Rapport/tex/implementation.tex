@@ -69,6 +69,10 @@ If a line has been successfully matched to the property pattern the type group o
 The property entry is then populated with the matched groups, and if the matched type group is a name of a class already on the canvas a line is drawn between them, and the carnality is written on the line.
 The carnality of the relationship is taken from the array size if specified otherwise 1 is used.
 
+Der er ikke undervist i regex.
+
+Tæller 5
+
 \subsection{Movable classes}
 
 It is possible to freely move the boxes around in the right grid column, but only there. That means that it is not possible to e.g. move the boxes out of the window or into the left grid column.\\
@@ -81,7 +85,7 @@ Every time there is a change to the item canvas; add, removal or moving of class
 When the undo command is then called, the stack is popped, the command is executed thus reversing the action and putting it on the redo stack. The redo command then acts in the same way as the undo command, if there is anything on the stack.
 
 \subsection{Relations}
-Relations will be created, updated and deleted automatically based on the classes (boxes) present. Also, a text will say what kind of relation.
+Relations will be created, updated and deleted automatically based on the classes (boxes) present. Also, a text will say what kind of relation it is, e.g. one-to-one, one-to-many
 
 The relationship text is depending on the information provided for the carnality as described in section \ref{sec:regex}.
 
@@ -177,9 +181,3 @@ TÆLLER 10
 \label{sec:tests}
 
 The application has been tested with various use cases that can be found in appendix \ref{ap:usecase}.
-
-\section{Noget der ikke er udnervist i}
-
-TÆLLER 5
-
-regex
