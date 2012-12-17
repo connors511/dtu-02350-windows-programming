@@ -5,7 +5,15 @@
 \label{sec:gui}
 TÆLLER 35
 
-The GUI consists of a menu, a two-column grid and a status bar. The features that can be interacted with in the GUI have been outlined below.
+The GUI consists of a menu, a two-column grid and a status bar. The features that can be interacted with in the GUI have been outlined below. An overview of the available class types can be seen on figure \ref{fig:one_each}.
+
+\begin{figure}[htbp]
+   \centering
+   \includegraphics[width=1\linewidth]{figure/one_of_each}
+   \caption{Overview of classes}
+   \label{fig:one_each}
+\end{figure}
+
 
 \subsection{Editable classes}
 
@@ -27,6 +35,13 @@ If one wants to edit a class, this is done by double (left) clicking on the spec
 Choosing inline text edit instead of a pop-up window or likewise is because the UML class diagram content syntax is so simple and understandable and because it (for a software architect's point of view) is much faster to use this text based UI than pick the different properties and methods etc. in a GUI.
 
 The parsing of inline text edit is done with regular expressions, RegEx, and is described in section \ref{sec:regex}
+
+\begin{figure}[htbp]
+   \centering
+   \includegraphics[width=1\linewidth]{figure/edit_text}
+   \caption{Edition of a class}
+   \label{fig:edit}
+\end{figure}
 
 \subsubsection{RegEx}
 \label{sec:regex}
@@ -82,6 +97,21 @@ The undo-redo functionality has been implemented with the command pattern.
 Every time there is a change to the item canvas; add, removal or moving of classes the action is put on the undo stack.
 
 When the undo command is then called, the stack is popped, the command is executed thus reversing the action and putting it on the redo stack. The redo command then acts in the same way as the undo command, if there is anything on the stack.
+
+\begin{figure}[htbp]
+   \centering
+   \includegraphics[width=1\linewidth]{figure/one_one_relation}
+   \caption{One to one relation}
+   \label{fig:one_one}
+\end{figure}
+
+\begin{figure}[htbp]
+   \centering
+   \includegraphics[width=1\linewidth]{figure/one_many_relation}
+   \caption{One to many relation}
+   \label{fig:one_many}
+\end{figure}
+
 
 \subsection{Relations}
 Relations will be created, updated and deleted automatically based on the classes (boxes) present. Also, a text will say what kind of relation it is, e.g. one-to-one, one-to-many

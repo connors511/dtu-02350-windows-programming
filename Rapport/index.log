@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=latex 2012.5.7)  16 DEC 2012 23:40
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=latex 2012.10.2)  17 DEC 2012 11:36
 entering extended mode
 **index.tex
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\index.tex
+(C:\WinProg\Rapport\index.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -31,8 +31,7 @@ File: bk11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\config.tex)
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\style/thesisdef.sty
+(C:\WinProg\Rapport\config.tex) (C:\WinProg\Rapport\style/thesisdef.sty
 Package: style/thesisdef 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
@@ -104,8 +103,8 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 ))
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\ntheorem\ntheorem.sty
-Style `ntheorem', Version 1.31 <2011/02/16>
-Package: ntheorem 2011/02/16 1.31
+Style `ntheorem', Version 1.33 <2011/08/15>
+Package: ntheorem 2011/08/15 1.33
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
@@ -117,25 +116,36 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 \theorempostskipamount=\skip47
 \theoremframepreskipamount=\skip48
 \theoremframepostskipamount=\skip49
+\theoreminframepreskipamount=\skip50
+\theoreminframepostskipamount=\skip51
+\theorem@preskip=\toks23
+\theorem@postskip=\toks24
+\theorem@framepreskip=\toks25
+\theorem@framepostskip=\toks26
+\theorem@inframepreskip=\toks27
+\theorem@inframepostskip=\toks28
 \theoremindent=\dimen112
 \theorem@indent=\dimen113
-\theoremheaderfont=\toks23
-\theoremseparator=\toks24
-\theoremprework=\toks25
-\theorempostwork=\toks26
-\theoremsymbol=\toks27
-\qedsymbol=\toks28
-\theoremkeyword=\toks29
-\qedsymbol=\toks30
-\thm@topsepadd=\skip50
-Package ntheorem Info: Option `thmmarks' loaded on input line 1066.
+\theoremrightindent=\dimen114
+\theorem@rightindent=\dimen115
+\theoremheaderfont=\toks29
+\theoremseparator=\toks30
+\theoremprework=\toks31
+\theorempostwork=\toks32
+\theoremsymbol=\toks33
+\qedsymbol=\toks34
+\theoremkeyword=\toks35
+\qedsymbol=\toks36
+\thm@topsep=\skip52
+\thm@topsepadd=\skip53
+Package ntheorem Info: Option `thmmarks' loaded on input line 1175.
 \c@endNonectr=\count100
 \c@currNonectr=\count101
-\mysavskip=\skip51
+\mysavskip=\skip54
 Package ntheorem Info: option `amsmath' handling for `thmmarks' loaded on input
- line 1066.
-\thm@amstmpdepth=\dimen114
-\tagwidth=\dimen115
+ line 1175.
+\thm@amstmpdepth=\dimen116
+\tagwidth=\dimen117
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\lmodern.sty"
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
@@ -275,7 +285,7 @@ Language: english 2005/03/30 v3.3o English support from the babel system
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.def"
 File: babel.def 2008/07/08 v3.8m Babel common definitions
 \babel@savecnt=\count102
-\U@D=\dimen116
+\U@D=\dimen118
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
@@ -283,8 +293,8 @@ File: babel.def 2008/07/08 v3.8m Babel common definitions
 ))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\inputenc.sty"
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks31
-\inpenc@posthook=\toks32
+\inpenc@prehook=\toks37
+\inpenc@posthook=\toks38
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\utf8.def"
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
@@ -575,18 +585,18 @@ File: ts1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 ))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
 Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks33
-\verbatim@line=\toks34
+\every@verbatim=\toks39
+\verbatim@line=\toks40
 \verbatim@in@stream=\read1
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\longtable.sty"
 Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
-\LTleft=\skip52
-\LTright=\skip53
-\LTpre=\skip54
-\LTpost=\skip55
+\LTleft=\skip55
+\LTright=\skip56
+\LTpre=\skip57
+\LTpost=\skip58
 \LTchunksize=\count103
-\LTcapwidth=\dimen117
+\LTcapwidth=\dimen119
 \LT@head=\box28
 \LT@firsthead=\box29
 \LT@foot=\box30
@@ -595,25 +605,25 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LT@rows=\count105
 \c@LT@tables=\count106
 \c@LT@chunks=\count107
-\LT@p@ftn=\toks35
+\LT@p@ftn=\toks41
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
-\bigstrutjot=\dimen118
+\bigstrutjot=\dimen120
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is not detected.
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
-\fancy@headwidth=\skip56
-\f@ncyO@elh=\skip57
-\f@ncyO@erh=\skip58
-\f@ncyO@olh=\skip59
-\f@ncyO@orh=\skip60
-\f@ncyO@elf=\skip61
-\f@ncyO@erf=\skip62
-\f@ncyO@olf=\skip63
-\f@ncyO@orf=\skip64
+\fancy@headwidth=\skip59
+\f@ncyO@elh=\skip60
+\f@ncyO@erh=\skip61
+\f@ncyO@olh=\skip62
+\f@ncyO@orh=\skip63
+\f@ncyO@elf=\skip64
+\f@ncyO@erf=\skip65
+\f@ncyO@olf=\skip66
+\f@ncyO@orf=\skip67
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\rotating\rotating.sty
 Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
@@ -623,7 +633,7 @@ Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks36
+\KV@toks@=\toks42
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
@@ -639,14 +649,14 @@ Package graphics Info: Driver file: dvips.def on input line 91.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\dvips.def"
 File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
-\Gin@req@height=\dimen119
-\Gin@req@width=\dimen120
+\Gin@req@height=\dimen121
+\Gin@req@width=\dimen122
 )
 \c@r@tfl@t=\count108
-\rotFPtop=\skip65
-\rotFPbot=\skip66
+\rotFPtop=\skip68
+\rotFPbot=\skip69
 \rot@float@box=\box32
-\rot@mess@toks=\toks37
+\rot@mess@toks=\toks43
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
@@ -679,8 +689,8 @@ File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
 Package: xkeyval 2008/08/13 v2.6a package option processing (HA)
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
-\XKV@toks=\toks38
-\XKV@tempa@toks=\toks39
+\XKV@toks=\toks44
+\XKV@tempa@toks=\toks45
 \XKV@depth=\count111
 File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
 )))
@@ -698,17 +708,17 @@ File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
 )
 \psLoopIndex=\count121
 
-`PSTricks' v2.23  <2011/09/04> (tvz)
-\pst@dima=\dimen121
-\pst@dimb=\dimen122
-\pst@dimc=\dimen123
-\pst@dimd=\dimen124
-\pst@dimg=\dimen125
-\pst@dimh=\dimen126
-\pst@dimm=\dimen127
-\pst@dimn=\dimen128
-\pst@dimo=\dimen129
-\pst@dimp=\dimen130
+`PSTricks' v2.27  <2012/03/11> (tvz)
+\pst@dima=\dimen123
+\pst@dimb=\dimen124
+\pst@dimc=\dimen125
+\pst@dimd=\dimen126
+\pst@dimg=\dimen127
+\pst@dimh=\dimen128
+\pst@dimm=\dimen129
+\pst@dimn=\dimen130
+\pst@dimo=\dimen131
+\pst@dimp=\dimen132
 \pst@hbox=\box33
 \pst@ibox=\box34
 \pst@boxg=\box35
@@ -723,29 +733,30 @@ File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
 \pst@cnto=\count130
 \pst@cntp=\count131
 \@zero=\count132
-\pst@toks=\toks40
+\pst@toks=\toks46
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pstricks\base\pstricks.con")
-\psunit=\dimen131
-\psxunit=\dimen132
-\psyunit=\dimen133
+\psunit=\dimen133
+\psxunit=\dimen134
+\psyunit=\dimen135
 \pst@C@@rType=\count133
-\pslinewidth=\dimen134
-\psk@startLW=\dimen135
-\psk@endLW=\dimen136
-\pst@customdefs=\toks41
-\pslinearc=\dimen137
-\pst@symbolStep=\dimen138
-\pst@symbolWidth=\dimen139
-\everypsbox=\toks42
-\psframesep=\dimen140
-\pslabelsep=\dimen141
-\pst@shift=\dimen142
+\pslinewidth=\dimen136
+\psk@startLW=\dimen137
+\psk@endLW=\dimen138
+\pst@customdefs=\toks47
+\pslinearc=\dimen139
+\pst@symbolStep=\dimen140
+\pst@symbolWidth=\dimen141
+\pst@symbolLinewidth=\dimen142
+\everypsbox=\toks48
+\psframesep=\dimen143
+\pslabelsep=\dimen144
+\pst@shift=\dimen145
 \theoverlaybox=\box36
 )
-File: pstricks.tex 2011/09/04 v2.23 `PSTricks' (tvz,hv)
+File: pstricks.tex 2012/03/11 v2.27 `PSTricks' (tvz,hv)
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pstricks\base\pst-fp.tex")
-File: pst-fp.tex 2011/09/04 v2.23 `PST-fp' (hv)
+File: pst-fp.tex 2012/03/11 v2.27 `PST-fp' (hv)
 
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
@@ -780,35 +791,35 @@ Package: curves 2009/08/31 1.53 Curves for LaTeX picture environment
 \;rc=\count145
 \;rtc=\count146
 \;tc=\count147
-\csdiameter=\skip67
-\curvelength=\skip68
-\overhang=\skip69
-\;x=\skip70
-\;dx=\skip71
-\;ddx=\skip72
-\;y=\skip73
-\;dy=\skip74
-\;ddy=\skip75
-\;pl=\skip76
-\;ucd=\skip77
+\csdiameter=\skip70
+\curvelength=\skip71
+\overhang=\skip72
+\;x=\skip73
+\;dx=\skip74
+\;ddx=\skip75
+\;y=\skip76
+\;dy=\skip77
+\;ddy=\skip78
+\;pl=\skip79
+\;ucd=\skip80
 \;csbox=\box37
 \;pt=\box38
-\;strline=\toks43
-\m;ssingcoord=\toks44
-\;negdash=\toks45
-\;oddcoord=\toks46
+\;strline=\toks49
+\m;ssingcoord=\toks50
+\;negdash=\toks51
+\;oddcoord=\toks52
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
 Package: caption 2012/02/19 v3.2f Customizing captions (AR)
 
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
 Package: caption3 2012/01/12 v1.4b caption3 kernel (AR)
-\captionmargin=\dimen143
-\captionmargin@=\dimen144
-\captionwidth=\dimen145
-\caption@indent=\dimen146
-\caption@parindent=\dimen147
-\caption@hangindent=\dimen148
+\captionmargin=\dimen146
+\captionmargin@=\dimen147
+\captionwidth=\dimen148
+\caption@indent=\dimen149
+\caption@parindent=\dimen150
+\caption@hangindent=\dimen151
 )
 \c@ContinuedFloat=\count148
 Package caption Info: longtable package is loaded.
@@ -823,9 +834,9 @@ Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\nomencl\nomencl.sty
 Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
-\nomlabelwidth=\dimen149
-\nom@tempdim=\dimen150
-\nomitemsep=\skip78
+\nomlabelwidth=\dimen152
+\nom@tempdim=\dimen153
+\nomitemsep=\skip81
 )
 \@nomenclaturefile=\write4
 
@@ -833,74 +844,78 @@ Writing nomenclature file index.nlo
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\subfig\subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 \c@KVtest=\count149
-\sf@farskip=\skip79
-\sf@captopadj=\dimen151
-\sf@capskip=\skip80
-\sf@nearskip=\skip81
+\sf@farskip=\skip82
+\sf@captopadj=\dimen154
+\sf@capskip=\skip83
+\sf@nearskip=\skip84
 \c@subfigure=\count150
 \c@subfigure@save=\count151
 \c@lofdepth=\count152
 \c@subtable=\count153
 \c@subtable@save=\count154
 \c@lotdepth=\count155
-\sf@top=\skip82
-\sf@bottom=\skip83
+\sf@top=\skip85
+\sf@bottom=\skip86
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
-Package: hyperref 2011/12/04 v6.82m Hypertext links for LaTeX
+Package: hyperref 2012/05/13 v6.82q Hypertext links for LaTeX
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
-Package: hobsub-hyperref 2011/04/23 v1.4 Bundle oberdiek, subset hyperref (HO)
+Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
+
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
-Package: hobsub-generic 2011/04/23 v1.4 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2011/04/23 v1.4 Subsetting bundle oberdiek (HO)
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
-Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-Package: ifvtex 2010/03/01 v1.5 Switches for detecting VTeX and its modes (HO)
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
-Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
 Package hobsub Info: Skipping package `ifpdf' (already loaded).
-Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
-Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
-Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
-Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
-Package: pdfescape 2011/04/04 v1.12 Provides string conversions (HO)
-Package: bigintcalc 2011/01/30 v1.2 Expandable big integer calculations (HO)
-Package: bitset 2011/01/30 v1.1 Data type bit set (HO)
-Package: uniquecounter 2011/01/30 v1.2 Provides unlimited unique counter (HO)
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
 )
 Package hobsub Info: Skipping package `hobsub' (already loaded).
 Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
-Package: hopatch 2011/01/30 v1.0 Wrapper for package hooks (HO)
+Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
 Package: xcolor-patch 2011/01/30 xcolor patch
-Package: atveryend 2011/04/23 v1.7 Hooks at very end of document (HO)
-Package: atbegshi 2011/01/30 v1.15 At begin shipout hook (HO)
-Package: refcount 2010/12/01 v3.2 Data extraction from references (HO)
-Package: hycolor 2011/01/30 v1.7 Color options of hyperref/bookmark (HO)
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
-Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen152
+\@linkdim=\dimen155
 \Hy@linkcounter=\count156
 \Hy@pagecounter=\count157
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
-File: pd1enc.def 2011/12/04 v6.82m Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
@@ -909,28 +924,28 @@ Now handling font encoding PD1 ...
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Option `plainpages' set `false' on input line 3925.
-Package hyperref Info: Hyper figures OFF on input line 4046.
-Package hyperref Info: Link nesting OFF on input line 4051.
-Package hyperref Info: Hyper index ON on input line 4054.
-Package hyperref Info: Plain pages OFF on input line 4061.
-Package hyperref Info: Backreferencing OFF on input line 4066.
+Package hyperref Info: Option `plainpages' set `false' on input line 3941.
+Package hyperref Info: Hyper figures OFF on input line 4062.
+Package hyperref Info: Link nesting OFF on input line 4067.
+Package hyperref Info: Hyper index ON on input line 4070.
+Package hyperref Info: Plain pages OFF on input line 4077.
+Package hyperref Info: Backreferencing OFF on input line 4082.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4284.
+Package hyperref Info: Bookmarks ON on input line 4300.
 \c@Hy@tempcnt=\count159
-LaTeX Info: Redefining \url on input line 4637.
+LaTeX Info: Redefining \url on input line 4653.
 \Fld@menulength=\count160
-\Field@Width=\dimen153
-\Fld@charsize=\dimen154
-Package hyperref Info: Hyper figures OFF on input line 5757.
-Package hyperref Info: Link nesting OFF on input line 5762.
-Package hyperref Info: Hyper index ON on input line 5765.
-Package hyperref Info: backreferencing OFF on input line 5772.
-Package hyperref Info: Link coloring OFF on input line 5777.
-Package hyperref Info: Link coloring with OCG OFF on input line 5782.
-Package hyperref Info: PDF/A mode OFF on input line 5787.
-LaTeX Info: Redefining \ref on input line 5827.
-LaTeX Info: Redefining \pageref on input line 5831.
+\Field@Width=\dimen156
+\Fld@charsize=\dimen157
+Package hyperref Info: Hyper figures OFF on input line 5773.
+Package hyperref Info: Link nesting OFF on input line 5778.
+Package hyperref Info: Hyper index ON on input line 5781.
+Package hyperref Info: backreferencing OFF on input line 5788.
+Package hyperref Info: Link coloring OFF on input line 5793.
+Package hyperref Info: Link coloring with OCG OFF on input line 5798.
+Package hyperref Info: PDF/A mode OFF on input line 5803.
+LaTeX Info: Redefining \ref on input line 5843.
+LaTeX Info: Redefining \pageref on input line 5847.
 \Hy@abspage=\count161
 \c@Item=\count162
 \c@Hfootnote=\count163
@@ -939,14 +954,14 @@ LaTeX Info: Redefining \pageref on input line 5831.
 Package hyperref Message: Driver: hdvips.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hdvips.def"
-File: hdvips.def 2011/12/04 v6.82m Hyperref driver for dvips
+File: hdvips.def 2012/05/13 v6.82q Hyperref driver for dvips
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pdfmark.def"
-File: pdfmark.def 2011/12/04 v6.82m Hyperref definitions for pdfmark specials
-\pdf@docset=\toks47
+File: pdfmark.def 2012/05/13 v6.82q Hyperref definitions for pdfmark specials
+\pdf@docset=\toks53
 \pdf@box=\box39
-\pdf@toks=\toks48
-\pdf@defaulttoks=\toks49
+\pdf@toks=\toks54
+\pdf@defaulttoks=\toks55
 \Fld@listcount=\count164
 \c@bookmark@seq@number=\count165
 
@@ -955,7 +970,7 @@ Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip84
+\Hy@SectionHShift=\skip87
 ))
 Package hyperref Info: Option `colorlinks' set `true' on input line 102.
 Package hyperref Info: Option `breaklinks' set `true' on input line 102.
@@ -971,12 +986,12 @@ nment
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count166
-\float@exts=\toks50
+\float@exts=\toks56
 \float@box=\box40
-\@float@everytoks=\toks51
+\@float@everytoks=\toks57
 \@floatcapt=\box41
 )
-\@float@every@algorithm=\toks52
+\@float@every@algorithm=\toks58
 \c@algorithm=\count167
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithms\algorithmic.
@@ -986,9 +1001,9 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \c@ALC@line=\count169
 \c@ALC@rem=\count170
 \c@ALC@depth=\count171
-\ALC@tlm=\skip85
-\algorithmicindent=\skip86
-)) (\\MATTHIAS-LAPTOP\WinProg\Rapport\style/thesislayout.sty
+\ALC@tlm=\skip88
+\algorithmicindent=\skip89
+)) (C:\WinProg\Rapport\style/thesislayout.sty
 Package: style/thesislayout 
 \c@currtheoremctr=\count172
 \c@endtheoremctr=\count173
@@ -1009,23 +1024,22 @@ Package: style/thesislayout
 \c@endremarkctr=\count188
 \c@remark=\count189
 )
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\style/mathboxes.sty
+(C:\WinProg\Rapport\style/mathboxes.sty
 Package: style/mathboxes 
-)
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\style/Mythesis.sty
-(C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.sty
+) (C:\WinProg\Rapport\style/Mythesis.sty (C:\Users\Matthias\AppData\Roaming\MiK
+TeX\2.9\tex\latex\listings\listings.sty
 \lst@mode=\count190
 \lst@gtempboxa=\box42
-\lst@token=\toks53
+\lst@token=\toks59
 \lst@length=\count191
-\lst@currlwidth=\dimen155
+\lst@currlwidth=\dimen158
 \lst@column=\count192
 \lst@pos=\count193
-\lst@lostspace=\dimen156
-\lst@width=\dimen157
+\lst@lostspace=\dimen159
+\lst@width=\dimen160
 \lst@newlines=\count194
 \lst@lineno=\count195
-\lst@maxwidth=\dimen158
+\lst@maxwidth=\dimen161
 
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
@@ -1039,8 +1053,8 @@ File: listings.cfg 2007/02/22 1.4 listings configuration
 Package: listings 2007/02/22 1.4 (Carsten Heinz)
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\footmisc\footmisc.sty
 Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
-\FN@temptoken=\toks54
-\footnotemargin=\dimen159
+\FN@temptoken=\toks60
+\footnotemargin=\dimen162
 \c@pp@next@reset=\count198
 Package footmisc Info: Declaring symbol style bringhurst on input line 855.
 Package footmisc Info: Declaring symbol style chicago on input line 863.
@@ -1052,8 +1066,8 @@ Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
 .
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\todonotes\todonotes.sty
-Package: todonotes 2011/10/22 .dtx Todonotes source and documentation.
-Package: todonotes 2011/10/22
+Package: todonotes 2012/07/25 .dtx Todonotes source and documentation.
+Package: todonotes 2012/07/25
 
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\frontendlayer\tikz.
 sty
@@ -1062,7 +1076,7 @@ sty
 y
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil
 -common.tex
-\pgfutil@everybye=\toks55
+\pgfutil@everybye=\toks61
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil
 -latex.def
@@ -1087,21 +1101,21 @@ Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeys
 .code.tex
-\pgfkeys@pathtoks=\toks56
-\pgfkeys@temptoks=\toks57
+\pgfkeys@pathtoks=\toks62
+\pgfkeys@temptoks=\toks63
 
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeys
 filtered.code.tex
-\pgfkeys@tmptoks=\toks58
+\pgfkeys@tmptoks=\toks64
 ))
-\pgf@x=\dimen160
-\pgf@y=\dimen161
-\pgf@xa=\dimen162
-\pgf@ya=\dimen163
-\pgf@xb=\dimen164
-\pgf@yb=\dimen165
-\pgf@xc=\dimen166
-\pgf@yc=\dimen167
+\pgf@x=\dimen163
+\pgf@y=\dimen164
+\pgf@xa=\dimen165
+\pgf@ya=\dimen166
+\pgf@xb=\dimen167
+\pgf@yb=\dimen168
+\pgf@xc=\dimen169
+\pgf@yc=\dimen170
 \w@pgf@writea=\write5
 \r@pgf@reada=\read2
 \c@pgf@counta=\count199
@@ -1146,12 +1160,12 @@ code.tex
 code.tex)
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathparse
 r.code.tex
-\pgfmath@dimen=\dimen168
+\pgfmath@dimen=\dimen171
 \pgfmath@count=\count206
 \pgfmath@box=\box45
-\pgfmath@toks=\toks59
-\pgfmath@stack@operand=\toks60
-\pgfmath@stack@operation=\toks61
+\pgfmath@toks=\toks65
+\pgfmath@stack@operand=\toks66
+\pgfmath@stack@operation=\toks67
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunct
 ions.code.tex
@@ -1176,32 +1190,32 @@ ions.misc.code.tex)))
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcor
 epoints.code.tex
 File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
-\pgf@picminx=\dimen169
-\pgf@picmaxx=\dimen170
-\pgf@picminy=\dimen171
-\pgf@picmaxy=\dimen172
-\pgf@pathminx=\dimen173
-\pgf@pathmaxx=\dimen174
-\pgf@pathminy=\dimen175
-\pgf@pathmaxy=\dimen176
-\pgf@xx=\dimen177
-\pgf@xy=\dimen178
-\pgf@yx=\dimen179
-\pgf@yy=\dimen180
-\pgf@zx=\dimen181
-\pgf@zy=\dimen182
+\pgf@picminx=\dimen172
+\pgf@picmaxx=\dimen173
+\pgf@picminy=\dimen174
+\pgf@picmaxy=\dimen175
+\pgf@pathminx=\dimen176
+\pgf@pathmaxx=\dimen177
+\pgf@pathminy=\dimen178
+\pgf@pathmaxy=\dimen179
+\pgf@xx=\dimen180
+\pgf@xy=\dimen181
+\pgf@yx=\dimen182
+\pgf@yy=\dimen183
+\pgf@zx=\dimen184
+\pgf@zy=\dimen185
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcor
 epathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
-\pgf@path@lastx=\dimen183
-\pgf@path@lasty=\dimen184
+\pgf@path@lastx=\dimen186
+\pgf@path@lasty=\dimen187
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcor
 epathusage.code.tex
 File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
-\pgf@shorten@end@additional=\dimen185
-\pgf@shorten@start@additional=\dimen186
+\pgf@shorten@end@additional=\dimen188
+\pgf@shorten@start@additional=\dimen189
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcor
 escopes.code.tex
@@ -1214,14 +1228,14 @@ File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcor
 egraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
-\pgflinewidth=\dimen187
+\pgflinewidth=\dimen190
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcor
 etransformations.code.tex
 File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
-\pgf@pt@x=\dimen188
-\pgf@pt@y=\dimen189
-\pgf@pt@temp=\dimen190
+\pgf@pt@x=\dimen191
+\pgf@pt@y=\dimen192
+\pgf@pt@temp=\dimen193
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcor
 equick.code.tex
@@ -1242,7 +1256,7 @@ File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcor
 eshade.code.tex
 File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
-\pgf@max=\dimen191
+\pgf@max=\dimen194
 \pgf@sys@shading@range@num=\count209
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcor
@@ -1278,8 +1292,8 @@ File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\compatibility\pgfco
 mp-version-0-65.sty
 Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen192
-\pgf@nodesepend=\dimen193
+\pgf@nodesepstart=\dimen195
+\pgf@nodesepend=\dimen196
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\compatibility\pgfco
 mp-version-1-18.sty
@@ -1294,10 +1308,10 @@ ty
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgffor.
 code.tex
 Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
-\pgffor@iter=\dimen194
-\pgffor@skip=\dimen195
-\pgffor@stack=\toks62
-\pgffor@toks=\toks63
+\pgffor@iter=\dimen197
+\pgffor@skip=\dimen198
+\pgffor@stack=\toks68
+\pgffor@toks=\toks69
 ))
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tik
 z\tikz.code.tex
@@ -1307,14 +1321,14 @@ Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
 aryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
 \pgf@plot@mark@count=\count210
-\pgfplotmarksize=\dimen196
+\pgfplotmarksize=\dimen199
 )
-\tikz@lastx=\dimen197
-\tikz@lasty=\dimen198
-\tikz@lastxsaved=\dimen199
-\tikz@lastysaved=\dimen200
-\tikzleveldistance=\dimen201
-\tikzsiblingdistance=\dimen202
+\tikz@lastx=\dimen200
+\tikz@lasty=\dimen201
+\tikz@lastxsaved=\dimen202
+\tikz@lastysaved=\dimen203
+\tikzleveldistance=\dimen204
+\tikzsiblingdistance=\dimen205
 \tikz@figbox=\box51
 \tikz@tempbox=\box52
 \tikztreelevel=\count211
@@ -1343,22 +1357,22 @@ File: tikzlibrarypositioning.code.tex 2008/10/06 v2.10 (rcs-revision 1.7)
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count219
 \calc@Bcount=\count220
-\calc@Adimen=\dimen203
-\calc@Bdimen=\dimen204
-\calc@Askip=\skip87
-\calc@Bskip=\skip88
+\calc@Adimen=\dimen206
+\calc@Bdimen=\dimen207
+\calc@Askip=\skip90
+\calc@Bskip=\skip91
 LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count221
-\calc@Cskip=\skip89
+\calc@Cskip=\skip92
 )
 \c@@todonotes@numberoftodonotes=\count222
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\units\nicefrac.sty
 Package: nicefrac 1998/08/04 v0.9b Nice fractions
-\L@UnitsRaiseDisplaystyle=\skip90
-\L@UnitsRaiseTextstyle=\skip91
-\L@UnitsRaiseScriptstyle=\skip92
+\L@UnitsRaiseDisplaystyle=\skip93
+\L@UnitsRaiseTextstyle=\skip94
+\L@UnitsRaiseScriptstyle=\skip95
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
@@ -1371,17 +1385,17 @@ Package: fancybox 2010/05/15 1.4
 
 Style option: `fancybox' v1.4 <2010/05/15> (tvz)
 \@fancybox=\box53
-\shadowsize=\dimen205
+\shadowsize=\dimen208
 \@Sbox=\box54
-\do@VerbBox=\toks64
-\the@fancyput=\toks65
-\this@fancyput=\toks66
-\EndVerbatimTokens=\toks67
+\do@VerbBox=\toks70
+\the@fancyput=\toks71
+\this@fancyput=\toks72
+\EndVerbatimTokens=\toks73
 \Verbatim@Outfile=\write6
 \Verbatim@Infile=\read3
 ) (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\misc209\psboxit.sty
 \gray@box=\box55
-\gray@space=\dimen206
+\gray@space=\dimen209
 )
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
@@ -1392,21 +1406,21 @@ Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less on input line 77.
 
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\quotchap\quotchap.sty
-Package: quotchap 2011/01/15 v1.0 Decorative Chapter Headings with Quotes
+Package: quotchap 2012/10/20 v1.1 Decorative Chapter Headings with Quotes
 \@quotebox=\box56
 )
 (C:\Users\Matthias\AppData\Roaming\MiKTeX\2.9\tex\latex\titlesec\titlesec.sty
 Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
 \ttl@box=\box57
-\beforetitleunit=\skip93
-\aftertitleunit=\skip94
-\ttl@plus=\dimen207
-\ttl@minus=\dimen208
-\ttl@toksa=\toks68
-\titlewidth=\dimen209
-\titlewidthlast=\dimen210
-\titlewidthfirst=\dimen211
-)) (\\MATTHIAS-LAPTOP\WinProg\Rapport\index.aux)
+\beforetitleunit=\skip96
+\aftertitleunit=\skip97
+\ttl@plus=\dimen210
+\ttl@minus=\dimen211
+\ttl@toksa=\toks74
+\titlewidth=\dimen212
+\titlewidthlast=\dimen213
+\titlewidthfirst=\dimen214
+)) (C:\WinProg\Rapport\index.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
@@ -1454,8 +1468,7 @@ LaTeX Info: Redefining \ref on input line 32.
 LaTeX Info: Redefining \pageref on input line 32.
 LaTeX Info: Redefining \nameref on input line 32.
 
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\index.out)
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\index.out)
+(C:\WinProg\Rapport\index.out) (C:\WinProg\Rapport\index.out)
 \@outlinefile=\write7
 \c@lstlisting=\count224
 
@@ -1542,12 +1555,12 @@ LaTeX Font Info:    Font shape `T1/pag/b/n' in size <20.74> not available
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <100> not available
 (Font)              Font shape `T1/pag/db/n' tried instead on input line 69.
 
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\tex\abstract.tex) [1
+(C:\WinProg\Rapport\tex\abstract.tex) [1
 
 
 
-]
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\index.toc [2
+] (C:\WinProg\Rapport\index.toc
+[2
 
 
 ])
@@ -1559,33 +1572,31 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3] (\\MATTHIAS-LAPTOP\WinProg\Rapport\index.lof)
+[3] (C:\WinProg\Rapport\index.lof)
 \tf@lof=\write9
  [4
 
 
-]
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\index.lot)
+] (C:\WinProg\Rapport\index.lot)
 \tf@lot=\write10
  [5
 
 
 ]
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\index.lol)
+(C:\WinProg\Rapport\index.lol)
 \tf@lol=\write11
  [6
 
 
-]
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\tex\nomenclature.tex)
+] (C:\WinProg\Rapport\tex\nomenclature.tex)
 No file index.nls.
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\tex\introduction.tex
+(C:\WinProg\Rapport\tex\introduction.tex
 Chapter 1.
 LaTeX Font Info:    Try loading font information for TS1+lmr on input line 28.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd"
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ))
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\tex\analysis.tex [1
+(C:\WinProg\Rapport\tex\analysis.tex [1
 
 
 
@@ -1595,7 +1606,7 @@ File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 Chapter 2.
 [2
 
-]) (\\MATTHIAS-LAPTOP\WinProg\Rapport\tex\implementation.tex
+]) (C:\WinProg\Rapport\tex\implementation.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
@@ -1604,7 +1615,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [3]
 Chapter 3.
-[4
+File: figure/one_of_each.eps Graphic file (type eps)
+<figure/one_of_each.eps> [4
 
 ]
 
@@ -1614,9 +1626,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 93--94
-
- []
+File: figure/edit_text.eps Graphic file (type eps)
+ <figure/edit_text.eps>
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 52.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 52.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1625,21 +1640,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [6]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[7]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 147.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 147.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 160.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 161.
-
+nput line 65.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 66.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1649,7 +1652,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8]) (\\MATTHIAS-LAPTOP\WinProg\Rapport\tex\conclusion.tex
+[7]
+File: figure/one_one_relation.eps Graphic file (type eps)
+ <figure/one_one_relation.eps>
+File: figure/one_many_relation.eps Graphic file (type eps)
+ <figure/one_many_relation.eps>
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
@@ -1657,13 +1671,40 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11]) (C:\WinProg\Rapport\tex\conclusion.tex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12]
 Chapter 4.
-) (\\MATTHIAS-LAPTOP\WinProg\Rapport\tex\futurework.tex) [10
+) (C:\WinProg\Rapport\tex\futurework.tex) [13
 
 ]
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\tex\appendix.tex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[14] (C:\WinProg\Rapport\tex\appendix.tex
 Appendix A.
-(\\MATTHIAS-LAPTOP\WinProg\Rapport\tex\usecase.tex [11
+(C:\WinProg\Rapport\tex\usecase.tex [15
 
 
 
@@ -1674,37 +1715,38 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12]))
+[16]))
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[13]
+[17]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 212.
 \tf@thm=\write12
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 216.
- [14
+ [18
 
 
 
-] [15]
+] [19]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 216.
- (\\MATTHIAS-LAPTOP\WinProg\Rapport\index.aux)
+ (C:\WinProg\Rapport\index.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 216.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 216.
 Package rerunfilecheck Info: File `index.out' has not changed.
-(rerunfilecheck)             Checksum: 57AB482D0070274E82996B4CBA64A838;2543.
+(rerunfilecheck)             Checksum: 36FDDD95EF1C71D9DFADA1686692AFA6;2540.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 216.
  ) 
 Here is how much of TeX's memory you used:
- 21857 strings out of 494046
- 367314 string characters out of 3145984
- 488375 words of memory out of 3000000
- 24604 multiletter control sequences out of 15000+200000
+ 21976 strings out of 494046
+ 368909 string characters out of 3145983
+ 493030 words of memory out of 3000000
+ 24719 multiletter control sequences out of 15000+200000
  116519 words of font info for 91 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  70i,18n,94p,605b,1397s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on index.dvi (24 pages, 102332 bytes).
+Output written on index.dvi (28 pages, 110888 bytes).
