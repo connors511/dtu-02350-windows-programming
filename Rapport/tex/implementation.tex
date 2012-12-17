@@ -18,12 +18,15 @@ There are different gestures for creating, updating and deleting classes, each c
   \item Struct
 \end{itemize}
 
-Clicking one of the buttons will also insert a box in the right grid column representing the class in the application. The color of the boxes are determined by the type of the classes.\\
+Clicking one of the buttons will also insert a box in the right grid column representing the class in the application. The color of the boxes are determined by the type of the classes.
 
-Deleting a class is done by right clicking on the specific box representing that class.\\
+Deleting a class is done by right clicking on the specific box representing that class.
 
-If one wants to edit a class, this is done by double (left) clicking on the specific box. This will cause the box to switch to an editable field where one can type in the name, properties and methods for the class in accordance with the syntax of UML class diagrams. Clicking on the same box again or double clicking on another box will save the changes, and the boxes will automatically resize to fit its content. Thus, only one class can be edited at a time.\\
+If one wants to edit a class, this is done by double (left) clicking on the specific box. This will cause the box to switch to an editable field where one can type in the name, properties and methods for the class in accordance with the syntax of UML class diagrams. Clicking on the same box again or double clicking on another box will save the changes, and the boxes will automatically resize to fit its content. Thus, only one class can be edited at a time.
+
 Choosing inline text edit instead of a pop-up window or likewise is because the UML class diagram content syntax is so simple and understandable and because it (for a software architect's point of view) is much faster to use this text based UI than pick the different properties and methods etc. in a GUI.
+
+The parsing of inline text edit is done with regular expressions, RegEx, and is described in section \ref{sec:regex}
 
 \subsubsection{RegEx}
 \label{sec:regex}
@@ -69,13 +72,9 @@ If a line has been successfully matched to the property pattern the type group o
 The property entry is then populated with the matched groups, and if the matched type group is a name of a class already on the canvas a line is drawn between them, and the carnality is written on the line.
 The carnality of the relationship is taken from the array size if specified otherwise 1 is used.
 
-Der er ikke undervist i regex.
-
-Tæller 5
-
 \subsection{Movable classes}
+It is possible to freely move the boxes around in the right grid column, but only there. That means that it is not possible to e.g. move the boxes out of the window or into the left grid column.
 
-It is possible to freely move the boxes around in the right grid column, but only there. That means that it is not possible to e.g. move the boxes out of the window or into the left grid column.\\
 When editing a box, one cannot move it, but it is still possible to move other boxes.
 
 \subsection{Undo and redo}
@@ -135,8 +134,6 @@ The save functionality has been implemented in its own thread, because the appli
 
 A prettier solution would be to use background workers to load the file meanwhile the GUI was disabled or perhaps showing a progress bar. When the background workers had completed loading the GUI was to be enabled again.
 
-When saving a file FORMAT\\
-
 After a file has been saved the first time, the application will automatically save it continuously in a specific time interval. This way, the user does not have to worry about losing hours of work if the computer crashes or shuts down.
 
 The application saves the applications state by taking the list of classes on the canvas (\textsf{List<Base>} in the source code) and serializing the entire list with a binary formatter whose output is then saved to a file on the computer.
@@ -179,5 +176,6 @@ TÆLLER 10
 
 \section{Tests}
 \label{sec:tests}
+Throughout the development of the application several tests has been conducted to ensure that the application is performing as expected.
 
-The application has been tested with various use cases that can be found in appendix \ref{ap:usecase}.
+The various use cases used for testing the application can be found in appendix \ref{ap:usecase}.
