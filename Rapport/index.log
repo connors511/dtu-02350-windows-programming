@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=latex 2012.10.2)  17 DEC 2012 11:36
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=latex 2012.10.2)  17 DEC 2012 11:46
 entering extended mode
 **index.tex
 (C:\WinProg\Rapport\index.tex
@@ -1616,7 +1616,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [3]
 Chapter 3.
 File: figure/one_of_each.eps Graphic file (type eps)
-<figure/one_of_each.eps> [4
+<figure/one_of_each.eps>
+File: figure/edit_text.eps Graphic file (type eps)
+ <figure/edit_text.eps> [4
 
 ]
 
@@ -1626,12 +1628,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [5]
-File: figure/edit_text.eps Graphic file (type eps)
- <figure/edit_text.eps>
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 52.
+(Font)              <9> on input line 51.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 52.
+(Font)              <5> on input line 51.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1641,8 +1641,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [6]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 65.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 66.
+nput line 64.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 65.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1743,10 +1743,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 216.
 Here is how much of TeX's memory you used:
  21976 strings out of 494046
  368909 string characters out of 3145983
- 493030 words of memory out of 3000000
+ 492030 words of memory out of 3000000
  24719 multiletter control sequences out of 15000+200000
  116519 words of font info for 91 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  70i,18n,94p,605b,1397s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on index.dvi (28 pages, 110888 bytes).
+Output written on index.dvi (28 pages, 110908 bytes).
