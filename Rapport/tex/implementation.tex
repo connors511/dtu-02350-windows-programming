@@ -3,7 +3,6 @@
 
 \section{GUI}
 \label{sec:gui}
-TÆLLER 35
 
 The GUI consists of a menu, a two-column grid and a status bar. The features that can be interacted with in the GUI have been outlined below. An overview of the available class types can be seen on figure \ref{fig:one_each}.
 
@@ -32,7 +31,7 @@ Deleting a class is done by right clicking on the specific box representing that
 
 If one wants to edit a class, this is done by double (left) clicking on the specific box. This will cause the box to switch to an editable field where one can type in the name, properties and methods for the class in accordance with the syntax of UML class diagrams. Clicking on the same box again or double clicking on another box will save the changes, and the boxes will automatically resize to fit its content. Thus, only one class can be edited at a time.
 
-Choosing inline text edit instead of a pop-up window or likewise is because the UML class diagram content syntax is so simple and understandable and because it (for a software architect's point of view) is much faster to use this text based UI than pick the different properties and methods etc. in a GUI.
+Inline text edit is chosen over a pop-up window or likewise because the UML class diagram content syntax is so simple and understandable and because it (from a programmer's point of view) is much faster to use this text based UI than pick the different properties and methods etc. in a GUI.
 
 The parsing of inline text edit is done with regular expressions, RegEx, and is described in section \ref{sec:regex}
 
@@ -152,12 +151,10 @@ On the bottom of the GUI a status bar can be seen. Here, the user gets messages 
 \section{Application layer}
 \label{sec:app_layer}
 
-TÆLLER 20
-
 \subsection{DLL}
 To ensure the application is extensible all models have been put in a separate DLL file.
 
-This also allows for development of other tools using the same models, for instance a web based UML diagrammer.
+This way, the model layer can be reused in another application or context, e.g.  a web based UML diagram application.
 
 \subsection{Save and load}
 The save functionality has been implemented in its own thread, because the application could otherwise be halted while this operation were executed. The load functionality remains in the same thread as the GUI, because one should not be able to modify the canvas while loading a file.
@@ -171,7 +168,7 @@ The application saves the applications state by taking the list of classes on th
 \section{Design patterns}
 \label{sec:design_pattern}
 \subsection{Singleton}
-The singleton design pattern restricts the inistantation of a class to one object.
+The singleton design pattern restricts the instantiation of a class to one object.
 The pattern is useful when exactly one object is needed to coordinate actions or use of data throughout the system, such as a config class or data model.
 
 The singleton pattern is implemented in the \textsf{Serializer} class, that is used when saving and loading files. 
@@ -200,9 +197,6 @@ This seperation allows for higher productivity because application and UX develo
 without them having to worry about the other party's code.
 Even if the application is developed by a single developer, said developer would still benefit from this separation of logic 
 in the late development cycles where the UI often changes frequently based on end-user feedback.
-
-TÆLLER 10
-
 
 \section{Tests}
 \label{sec:tests}
